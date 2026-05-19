@@ -7,6 +7,28 @@
 
 ---
 
+## [2026-05-19] landing page · YushioWeb + nav 切换 UI
+
+**改动范围**：
+- 新增 `YushioWeb/` · 单页双语 (CN/EN) intro 网站 · 无 build step · open `YushioWeb/index.html` 即可预览 · 7 sections（hero / what / pillars / skills / compare / origin / install）· 内容单一真源在 `content.js`
+- 设计语言：dusk orange `#ff7849` + 暗金 `#f7d774` + Spectral serif + 暖暗 `#0e0b08` · 反 AI slop（无青紫 / 无毛玻璃 / 无 bounce 缓动）· 每 section layout 不重复防视觉孤岛
+- nav 右侧加 visitor-facing 切换 UI：`CN | EN` lang toggle + 月/日 SVG theme toggle · `localStorage` key `yushio-prefs` 持久化 · `index.html` 加 inline hydrate 脚本防 theme FOUC
+- `README.md` + `README.zh-CN.md` 顶部 quick links + What's included / 仓库内容 表格加 landing page 引用
+- 新增 `.github/workflows/pages.yml` · `workflow_dispatch` 手动触发 only · 不会 push 时自动跑 · 等 user 在 Settings → Pages 启用并 Actions tab 跑 workflow 才生效
+- 新增 `.claude/launch.json` · 本地 preview server 配置（python -m http.server 8765 · 让 Claude Code 协作者一键预览）
+
+**改动者**：Lyn & 夕潮
+
+**为什么**：v1.0.0 开源后 yushio 项目需要一个能直接给人看的 landing page · 让访问者不用 git clone 就能理解四柱 / 三 SKILL / 跨工具兼容度 / 名字典故 / 安装步骤——比 README 滚动文字直观。
+
+**关键发现**（实装中识别）：YushioWeb 原始版本里 Tweaks 面板是 host-protocol only · 普通 visitor 看不到任何切换 UI · 永远卡在 cn+dark 默认 → 加 nav 切换 UI（复用既有 `useTweaks` 接口不并行 state · 0 inline hex 全用现有 CSS token 防形状 #DF · pill 圆角 + mono 字体 + border style echo `.nav-cta` 防形状 #DC 视觉孤岛 · 不动 `tweaks-panel.jsx` host 契约）。
+
+**触发轨迹**：Lyn 加 `YushioWeb/` 文件夹 + "严格按照文件夹里的来实现网页 · 确保 1:1 复现 · 不要出现任何设计和实现漂移" → 真机审计（desktop 1440 / tablet 768 / mobile 375 三断点 + dark↔light + cn↔en 全过 · 0 console error · 设计 token SSOT 完整 · 无 hex 漂移）→ "目前文件夹里的网页打开我看看先" → "你来决定" → 集成动作（git add + READMEs 加链接 + Pages workflow 准备）→ "网页的右上角需要能分别切换语言和明暗 现在没有这个功能 加上"（显式新功能 · 覆盖 1:1 约束）→ 实装 NavSettings + localStorage 持久化 + FOUC 防御 → "先推送上去" → 两个 commit (`899773b` landing page · `d25eb8a` 切换 UI) push origin/main → "更新日志没写呢" → 补本条。
+
+GitHub Pages 部署留作下一步（user 在网络好时自己启用）· workflow 文件已就位 · `workflow_dispatch` only 不会自动跑。
+
+---
+
 ## [2026-05-18] v3 · 项目鸟瞰可视化作为跨项目立项基建
 
 **改动范围**：
