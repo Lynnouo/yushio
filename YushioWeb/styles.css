@@ -183,6 +183,49 @@ img, svg { display: block; max-width: 100%; }
 }
 .nav-cta svg { width: 14px; height: 14px; }
 
+/* Settings toggles (lang + theme) — sit left of GitHub cta */
+.nav-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.nav-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elev) 64%, transparent);
+  transition: border-color var(--t-med);
+}
+.nav-toggle:hover { border-color: var(--line-strong); }
+.nav-toggle button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--fg-mute);
+  transition: color var(--t-med), background var(--t-med);
+}
+.nav-toggle button:hover { color: var(--fg); }
+.nav-toggle button.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.nav-toggle svg { display: block; }
+
 /* ─── Hero ──────────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -1126,6 +1169,15 @@ img, svg { display: block; max-width: 100%; }
   .skills-stack { grid-template-columns: 1fr; gap: 18px; }
   .install-block { grid-template-columns: 1fr; gap: 18px; }
   .origin-grid { grid-template-columns: 1fr; }
+}
+
+/* ≤640: compact nav toggles + GitHub cta becomes icon-only to fit */
+@media (max-width: 640px) {
+  .nav-right { gap: 8px; }
+  .nav-settings { gap: 4px; }
+  .nav-toggle button { min-width: 22px; padding: 0 6px; font-size: 10px; }
+  .nav-cta { padding: 7px 10px; gap: 0; font-size: 0; }
+  .nav-cta svg { width: 16px; height: 16px; }
 }
 
 /* ─── Phone breakpoint (≤760px) ─────────────────────────────────────────── */

@@ -74,7 +74,58 @@ function Reveal({ children, as: As = "div", className = "", style }) {
   return <As ref={ref} className={`reveal ${className}`} style={style}>{children}</As>;
 }
 
-function Nav({ lang }) {
+function NavSettings({ tw, set }) {
+  return (
+    <div className="nav-settings" role="group" aria-label="Site preferences">
+      <div className="nav-toggle" role="radiogroup" aria-label="Language">
+        <button
+          type="button"
+          role="radio"
+          aria-checked={tw.lang === "cn"}
+          className={tw.lang === "cn" ? "is-active" : ""}
+          onClick={() => set("lang", "cn")}
+        >CN</button>
+        <button
+          type="button"
+          role="radio"
+          aria-checked={tw.lang === "en"}
+          className={tw.lang === "en" ? "is-active" : ""}
+          onClick={() => set("lang", "en")}
+        >EN</button>
+      </div>
+      <div className="nav-toggle" role="radiogroup" aria-label="Theme">
+        <button
+          type="button"
+          role="radio"
+          aria-checked={tw.theme === "dark"}
+          aria-label="Dark theme"
+          className={tw.theme === "dark" ? "is-active" : ""}
+          onClick={() => set("theme", "dark")}
+        >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+          </svg>
+        </button>
+        <button
+          type="button"
+          role="radio"
+          aria-checked={tw.theme === "light"}
+          aria-label="Light theme"
+          className={tw.theme === "light" ? "is-active" : ""}
+          onClick={() => set("theme", "light")}
+        >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Nav({ tw, set }) {
+  const lang = tw.lang;
   const c = CONTENT.nav;
   return (
     <nav className="nav">
@@ -89,12 +140,15 @@ function Nav({ lang }) {
             <a key={s.id} href={`#${s.id}`}>{t(s, lang)}</a>
           ))}
         </div>
-        <a className="nav-cta" href="https://github.com/Lynnouo/yushio" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.18c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.5 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56 4.56-1.53 7.84-5.83 7.84-10.91C23.5 5.65 18.35.5 12 .5z"/>
-          </svg>
-          {t(c.github, lang)}
-        </a>
+        <div className="nav-right">
+          <NavSettings tw={tw} set={set} />
+          <a className="nav-cta" href="https://github.com/Lynnouo/yushio" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.18c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.21-1.5 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56 4.56-1.53 7.84-5.83 7.84-10.91C23.5 5.65 18.35.5 12 .5z"/>
+            </svg>
+            {t(c.github, lang)}
+          </a>
+        </div>
       </div>
     </nav>
   );
@@ -589,14 +643,33 @@ function Tweaks({ t: tw, set, lang }) {
 
 // ─── Root ───────────────────────────────────────────────────────────────────
 function App() {
-  const [tw, set] = useTweaks(TWEAK_DEFAULTS);
+  // Hydrate from localStorage so visitor prefs survive reloads.
+  // Read synchronously before useTweaks so initial render uses persisted values (no FOUC).
+  const initialDefaults = useMemo(() => {
+    try {
+      const raw = localStorage.getItem("yushio-prefs");
+      if (raw) {
+        const p = JSON.parse(raw);
+        return {
+          lang:  (p.lang  === "cn"   || p.lang  === "en")    ? p.lang  : TWEAK_DEFAULTS.lang,
+          theme: (p.theme === "dark" || p.theme === "light") ? p.theme : TWEAK_DEFAULTS.theme,
+        };
+      }
+    } catch (_) {}
+    return TWEAK_DEFAULTS;
+  }, []);
+  const [tw, set] = useTweaks(initialDefaults);
 
-  // Reflect tweaks onto <html> so CSS can pick them up.
+  // Reflect tweaks onto <html> + persist to localStorage so CSS picks them up
+  // and reloads keep the same prefs.
   useEffect(() => {
     const html = document.documentElement;
     html.setAttribute("data-lang", tw.lang);
     html.setAttribute("data-theme", tw.theme);
     html.lang = tw.lang === "cn" ? "zh-CN" : "en";
+    try {
+      localStorage.setItem("yushio-prefs", JSON.stringify({ lang: tw.lang, theme: tw.theme }));
+    } catch (_) {}
   }, [tw.lang, tw.theme]);
 
   // Page title
@@ -609,7 +682,7 @@ function App() {
   return (
     <>
       <CursorGlow />
-      <Nav lang={tw.lang} />
+      <Nav tw={tw} set={set} />
       <Hero lang={tw.lang} />
       <WhatSection lang={tw.lang} />
       <PillarsSection lang={tw.lang} />

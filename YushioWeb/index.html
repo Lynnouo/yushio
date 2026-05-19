@@ -19,6 +19,18 @@
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- Hydrate theme + lang from localStorage before paint to avoid FOUC.
+       Mirrors the keys written by App in app.jsx ("yushio-prefs"). -->
+  <script>
+    (function(){try{
+      var p=localStorage.getItem("yushio-prefs");
+      if(!p)return;
+      p=JSON.parse(p);
+      var h=document.documentElement;
+      if(p.lang==="cn"||p.lang==="en")h.setAttribute("data-lang",p.lang);
+      if(p.theme==="dark"||p.theme==="light")h.setAttribute("data-theme",p.theme);
+    }catch(_){}}());
+  </script>
   <div id="root"></div>
 
   <!-- Bilingual content store -->
