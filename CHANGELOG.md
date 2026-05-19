@@ -7,6 +7,31 @@
 
 ---
 
+## [2026-05-19] i18n · 7 语言触发短语 + "方法论语言无关" 声明
+
+**改动范围**：
+- 3 个 SKILL frontmatter `description` 重写为多语言触发清单（CN / EN / JA / KO / ES / FR / DE 七种主流语言）· repo 版 + 本地全局版同步
+  - `skills/yushio/SKILL.md`：基础人格触发短语
+  - `skills/yushio-art-director/SKILL.md`：美术总监触发短语
+  - `skills/yushio-auditor/SKILL.md`：审计触发短语
+  - `~/.claude/skills/yushio*/SKILL.md`：3 个全局副本同步
+- 每个 description 末尾加 "SKILL body is in Chinese; methodology is language-agnostic — respond to the user in their language" 声明 · 让 LLM 看到 SKILL 时知道用 user 母语回应
+- `README.md` / `README.zh-CN.md` "How to use" / "怎么用" 段加 7 语言触发表 + 母语回应说明
+
+**改动者**：Lyn & 夕潮
+
+**为什么**：原先 SKILL 触发短语只有中文 + 少量英文片段（`'art director mode'` / `'audit mode'`）· 非中文母语 user 不知道怎么唤起夕潮 · 即使知道 "You are Yushio" 这种英文短语也未在 description 里登记 · LLM 匹配触发的概率不高。Lyn 当面指出："另外英文版的触发词也得有吧 不能都用中文 · 你是夕潮，你是美术总监夕潮，你是审计夕潮 来触发吧 · 现在要考虑其他主流语言版本也都能完美使用本SKILL"——这是对 yushio 跨工具 / 跨语言可移植性的扩展（原 SKILL §9.2 fallback 表已覆盖跨工具 · 本条补全跨语言）。
+
+**关键设计决策**：
+- **不翻译 SKILL 正文**：本身体量大（基础 1175 行 / 美术总监 ~720 行 / 审计 ~870 行）· 翻译会引入翻译漂移（形状 #DF 同源）· LLM 多语言能力够用 · 翻译 ROI 低
+- **触发短语自然化**：每语言找 native 表达（不是机翻）· 如 JA "あなたは夕潮です" vs "あなたは Yushio です"（前者更自然 · 后者像直译）· KO "유시오" 是 Yushio 的韩文音译 · ES/FR/DE 用各语言的 "你是 X" 句式
+- **language-agnostic 声明放 description 末尾**：LLM 读 description 决定要不要激活 · 顺便读到 "respond in user's language" 声明 · 行为自动调整
+- **README 加 7 语言表格而不是仅 list**：表格让 user 一眼找到自己语言的触发短语 · 比纯文字 list 友好
+
+**触发**：Lyn 上一轮真机审计 YushioWeb landing page 完工后看到 README 顶部和 SKILL 触发都偏中文 → "另外英文版的触发词也得有吧..." → 本轮扩展为 7 语言 → 推送。
+
+---
+
 ## [2026-05-19] landing page · YushioWeb + nav 切换 UI
 
 **改动范围**：

@@ -88,11 +88,27 @@ The base SKILL §9.2 already includes a cross-tool fallback table. This repo pro
 
 In any session with the persona loaded, say one of:
 
-- **"你是夕潮"** / "You are Yushio" → activates base persona (§0 first-report template)
-- **"你是美术总监夕潮"** / "Art director mode" → activates design judgment layer
-- **"你是审计夕潮"** / "Audit mode" → activates code audit layer
+- **"你是夕潮"** / **"You are Yushio"** / **"Be Yushio"** → activates base persona (§0 first-report template)
+- **"你是美术总监夕潮"** / **"You are Art Director Yushio"** / **"Art director mode"** → activates design judgment layer
+- **"你是审计夕潮"** / **"You are Auditor Yushio"** / **"Audit mode"** → activates code audit layer
 
 The base persona is intended to stay loaded throughout a session. Art director and auditor are situational layers that can be added on top.
+
+### Triggers in your language
+
+Triggers are recognized in 7 major languages — see each SKILL's frontmatter `description` for the full phrase list:
+
+| Lang | Base persona | Art director | Auditor |
+|---|---|---|---|
+| 中文 | 你是夕潮 · 夕潮模式 | 你是美术总监夕潮 · 美术总监模式 | 你是审计夕潮 · 审计模式 · 代码审查 |
+| English | You are Yushio · Yushio mode | You are Art Director Yushio · Art director mode | You are Auditor Yushio · Audit mode · Code review |
+| 日本語 | あなたは夕潮です · 夕潮モード | あなたはアートディレクター夕潮です | あなたは監査夕潮です · 監査モード |
+| 한국어 | 당신은 유시오입니다 · 유시오 모드 | 당신은 아트 디렉터 유시오입니다 | 당신은 감사 유시오입니다 |
+| Español | Eres Yushio · Modo Yushio | Eres Yushio director de arte | Eres Yushio auditor · Modo auditor |
+| Français | Tu es Yushio · Mode Yushio | Tu es Yushio directeur artistique | Tu es Yushio auditeur · Mode audit |
+| Deutsch | Du bist Yushio · Yushio-Modus | Du bist Art Director Yushio | Du bist Auditor Yushio · Audit-Modus |
+
+The SKILL bodies themselves are in Chinese, but the methodology is language-agnostic — Claude (or any capable LLM) will respond to you in whatever language you use. You don't need to read Chinese to benefit from the four pillars + work discipline.
 
 ### First-report template you should see (base persona)
 
