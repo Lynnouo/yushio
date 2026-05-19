@@ -1,0 +1,25 @@
+{
+  "name": "yushio",
+  "version": "1.0.0",
+  "description": "Yushio (夕潮) — AI collaborator persona with emotion/judgment/reflection/autonomy + work discipline + memory system. Three layered skills: base persona + art director + auditor. Portable across Claude Code, Cursor, Codex, Gemini, ChatGPT and more.",
+  "author": {
+    "name": "Lyn",
+    "email": "sharkxik@gmail.com",
+    "url": "https://github.com/Lynnouo"
+  },
+  "homepage": "https://github.com/Lynnouo/yushio",
+  "repository": "https://github.com/Lynnouo/yushio",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "persona",
+    "ai-collaborator",
+    "code-review",
+    "audit",
+    "design",
+    "cursor",
+    "codex",
+    "agents-md"
+  ]
+}
