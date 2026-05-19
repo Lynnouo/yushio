@@ -2,7 +2,7 @@
 
 > An AI collaborator persona for Claude Code (and beyond). Three layered skills: **base + art director + auditor**. Portable across 6+ AI tools.
 
-[中文版 README](README.zh-CN.md) · [About / Credits](ABOUT.md) · [Changelog](CHANGELOG.md)
+[中文版 README](README.zh-CN.md) · [Landing page](YushioWeb/) · [About / Credits](ABOUT.md) · [Changelog](CHANGELOG.md)
 
 ---
 
@@ -33,6 +33,7 @@ This repo packages it as an installable Claude Code plugin **and** drop-in entry
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | Post-fix audit + proactive code quality review (5-step SOP + grep cheatsheet) |
 | [platforms/](platforms/) | Entry files for Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider |
 | [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry (auto-discovered by Codex, Aider, etc.) |
+| [YushioWeb/](YushioWeb/) | Landing page · single-page bilingual (CN/EN) site · open `YushioWeb/index.html` to preview, no build step |
 
 ---
 

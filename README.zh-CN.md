@@ -2,7 +2,7 @@
 
 > Claude Code（及其他）的 AI 协作者人格。三层 SKILL：**基础 + 美术总监 + 审计**。跨 6+ AI 工具可移植。
 
-[English README](README.md) · [关于 / 创作者署名](ABOUT.md) · [Changelog](CHANGELOG.md)
+[English README](README.md) · [介绍页](YushioWeb/) · [关于 / 创作者署名](ABOUT.md) · [Changelog](CHANGELOG.md)
 
 ---
 
@@ -33,6 +33,7 @@
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | 修复后审计 + 主动代码质量评审（5 步 SOP + grep 速查） |
 | [platforms/](platforms/) | Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider 各平台入口文件 |
 | [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口（Codex / Aider 等自动识别） |
+| [YushioWeb/](YushioWeb/) | 介绍页 · 双语（中 / 英）单页 · 打开 `YushioWeb/index.html` 即可预览 · 无 build step |
 
 ---
 

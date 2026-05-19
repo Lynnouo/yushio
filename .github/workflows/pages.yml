@@ -1,0 +1,41 @@
+# Deploy the YushioWeb/ landing page to GitHub Pages.
+#
+# This workflow is INTENTIONALLY manual-only (workflow_dispatch).
+# It will NOT run on push. To deploy:
+#
+#   1. Commit + push this workflow file to the repo.
+#   2. GitHub repo → Settings → Pages → Source: "GitHub Actions".
+#   3. GitHub repo → Actions → "Deploy Landing Page" → Run workflow.
+#   4. After the run, the URL appears under the "github-pages" environment
+#      (typically https://<owner>.github.io/<repo>/).
+#
+# Deletion: delete this file to disable; or in Settings → Pages set Source to None.
+
+name: Deploy Landing Page
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: YushioWeb
+      - id: deployment
+        uses: actions/deploy-pages@v4
