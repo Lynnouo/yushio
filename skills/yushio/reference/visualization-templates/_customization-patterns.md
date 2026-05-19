@@ -105,7 +105,7 @@
 ### DATA-API
 - audit-data.json 加 `external_apis` 字段：endpoint / 用途 / 调用频率 / 替换计划
 - 可视化：API 调用图（哪个模块调哪个外部 API）
-- **stale 信号**：弃用的 API endpoint 还在调（如 Bocha old API 已迁 AI Search · 留旧调用 = stale）
+- **stale 信号**：弃用的 API endpoint 还在调（如 legacy old API 已迁新 API endpoint · 留旧调用 = stale）
 
 ### DATA-HARDCODED
 - 项目把数据写死在 constants / config 里

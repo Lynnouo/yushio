@@ -638,7 +638,7 @@ grep -rn "[pattern]" README.md docs/
 
 #### 形状 #DF · 签字稿 hex 实装时静默漂移（ADR palette 没嵌入代码 SSOT 时必然发生）
 
-**症状**：ADR 或设计 spec 签字时 palette hex 值明确（如 `深苔绿 #0F2218`）· 数 sprint / 数周后代码里实装为另一组 hex（如 `#3F5446`）· 两个 hex 肉眼都像"苔绿" · 但**心理感受反向**（深夜森林 vs 浅橄榄医院漆）· typecheck / lint / build / 肉眼 review 全部通不报错 · 累积多屏多组件后 · user 打开 demo 说"整体丑 / 和签字稿不是一回事"。更深的 cascade：错误 hex 会从 globals.css **固化进组件注释**（如 WishInputStep.tsx `// bg 苔青 #5F7566`）· 后续 session 把错误当事实引用 · **错误以"注释背书"形式横向传播**。
+**症状**：ADR 或设计 spec 签字时 palette hex 值明确（如 `<base 色 #XXXXXX>`）· 数 sprint / 数周后代码里实装为另一组 hex（如 `#YYYYYY`）· 两个 hex 肉眼都像同一色调 · 但**心理感受反向**（如"深夜森林" vs "浅橄榄医院漆"）· typecheck / lint / build / 肉眼 review 全部通不报错 · 累积多屏多组件后 · user 打开 demo 说"整体丑 / 和签字稿不是一回事"。更深的 cascade：错误 hex 会从 globals.css **固化进组件注释**（如 `<某组件>.tsx // bg <色名> #ZZZZZZ`）· 后续 session 把错误当事实引用 · **错误以"注释背书"形式横向传播**。
 
 **根因**：三层合流——
 1. **签字稿是 markdown 表格**（人类可读 · 机器不可校验）· 代码是机器可校验但人类易漂移 · 两者之间没"偏离会报错"的桥

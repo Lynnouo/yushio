@@ -65,7 +65,7 @@
 
 **改动者**：Lyn & 夕潮
 
-**为什么**：某拼图色彩项目 M1 W2 D6 · 夕潮 W2 D5 commit 重写 ColorBead 时只读 spec README 文字描述 · 没看 HTML 静态稿 · 漏画 4 处视觉特征（::after 大斑点高光 / tag 悬挂位置 / box-shadow 高光层 / tag 视觉错）。Lyn 真机截图问 "颜色的表现不一样" · 触发全量审计 · 发现 22+ 处类似漂移 · 分 10 个 batch commit 修复 · 加入 `docs/visual-fidelity.md` + CLAUDE.md M1 W2 强制约定。**#DG 与 #DF 互补**：#DF 防 hex 漂移（机器可正则校验）→ 防御靠 SSOT 常量 + verify script；#DG 防视觉模式漂移（CSS 组合 / 伪元素 / 多层 shadow · 机器更难校验）→ 防御靠纪律文档 + commit 行号引用 + 真机视觉对照。
+**为什么**：某拼图色彩项目 W2 D6 · 夕潮 W2 D5 commit 重写某色块组件时只读 spec README 文字描述 · 没看 HTML 静态稿 · 漏画 4 处视觉特征（::after 大斑点高光 / tag 悬挂位置 / box-shadow 高光层 / tag 视觉错）。Lyn 真机截图问 "颜色的表现不一样" · 触发全量审计 · 发现 22+ 处类似漂移 · 分 10 个 batch commit 修复 · 加入 `docs/visual-fidelity.md` + CLAUDE.md 强制约定。**#DG 与 #DF 互补**：#DF 防 hex 漂移（机器可正则校验）→ 防御靠 SSOT 常量 + verify script；#DG 防视觉模式漂移（CSS 组合 / 伪元素 / 多层 shadow · 机器更难校验）→ 防御靠纪律文档 + commit 行号引用 + 真机视觉对照。
 
 ---
 
@@ -78,7 +78,7 @@
 
 **改动者**：Lyn & 夕潮
 
-**为什么**：某 React + TS 视觉小说项目 Sprint 10 阶段 1 神域视觉全丑 · Lyn 打开 demo 说 "全部都丑 · 为什么一开始签字了后面没照做" · 回溯发现 Day 3 commit 写 globals.css 时 9 个 shrine token 里 6 个 hex 偏离 ADR-007 签字稿。错误固化进 7 个组件注释 · 累积 7 天 · 修复引入 SSOT 常量文件 + verify script 双向校验。**核心教训**：签字稿作者 = 实装者时 · 自觉记忆必然漂移 · 只有 "机器会报错" 是真防御。
+**为什么**：某 React + TS 视觉小说项目 Sprint 10 阶段 1 神域视觉全丑 · Lyn 打开 demo 说 "全部都丑 · 为什么一开始签字了后面没照做" · 回溯发现 Day 3 commit 写 globals.css 时某 palette 9 个 token 里 6 个 hex 偏离 ADR 签字稿。错误固化进 7 个组件注释 · 累积 7 天 · 修复引入 SSOT 常量文件 + verify script 双向校验。**核心教训**：签字稿作者 = 实装者时 · 自觉记忆必然漂移 · 只有 "机器会报错" 是真防御。
 
 ---
 

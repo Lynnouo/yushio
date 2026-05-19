@@ -51,31 +51,31 @@ scripts/audit-pre-commit.sh    ← 可选 · pre-commit 自动重生（见 _pre-
   },
   "heroes": [
     {
-      "id": "gogo-bao",
-      "nameCn": "GO宝",
-      "nameEn": "GO Bao",
+      "id": "demo-hero",
+      "nameCn": "主角",
+      "nameEn": "Demo Hero",
       "rarity": "SR",
       "rarityCn": "SR",
       "faction": "default",
-      "imageUrl": "/resources/live2d/gogo-bao/portrait.png",
+      "imageUrl": "/resources/live2d/demo-hero/portrait.png",
       "lifecycle": "active",
       "sources": [
         { "kind": "default-character", "details": "唯一主角色 · 默认装备" }
       ],
       "sinks": [
-        { "kind": "equip-target", "details": "所有装扮挂在 GO宝 身上" },
+        { "kind": "equip-target", "details": "所有装扮挂在主角身上" },
         { "kind": "chat-character", "details": "AI 聊天主角色" }
       ]
     },
     {
-      "id": "kanban-2",
-      "nameCn": "阿柴",
+      "id": "deprecated-npc-2",
+      "nameCn": "<某 NPC>",
       "rarity": "—",
       "lifecycle": "removed",
       "removedAt": "2026-05-14",
-      "removedBy": "commit bfc6db1 V1→V2 单角色重构",
+      "removedBy": "commit <sha> V1→V2 单角色重构",
       "lastReferencedIn": [
-        { "file": "pet-system.json", "line": "gogo-identity.keywords", "note": "反向调教关键词 · 不算 stale · 保留" }
+        { "file": "<entity>-system.json", "line": "<hero>-identity.keywords", "note": "反向调教关键词 · 不算 stale · 保留" }
       ]
     }
   ],
@@ -91,7 +91,7 @@ scripts/audit-pre-commit.sh    ← 可选 · pre-commit 自动重生（见 _pre-
         { "kind": "drop-from-task", "details": "每日任务 task-daily-chat 完成奖励", "refId": "task-daily-chat" }
       ],
       "sinks": [
-        { "kind": "intimacy-gift", "details": "送 GO宝 +10 亲密度", "refId": "intimacy-mechanic" }
+        { "kind": "intimacy-gift", "details": "送主角 +10 亲密度", "refId": "intimacy-mechanic" }
       ]
     }
   ],
@@ -110,7 +110,7 @@ scripts/audit-pre-commit.sh    ← 可选 · pre-commit 自动重生（见 _pre-
   "orphans": {
     "no_source": [],
     "no_sink": ["task-old-dungeon"],
-    "removed_with_refs": ["kanban-2"]
+    "removed_with_refs": ["deprecated-npc-2"]
   }
 }
 ```

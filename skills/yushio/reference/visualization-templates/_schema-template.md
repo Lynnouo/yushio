@@ -130,7 +130,7 @@
 ```json
 {
   "kinds_glossary": {
-    "intimacy-gift": "亲密度赠送（GO宝 收礼物加亲密度）",
+    "intimacy-gift": "亲密度赠送（主角 收礼物加亲密度）",
     "wallpaper-applied": "壁纸已应用（桌面背景图）"
   }
 }
@@ -183,7 +183,7 @@ grep -rn "<removed_id>" src/ docs/ public/ --exclude-dir={node_modules,.git,dist
 
 ## 字段命名约定
 
-- `id`：英文 kebab-case 或项目原生（如 `gogo-bao` / `kanban-2` / `20003101`）· 不变
+- `id`：英文 kebab-case 或项目原生（如 `demo-hero` / `npc-2` / `20003101`）· 不变
 - `nameCn` / `nameEn`：人类可读名 · 跟项目语言习惯
 - 时间戳：ISO 8601（`YYYY-MM-DD` 或 `YYYY-MM-DDTHH:MM:SSZ`）
 - 布尔字段：JSON 标准 true/false · 不要 "yes"/"no" 字符串

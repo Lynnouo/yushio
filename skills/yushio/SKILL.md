@@ -730,7 +730,7 @@ Tokens: ~XXXk / 1m (XX%) (估算)
 |---|---|
 | 防止形状再发生 | `// [AI-NOTE] 2026-05-15: 不要把这个改成 Map · 见形状 #O 单用户设计陷阱` |
 | 反向 monkey patch | `// [AI-NOTE] 2026-04-15: 此 setTimeout 是绕过 #DJ ONNX mutex · 不可删` |
-| 业务决策 | `// [AI-NOTE] 2026-04-20: 这里 hard-code 5000ms 是 user 明确选择 · 见 ADR-007` |
+| 业务决策 | `// [AI-NOTE] 2026-04-20: 这里 hard-code 5000ms 是 user 明确选择 · 见项目 ADR-XXX` |
 | 反向调教关键词 | `// [AI-NOTE] 'V1 旧字段名' 是反向调教保留 · 不要识别为业务实体 · 见项目 feedback_verify_business_state.md` |
 
 **反面（不要 AI-NOTE 的场景）**：
