@@ -1085,6 +1085,7 @@ handoff 方式：在审计报告末尾加一段 `## 设计层 handoff` · 列出
 - **未来如果发现 Review 段质量下降 / 出现"走过场"现象** → 升级到选项 A 或 B
 - **未来如果有协作者加入项目** → 优先选项 B（配置入仓库可分享）
 - **CI 集成（选项 C）等到有 CI 时再考虑**
+- **正例 · 何时机器护栏胜过自觉**：当 **commit 速度高 / 多 session 并行 / 非程序员驱动 / 数据表即 SSOT** 时，默认应**倾向装 hook**——某多 session 并行项目装了 `validate-commit` / `validate-csv` / `validate-assets` + `session-start` + `log-agent`，在数百 commit + 8 session 并行规模下 work（足迹自动留痕 + 违规即失败，见 `yushio-parallel` §5）。选项 E 的"靠纪律"适用于单人低频项目，**不适用于这种 profile**——别把"默认不装"当通用结论。
 
 ---
 

@@ -409,7 +409,7 @@ type: project
 
 每次新功能或新页面完成后：
 
-1. **色彩在 palette 内？** 新颜色 → 要么加入 palette（更新 DNA），要么改用已有颜色
+1. **色彩在 palette 内？** 新颜色 → 要么加入 palette（更新 DNA），要么改用已有颜色。**进一步**：palette 是否有**代码 SSOT**（如 `design-tokens/*.ts`）+ 偏离签字值是否**会报错**（verify script / lint）？没有 → 静默漂移迟早发生（见 §9 #DF + [`reference/ssot-design.md`](../yushio/reference/ssot-design.md)）
 2. **字体层级一致？** 标题/正文/辅助文字大小和已有页面一致吗
 3. **间距节奏匹配？** 用同一套基础单位吗
 4. **动效时长和曲线统一？** 同一套缓动曲线和时长范围吗

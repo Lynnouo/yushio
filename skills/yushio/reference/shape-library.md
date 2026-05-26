@@ -1,8 +1,8 @@
 # 形状库 · 跨项目单一真源
 
 > **Schema 版本**：v2.0
-> **Last-Updated**：2026-05-15
-> **形状总数**：26（13 开发/审计 + 2 Meta + 8 流程 + 7 设计指针）
+> **Last-Updated**：2026-05-25
+> **形状总数**：28（4 开发通用 + 13 审计技术 + 4 Meta + 7 流程）+ 7 设计指针（美术总监 §9）
 > **路径约定**：
 > - macOS / Linux：`~/.claude/skills/yushio/reference/shape-library.md`
 > - Windows：`%USERPROFILE%\.claude\skills\yushio\reference\shape-library.md`
@@ -101,8 +101,9 @@
 | ID | 名称 | 关联 |
 |---|---|---|
 | #DJ | Native runtime + dev watch reload = backend 死 | #DK |
-| #DK | 陈旧产物陷阱 Stale Artifact Trap | #DJ, #DL |
+| #DK | 陈旧产物陷阱 Stale Artifact Trap | #DJ, #DL, #DM |
 | **#DL** | **项目缺鸟瞰可视化（→ AI/人陷局部失全局 → stale 成虚假真相）** | **#DK（主动防御工具）, #I（基建后补）** |
+| **#DM** | **多 session 撞共享脊柱（并行 session 在隔离层不冲突，却在脊柱争用）** | **#DK（stale 协调文档）, #H（双源漏同步）, yushio-parallel** |
 
 ### §4 流程形状（工作纪律案例）
 
@@ -696,6 +697,8 @@ grep -rn "playCoinFlyAnimation\|addMockGold\|refreshFromServer" <renderer-dir> \
 
 4. **结构性隔离**：dev workflow / 全局资源 / config 走 "明确 SoT" 而不是 "代码注释里说"——文档跟代码同步漂移是常态 · 只有 "机器会报错" 的约束是真防御（呼应美术总监 #DF）
 
+5. **维护式 kill-list（主动防御 · 比"遇到再清"早一层）**：演进期项目主动维护一份"残留禁忌清单"（哪些 V1 名字 / 旧字段 / 废弃路径 / 反向调教关键词不该再出现），把被动 grep 升级为主动列举——新 session 开工先对照 kill-list，命中即清，不等"撞上了"再处理。
+
 **判定**：跨项目可迁移——任何持续演进的项目都积累 stale artifacts。最高风险信号：
 - 看到 "V1→V2" / "旧→新" / "deprecated but kept" 类描述 → 必有 stale 残留
 - 看到 `[AI-NOTE].*已删 / 废弃 / legacy` 注释 → 必须查 "为啥还没删 · 现在还在影响什么"
@@ -706,9 +709,9 @@ grep -rn "playCoinFlyAnimation\|addMockGold\|refreshFromServer" <renderer-dir> \
 grep -rn "\[AI-NOTE\].*已删\|废弃\|deprecated\|legacy\|V[12]" <relevant-dir>
 ```
 
-**关联**：#DJ（native runtime crash 是 stale artifact 在 runtime 层的表现）· #C（"独立进程不影响" 没举一反三到 daemon reload）· **#DL（项目缺鸟瞰可视化 · 是 #DK 主动防御工具 · 从被动 grep 验证升级到主动结构化展示）** · 基础夕潮 §4 调研前验证业务现状（feedback 提炼）
+**关联**：#DJ（native runtime crash 是 stale artifact 在 runtime 层的表现）· #C（"独立进程不影响" 没举一反三到 daemon reload）· **#DL（项目缺鸟瞰可视化 · 是 #DK 主动防御工具 · 从被动 grep 验证升级到主动结构化展示）** · **#DM（多 session 的协调文档 / 交接信也会 stale）** · 基础夕潮 §4 调研前验证业务现状（feedback 提炼）
 
-**出处**：2026-05-14 · 某项目 V1→V2 重构期反复中坑事件累积
+**出处**：2026-05-14 · 某项目 V1→V2 重构期反复中坑事件累积（2026-05-25 充实第 5 条"维护式 kill-list"）
 
 ---
 
@@ -767,6 +770,38 @@ jq '.orphans' public/audit-data.json 2>/dev/null
 **关联**：**#DK（主动防御工具 · 升级"被动 grep 验证" → "主动结构化展示"）** · **#I（代码先行基建后补 · 鸟瞰站属于关键基建）** · 审计夕潮 §6b 鸟瞰调研 SOP / §9.E 鸟瞰可见度评审
 
 **出处**：2026-05-18 · v3 提炼自 user 两份参考提示词（数据流向审计单页站 + 策划案审阅网站）+ 某复杂项目 24 天 stale 累积案例（csv 5 行误读 / 白皮书漏修引用）+ user "保证任何项目都适用" 升级反馈
+
+---
+
+### 形状 #DM · 多 session 撞共享脊柱（并行 session 在隔离层不冲突，却在脊柱争用）
+
+**症状**：一个仓库被多个平级 session（多个 Claude Code / 协作者）同时改。各 session 改各自的"垂直切片"（UI + 文案 + 配置 + 服务 + 引擎）时文件集不相交、相安无事；但一旦两个 session 同时改一条**共享脊柱**（聚合 store / 共享类型源 / 路由调度层 / 跨端协议 / 账户经济状态）→ git 冲突、或更隐蔽的语义冲突（双方都改同一全局状态的不同行 · build 过但运行时打架）。
+
+**根因**："AI 不打架"被误当成自带能力。实际并行安全 = 架构有干净的缝 + 人沿缝分活 + 协议兜底争用面，三者缺一就会撞。按"技术层"切（一个 session 改所有 store / 一个改所有组件）必撞——每个功能横跨所有层；只有按"关注点"垂直切片才物理上不相交。脊柱是少数无法切分的共享文件 · 是被协调的争用面 · 不是可消灭的。
+
+**修复**（完整方法见独立 skill `yushio-parallel`）：
+
+1. **垂直切片**：让代码模块边界 = 领域边界（你脑子里理解产品的维度）·"一关注点一 session"文件集天然不相交
+2. **识别脊柱**：grep 聚合状态 / 共享类型 / 路由调度 / 跨端协议 / 账户经济（见 yushio-parallel §0.2）
+3. **铁律**：绝不让两个 session 同时改同一段脊柱（串行 / 谁先谁主 / 拆契约 三选一）
+4. **协议兜底**：足迹可见（`touched:` 清单 / log-agent hook）+ commit 带模块 scope + 冲突回 user 仲裁绝不自动 merge（基础夕潮 §4.11）+ 脊柱改动先公告
+5. **机器护栏**：路径作用域规则（基础夕潮 §8.3 `applies-to:` 自动注入该层规约）+ 提交期 hook（审计 §13b）把"自觉"变"结构"
+
+**判定**：看到 多 git worktree / 同仓库被多 session 同时打开 / user 说"同时开几个 session 做不同模块" → 命中。先识别脊柱再分活 · 切不出干净的缝就别硬开 session（session 数 ≈ 干净的隔离切片数 · 不是越多越好）。
+
+**grep 模板（识别脊柱 · 开工前）**：
+
+```bash
+grep -rlnE "createStore|combineReducers|configureStore|global|singleton|let _?current" <state-dir>
+grep -rln "export (type|interface|enum)" <shared-types-dir>
+grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
+```
+
+**反例（不适用 #DM）**：单 session 项目 · 切不出不相交文件集的强耦合代码（先重构出缝或串行）· 多 subagent 委派（那是基础夕潮 §4.8 纵向委派 · 不是平级并行）。
+
+**关联**：**#DK（多 session 的协调文档 / 交接信也会 stale）** · **#H（双源漏同步 · 脊柱被多方改后的一致性问题）** · 基础夕潮 §4.8（多 subagent 边界）/ §8.1（探测信号）/ §8.3（路径作用域规则）· 独立 skill `yushio-parallel`（完整方法）
+
+**出处**：2026-05-25 · 某 React + TS 多 session 并行项目（8+ session 不打架）dogfooding 提炼
 
 ---
 
@@ -976,6 +1011,7 @@ jq '.orphans' public/audit-data.json 2>/dev/null
 | #DJ | （项目实例待 dogfooding） | — |
 | #DK | （项目实例待 dogfooding） | — |
 | #DL | （项目实例待 dogfooding · 计划 01+02 混合模板） | 模板就绪 |
+| #DM | （项目实例待 dogfooding · 多 session 并行场景） | yushio-parallel 就绪 |
 | #A/#B/#D | 某 React + TS 视觉小说项目（项目实例待 dogfooding） | — |
 | #G | 某项目 canvasStore autosave（项目实例待 dogfooding） | — |
 | #E | 某项目 milestone 横向铺面事件（项目实例待 dogfooding） | — |

@@ -1,6 +1,6 @@
 # 夕潮 (Yushio)
 
-> Claude Code（及其他）的 AI 协作者人格。三层 SKILL：**基础 + 美术总监 + 审计**。跨 6+ AI 工具可移植。
+> Claude Code（及其他）的 AI 协作者人格。一个 SKILL 家族：**基础 + 美术总监 + 审计 + 并行**，外加求职专精成员 **蝗虫**。跨 6+ AI 工具可移植。
 
 [English README](README.md) · [介绍页](YushioWeb/) · [关于 / 创作者署名](ABOUT.md) · [Changelog](CHANGELOG.md)
 
@@ -28,11 +28,14 @@
 | [skills/yushio/SKILL.md](skills/yushio/SKILL.md) | 基础人格 — 四柱 + 工作纪律 + 记忆系统 |
 | [skills/yushio/code-guard.md](skills/yushio/code-guard.md) | 10 个高频代码防御 pattern checklist |
 | [skills/yushio/reference/shape-library.md](skills/yushio/reference/shape-library.md) | 跨项目「形状」库（TOCTOU / debug 残留 / 等等） |
+| [skills/yushio/reference/ssot-design.md](skills/yushio/reference/ssot-design.md) | SSOT 设计纪律——把你最擅长的那层（数值 / 规则 / 视觉）外化成机器可读的单一真相源 |
 | [skills/yushio/reference/visualization-templates/](skills/yushio/reference/visualization-templates/) | Phase 0 鸟瞰调研 + 3 个项目鸟瞰可视化模板 |
 | [skills/yushio-art-director/SKILL.md](skills/yushio-art-director/SKILL.md) | 设计方向判断（意图 > 强度 · 反 AI slop · 形式追随感受） |
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | 修复后审计 + 主动代码质量评审（5 步 SOP + grep 速查） |
+| [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | 多 session 指挥——多个并发 session 同改一个仓库而不打架（垂直切片 + 守共享脊柱） |
+| [skills/yushio-locust/SKILL.md](skills/yushio-locust/SKILL.md) | 全包远程求职副驾——建档 + 双语特化简历 + HR 建联 + 面试押题（独立专精成员） |
 | [platforms/](platforms/) | Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider 各平台入口文件 |
-| [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口（Codex / Aider 等自动识别） |
+| [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口——四 SKILL 合并版（基础 + 美术总监 + 审计 + 并行）· Codex / Aider 等自动识别 |
 | [YushioWeb/](YushioWeb/) | 介绍页 · 双语（中 / 英）单页 · 打开 `YushioWeb/index.html` 即可预览 · 无 build step |
 
 ---
@@ -56,6 +59,8 @@ git clone https://github.com/Lynnouo/yushio.git ~/yushio-repo
 ln -s ~/yushio-repo/skills/yushio              ~/.claude/skills/yushio
 ln -s ~/yushio-repo/skills/yushio-art-director ~/.claude/skills/yushio-art-director
 ln -s ~/yushio-repo/skills/yushio-auditor      ~/.claude/skills/yushio-auditor
+ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
+ln -s ~/yushio-repo/skills/yushio-locust       ~/.claude/skills/yushio-locust
 ```
 
 ### 本地开发测试
@@ -91,8 +96,10 @@ claude --plugin-dir /path/to/yushio
 - **"你是夕潮"** / **"You are Yushio"** → 激活基础人格（§0 首次汇报模板）
 - **"你是美术总监夕潮"** / **"You are Art Director Yushio"** → 激活设计判断层
 - **"你是审计夕潮"** / **"You are Auditor Yushio"** → 激活代码审计层
+- **"你是并行夕潮"** / **"Parallel mode"** → 激活多 session 指挥层（多 worktree / 多 session 同改一仓时也会自动建议）
+- **"你是蝗虫夕潮"** / **"帮我投简历"** → 激活独立的全包求职副驾
 
-基础人格意图整个 session 保持。美术总监 / 审计是按需叠加的专长视角。
+基础人格意图整个 session 保持。美术总监 / 审计 / 并行是按需叠加的专长视角；蝗虫是求职项目里独立使用的专精成员。
 
 ### 母语触发
 
@@ -107,6 +114,8 @@ claude --plugin-dir /path/to/yushio
 | Español | Eres Yushio · Modo Yushio | Eres Yushio director de arte | Eres Yushio auditor · Modo auditor |
 | Français | Tu es Yushio · Mode Yushio | Tu es Yushio directeur artistique | Tu es Yushio auditeur · Mode audit |
 | Deutsch | Du bist Yushio · Yushio-Modus | Du bist Art Director Yushio | Du bist Auditor Yushio · Audit-Modus |
+
+另外两个家族成员有各自的触发词（同样支持 7 语言 · 见各自 SKILL frontmatter）：**`yushio-parallel`**（你是并行夕潮 / parallel mode）和 **`yushio-locust`**（你是蝗虫夕潮 / 帮我投简历）。
 
 SKILL 正文本身是中文 · 但方法论与语言无关——Claude（或任何足够强的 LLM）会用你说的语言回应你。不读中文也能用上四柱 + 工作纪律。
 

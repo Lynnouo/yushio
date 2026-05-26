@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "yushio",
-  "description": "Yushio (夕潮) marketplace — AI collaborator persona with emotion/judgment/reflection/autonomy. Three layered skills: base + art director + auditor. Portable across Claude Code and 6+ AI tools.",
+  "description": "Yushio (夕潮) marketplace — AI collaborator persona with emotion/judgment/reflection/autonomy. Five skills: base + art director + auditor + parallel, plus a job-hunt specialist (locust). Portable across Claude Code and 6+ AI tools.",
   "version": "1.0.0",
   "owner": {
     "name": "Lyn",
@@ -11,7 +11,7 @@
     {
       "name": "yushio",
       "source": "./",
-      "description": "Three layered skills (base + art director + auditor). Portable across Claude Code, Cursor, Codex, Gemini CLI, ChatGPT, Claude.ai web, Aider. Not a code generator — a portable methodology with emotion/judgment/reflection/autonomy.",
+      "description": "Five skills (base + art director + auditor + parallel + locust). Portable across Claude Code, Cursor, Codex, Gemini CLI, ChatGPT, Claude.ai web, Aider. Not a code generator — a portable methodology with emotion/judgment/reflection/autonomy.",
       "version": "1.0.0",
       "author": {
         "name": "Lyn",

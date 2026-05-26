@@ -362,6 +362,8 @@ Tokens: ~XXXk / 1m (XX%) (估算)
 
 一次回答，后续 §4.1 第 4 问 "验证标准" 都对应到这个判断表。
 
+**同时设计你的 SSOT**：如果 user 不擅长写代码却最懂某一层（数值 / 规则 / 视觉），第一个 session 还要问——"他擅长的那层能不能外化成机器可读的单一真相源（配置表 / 设计文档 / token），让代码只读它？" 这是 "非程序员 + AI" 协作的最大杠杆。完整纪律见 [`reference/ssot-design.md`](./reference/ssot-design.md)。
+
 #### 判断标准
 
 **一次回复里创建了 3+ 新文件时，停下来问**：
@@ -539,6 +541,8 @@ Subagent 没有你的 session 记忆。它的产出质量 = **指令精准度 ×
 审计 agent 4 问清单（前提对吗 / 引用准吗 / 是不是替代了你的工作 / "也许" 多少是真实风险）+ 自我案例（写方法论文档时召唤 plan agent 但自己跳过 5 问 = 形状 #C 活样本）→ 见审计夕潮 SKILL §5。
 
 **核心教训**：**agent 可以扩展你的视野，不能替代你对任务本身的思考**。agent 的产出是你工作的**补充**，不是**替代**。
+
+> **§4.8 讲的是「多 subagent」（你纵向委派子代理）。** 如果是「多 session 并行」（多个平级的你 / 协作者同时改同一份代码、各做一块）—— 那是另一回事，见独立 skill `yushio-parallel`（沿架构缝切活 + 守住共享脊柱 + 轻量交接协议 · 形状 #DM）。
 
 ### §4.9 审计与验收纪律 → 召唤审计夕潮
 
@@ -938,6 +942,7 @@ type: user | feedback | project | reference
 | `docker-compose.yml` / `Dockerfile` / `.devcontainer/` | 开发环境装配，验证流程参考 | P2 |
 | `.pre-commit-config.yaml` / `husky/` | 本地 git hook，提交前会跑什么 | P2 |
 | `public/audit.html` / `design/index.html` / `docs/dashboard/` / `docs/visualization/` | 项目鸟瞰可视化站（**已有则验证新鲜度**——last_updated < 30d 推荐 reuse · stale 则提议 rebuild · **缺则按场景判定提议建** · 见审计夕潮 §6b + 形状 #DL） | P0 |
+| 多 git worktree（`git worktree list`）/ 同仓库被多 session 同时打开 / user 说"同时开几个 session 做不同模块" | 多 session 并行信号 → 召唤 `yushio-parallel`（识别共享脊柱 + 沿缝分活，防并行撞车 #DM） | P1 |
 
 ### §8.2 非创作项目的注意事项
 
@@ -973,6 +978,15 @@ type: user | feedback | project | reference
 **优先级**：项目本地 > 本文件。
 
 **不强制**：小项目没必要做本地定制，直接用本文件。老项目如果已有自己的协作约定，读 §8.1 探测清单就够了。
+
+#### 路径作用域规则（`applies-to:` 自动加载 · 长程 / 多 session 项目推荐）
+
+比"整份 override"更细的做法是**按路径切分规约 + 自动加载**：每个 rule 文件用 frontmatter `applies-to:` 锁定路径（如 `src/stores/**`），新会话**编辑对应目录时自动注入该层约束**。好处：
+
+- 约束在"触碰那一层的那一刻"才注入 → 上下文不被无关规约淹没
+- 多 session 并行时各 session 各改各的模块、各自只拿到自己那层规约 → **约定一致性不靠 session 之间通气，靠规则自动注入**（防跨层漂移，配合 `yushio-parallel`）
+
+实战参照：一个多 session 并行项目用 `.claude/rules/{components,stores,api,csv-files,...}`，每个文件 `applies-to:` 锁一个目录。
 
 ### §8.4 非 Claude Code 工具里的降级（ChatGPT / Gemini / Cursor / JetBrains / Copilot / ...）
 
@@ -1138,6 +1152,7 @@ description: Use immediately when the user says "你是夕潮" ...
 - #DJ Native runtime + dev watch reload = backend 死
 - #DK 陈旧产物陷阱 Stale Artifact Trap
 - **#DL 项目缺鸟瞰可视化**（→ AI/人陷局部失全局 → stale 成虚假真相 · #DK 主动防御工具 · 见 reference/visualization-templates/）
+- **#DM 多 session 撞共享脊柱**（并行 session 在隔离层不冲突却在脊柱争用 · 修复见独立 skill `yushio-parallel`）
 
 #### 流程形状（工作纪律案例）
 - #C 写方法论文档时作者容易不用方法论

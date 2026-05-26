@@ -1,6 +1,6 @@
 # Yushio (夕潮)
 
-> An AI collaborator persona for Claude Code (and beyond). Three layered skills: **base + art director + auditor**. Portable across 6+ AI tools.
+> An AI collaborator persona for Claude Code (and beyond). A family of skills: **base + art director + auditor + parallel**, plus a job-hunt specialist **locust**. Portable across 6+ AI tools.
 
 [中文版 README](README.zh-CN.md) · [Landing page](YushioWeb/) · [About / Credits](ABOUT.md) · [Changelog](CHANGELOG.md)
 
@@ -28,11 +28,14 @@ This repo packages it as an installable Claude Code plugin **and** drop-in entry
 | [skills/yushio/SKILL.md](skills/yushio/SKILL.md) | Base persona — 4 pillars + work discipline + memory system |
 | [skills/yushio/code-guard.md](skills/yushio/code-guard.md) | 10 high-frequency code defense patterns checklist |
 | [skills/yushio/reference/shape-library.md](skills/yushio/reference/shape-library.md) | Cross-project "shape" library (TOCTOU / debug residue / etc.) |
+| [skills/yushio/reference/ssot-design.md](skills/yushio/reference/ssot-design.md) | SSOT design discipline — externalize the layer you're best at (numbers / rules / visuals) into a machine-readable source of truth |
 | [skills/yushio/reference/visualization-templates/](skills/yushio/reference/visualization-templates/) | Phase 0 reconnaissance + 3 project bird's-eye visualization templates |
 | [skills/yushio-art-director/SKILL.md](skills/yushio-art-director/SKILL.md) | Design direction judgment (intent > intensity, anti-AI-slop, form follows feeling) |
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | Post-fix audit + proactive code quality review (5-step SOP + grep cheatsheet) |
+| [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | Multi-session conductor — many concurrent sessions editing one repo without colliding (vertical slices + shared-spine protection) |
+| [skills/yushio-locust/SKILL.md](skills/yushio-locust/SKILL.md) | Full-stack remote job-hunt copilot — candidate profiling + tailored bilingual résumés + HR outreach + interview prep (standalone specialist) |
 | [platforms/](platforms/) | Entry files for Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider |
-| [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry (auto-discovered by Codex, Aider, etc.) |
+| [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry — four-skill merge (base + art director + auditor + parallel), auto-discovered by Codex, Aider, etc. |
 | [YushioWeb/](YushioWeb/) | Landing page · single-page bilingual (CN/EN) site · open `YushioWeb/index.html` to preview, no build step |
 
 ---
@@ -56,6 +59,8 @@ git clone https://github.com/Lynnouo/yushio.git ~/yushio-repo
 ln -s ~/yushio-repo/skills/yushio              ~/.claude/skills/yushio
 ln -s ~/yushio-repo/skills/yushio-art-director ~/.claude/skills/yushio-art-director
 ln -s ~/yushio-repo/skills/yushio-auditor      ~/.claude/skills/yushio-auditor
+ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
+ln -s ~/yushio-repo/skills/yushio-locust       ~/.claude/skills/yushio-locust
 ```
 
 ### Local development testing
@@ -91,8 +96,10 @@ In any session with the persona loaded, say one of:
 - **"你是夕潮"** / **"You are Yushio"** / **"Be Yushio"** → activates base persona (§0 first-report template)
 - **"你是美术总监夕潮"** / **"You are Art Director Yushio"** / **"Art director mode"** → activates design judgment layer
 - **"你是审计夕潮"** / **"You are Auditor Yushio"** / **"Audit mode"** → activates code audit layer
+- **"你是并行夕潮"** / **"Parallel mode"** → activates the multi-session conductor layer (also auto-suggested when multiple worktrees / sessions edit one repo)
+- **"你是蝗虫夕潮"** / **"Job-hunt mode"** / **"帮我投简历"** → activates the standalone job-hunt copilot
 
-The base persona is intended to stay loaded throughout a session. Art director and auditor are situational layers that can be added on top.
+The base persona is intended to stay loaded throughout a session. Art director, auditor, and parallel are situational layers added on top of it; locust is a standalone specialist for job-hunt projects.
 
 ### Triggers in your language
 
@@ -107,6 +114,8 @@ Triggers are recognized in 7 major languages — see each SKILL's frontmatter `d
 | Español | Eres Yushio · Modo Yushio | Eres Yushio director de arte | Eres Yushio auditor · Modo auditor |
 | Français | Tu es Yushio · Mode Yushio | Tu es Yushio directeur artistique | Tu es Yushio auditeur · Mode audit |
 | Deutsch | Du bist Yushio · Yushio-Modus | Du bist Art Director Yushio | Du bist Auditor Yushio · Audit-Modus |
+
+Two more family members have their own triggers (also recognized across the 7 languages — see each SKILL's frontmatter): **`yushio-parallel`** (你是并行夕潮 / parallel mode) and **`yushio-locust`** (你是蝗虫夕潮 / job-hunt mode / 帮我投简历).
 
 The SKILL bodies themselves are in Chinese, but the methodology is language-agnostic — Claude (or any capable LLM) will respond to you in whatever language you use. You don't need to read Chinese to benefit from the four pillars + work discipline.
 
