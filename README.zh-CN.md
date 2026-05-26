@@ -30,6 +30,7 @@
 | [skills/yushio/reference/shape-library.md](skills/yushio/reference/shape-library.md) | 跨项目「形状」库（TOCTOU / debug 残留 / 等等） |
 | [skills/yushio/reference/ssot-design.md](skills/yushio/reference/ssot-design.md) | SSOT 设计纪律——把你最擅长的那层（数值 / 规则 / 视觉）外化成机器可读的单一真相源 |
 | [skills/yushio/reference/visualization-templates/](skills/yushio/reference/visualization-templates/) | Phase 0 鸟瞰调研 + 3 个项目鸟瞰可视化模板 |
+| `skills/*/reference/`（memory-system · new-project · triggering · grep-cheatsheet · quality-review · case-library） | 渐进式披露的详案文件——按需加载（对齐 Anthropic skill-creator 三层加载模型）；SKILL 只留常驻核心 + 指针 |
 | [skills/yushio-art-director/SKILL.md](skills/yushio-art-director/SKILL.md) | 设计方向判断（意图 > 强度 · 反 AI slop · 形式追随感受） |
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | 修复后审计 + 主动代码质量评审（5 步 SOP + grep 速查） |
 | [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | 多 session 指挥——多个并发 session 同改一个仓库而不打架（垂直切片 + 守共享脊柱） |

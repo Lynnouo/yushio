@@ -64,7 +64,7 @@ SSOT 最大的失败模式：**真相源说 A，代码实装成 B，而没有任
 - **铁律落地**：`CLAUDE.md`「数值不准代码硬编码」+ `.claude/rules/csv-files.md` 锁格式 + `registry-schema.md` 锁外键矩阵。
 - **机器护栏**：`validate-csv.sh` hook 在提交时校验 CSV 格式 / 外键 / 单位标度，违规即失败。
 - **drift 防御**：`registry-schema.md` 外键矩阵 + 一个一致性巡检 skill（CSV × 代码 × 资源 × i18n 四联对账）。
-- **设计 token 同源**：`themePalette.ts` 是颜色 SSOT，「禁止硬编码颜色」铁律 + 稀有度配置与颜色镜像同步注释。
+- **设计 token 同源**：主题 palette 文件（颜色 token 集中处）是颜色 SSOT，「禁止硬编码颜色」铁律 + 稀有度配置与颜色镜像同步注释。
 
 ---
 

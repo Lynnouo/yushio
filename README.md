@@ -30,6 +30,7 @@ This repo packages it as an installable Claude Code plugin **and** drop-in entry
 | [skills/yushio/reference/shape-library.md](skills/yushio/reference/shape-library.md) | Cross-project "shape" library (TOCTOU / debug residue / etc.) |
 | [skills/yushio/reference/ssot-design.md](skills/yushio/reference/ssot-design.md) | SSOT design discipline — externalize the layer you're best at (numbers / rules / visuals) into a machine-readable source of truth |
 | [skills/yushio/reference/visualization-templates/](skills/yushio/reference/visualization-templates/) | Phase 0 reconnaissance + 3 project bird's-eye visualization templates |
+| `skills/*/reference/` (memory-system · new-project · triggering · grep-cheatsheet · quality-review · case-library) | Progressive-disclosure detail files — pulled in on demand (Anthropic skill-creator's 3-tier model); SKILLs keep only always-on core + pointers |
 | [skills/yushio-art-director/SKILL.md](skills/yushio-art-director/SKILL.md) | Design direction judgment (intent > intensity, anti-AI-slop, form follows feeling) |
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | Post-fix audit + proactive code quality review (5-step SOP + grep cheatsheet) |
 | [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | Multi-session conductor — many concurrent sessions editing one repo without colliding (vertical slices + shared-spine protection) |

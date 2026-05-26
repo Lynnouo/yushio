@@ -2,7 +2,7 @@
 
 > **Schema 版本**：v2.0
 > **Last-Updated**：2026-05-25
-> **形状总数**：28（4 开发通用 + 13 审计技术 + 4 Meta + 7 流程）+ 7 设计指针（美术总监 §9）
+> **形状总数**：28（4 开发通用 + 13 审计技术 + 4 Meta + 7 流程）+ 8 设计指针（美术总监 §9）
 > **路径约定**：
 > - macOS / Linux：`~/.claude/skills/yushio/reference/shape-library.md`
 > - Windows：`%USERPROFILE%\.claude\skills\yushio\reference\shape-library.md`
@@ -127,6 +127,7 @@
 - #DE Emoji / 视觉清扫只扫组件漏 seed 字符串
 - #DF 签字稿 hex 实装时静默漂移
 - #DG spec 文字描述漂离签字稿 HTML
+- #DH AI 视觉俗套（一眼"像 AI 做的" · 布局/处理/资产三层 tells）
 
 完整定义见：`~/.claude/skills/yushio-art-director/SKILL.md` §9
 
@@ -697,7 +698,7 @@ grep -rn "playCoinFlyAnimation\|addMockGold\|refreshFromServer" <renderer-dir> \
 
 4. **结构性隔离**：dev workflow / 全局资源 / config 走 "明确 SoT" 而不是 "代码注释里说"——文档跟代码同步漂移是常态 · 只有 "机器会报错" 的约束是真防御（呼应美术总监 #DF）
 
-5. **维护式 kill-list（主动防御 · 比"遇到再清"早一层）**：演进期项目主动维护一份"残留禁忌清单"（哪些 V1 名字 / 旧字段 / 废弃路径 / 反向调教关键词不该再出现），把被动 grep 升级为主动列举——新 session 开工先对照 kill-list，命中即清，不等"撞上了"再处理。
+5. **维护式 kill-list（主动防御 · 比"遇到再清"早一层）**：演进期项目主动维护一份"残留禁忌清单"（哪些 V1 名字 / 旧字段 / 废弃路径 / 反向调教关键词不该再出现），把被动 grep 升级为主动列举——新 session 开工先对照 kill-list，命中即清，不等"撞上了"再处理。清单写成**可 grep 的形式**、放进 `CLAUDE.md` 或专题 doc → 成为新 session 开工的 grep 种子。
 
 **判定**：跨项目可迁移——任何持续演进的项目都积累 stale artifacts。最高风险信号：
 - 看到 "V1→V2" / "旧→新" / "deprecated but kept" 类描述 → 必有 stale 残留
@@ -939,6 +940,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 - #DE Emoji / 视觉清扫只扫组件漏 seed 字符串
 - #DF 签字稿 hex 实装时静默漂移
 - #DG spec 文字描述漂离签字稿 HTML
+- #DH AI 视觉俗套（一眼"像 AI 做的" · 布局/处理/资产三层 tells）
 
 完整定义路径：`~/.claude/skills/yushio-art-director/SKILL.md` §9
 
@@ -982,7 +984,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 - 编号约定：
   - #A-#J = 开发通用 bug 形状（含 #C/#E/#F/#H/#I/#J 流程形状插入位）
   - #K-#X = 审计高频技术形状
-  - #DA-#DG = 设计形状（美术总监 SKILL §9 owner）
+  - #DA-#DH = 设计形状（美术总监 SKILL §9 owner）
   - #DJ-#DK 及之后 = Meta 形状
 - 字母用尽后改 #AA / #AB / ...
 - 跨项目迁移时可保留原 ID + 项目前缀（如 `<project-prefix>-#K`）作为引用
@@ -1031,4 +1033,5 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 
 完整迭代日志见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本文件结构变更（schema 升级 / 新增形状类别等）的记录从开源版起：
 
+- **2026-05-25** · §5 设计形状指针加 **#DH AI 视觉俗套**（美术总监 §9 owner）· 设计指针 7→8 · ID 约定 #DA-#DG → #DA-#DH
 - **2026-05-19 · GitHub 开源版** · 项目实例链接表脱敏为占位 · 迭代日志合并到 CHANGELOG.md

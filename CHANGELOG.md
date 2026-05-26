@@ -7,6 +7,30 @@
 
 ---
 
+## [2026-05-26] v5 · 渐进式瘦身（progressive disclosure）+ 反 AI 视觉俗套 #DH
+
+**改动范围**：
+
+- **§10.1 文档约束改原则**：从"≤2000 行硬上限"改为**能力保全优先 · 渐进式拆分（不卡行数）**——SKILL.md 只留每次触发都在场的核心（§0 启动 / §3 四柱 / §4 纪律原则 / §5 沟通），只在特定场景才用的详案（SOP / 表格 / fallback 矩阵 / 附录 / 日志）抽到 `reference/` 按需加载。红线：§3 四柱 / §4 纪律原则 / §0 启动永不抽。参照 Anthropic skill-creator 三层加载（metadata 常驻 + SKILL body 触发即全量 + reference 按需无上限）。
+- **基础夕潮瘦身**：§6 记忆系统留核心反射 + 指针 → 新建 `reference/memory-system.md`（四类详细用法 / 什么不要写 / 衰减意识 / 记忆 vs plan·todo）；§8.2–§8.5 → `reference/new-project.md`（非创作项目样本 / 路径作用域规则 / 跨工具降级 / 署名改名）；§9 触发机制留主机制 + 优先级 + 指针 → `reference/triggering.md`（安装配置 / 全局-项目两层 / 跨工具 fallback 矩阵）。
+- **审计夕潮瘦身**：§7 grep 速查表 → `reference/grep-cheatsheet.md`（13 类形状的整套可复制命令）；§9 代码质量 5 维详案 → `reference/quality-review.md`（每维症状 / 判断链 / 修复 / 反面 / grep + 输出格式）；§0/§14.2 caps 同步改能力保全。
+- **美术总监新增反 AI-slop 能力**：§9 加形状 **#DH AI 视觉俗套**（布局 / 处理 / 资产三层 tells 判定清单——N×3 SaaS 网格 / modal-first / Unicode 占位符等）；§4.3 加指针 → 新建 `reference/case-library.md`（设计参考案例库 · 首条提炼自某卡牌对战游戏：克制深色日式 RPG + 视频驱动卡点战斗演出）；§10.2 caps 同步改能力保全。**§3 设计信条不可变更**（反 slop 走 §9 形状，不动信条）。
+- **shape-library**：§5 设计形状指针加 #DH（设计指针 7→8 · ID 约定 #DA-#DH）；#DK 充实"维护式 kill-list 写成可 grep + 放 `CLAUDE.md`"。
+- **派生文档同步**：`AGENTS.md` + 4 平台合并副本（四 SKILL 合并版，随瘦身缩到 ~2790 行）· Cursor `.mdc`（base / art / auditor 重生）。
+
+**改动者**：Lyn & 夕潮
+
+**为什么**：用户要体系瘦身，但硬约束是"**牺牲 SKILL 能力的拆法就不用**"——不为压行数砍能力。验证 Anthropic 官方 skill-creator 的三层加载设计（SKILL.md <500 行理想 + reference 按需）后确认：把"任务时从不需要"的详案（附录 / 日志 / 工具表 / SOP / 质量维度细则）抽到 reference 按需加载，既瘦身又不丢能力；人格四柱 / 纪律原则 / 启动这些"每次都要在场"的核心绝不抽。美术总监则相反——评估后 §9 设计形状库 + §4.3 推导范例**保留 inline**（warm 诊断内容，常驻对设计 review 更有用，外移省不了多少却动到设计手感），只补 #DH 反视觉俗套 + 外置案例库。
+
+**关键设计决策**：
+- **判据是能力不是行数**：每段问"它是不是每次触发都要在场?" 是 → 留，否 → 抽到 reference + 原位留"原则一句话 + 指针"。**不拆人格成多份触发 skill**——只把"参考料"抽 reference（拆人格只用于完全独立的域，如审计 / 美术 / 并行）。
+- **repo 的 §12/§13 指向仓库根 `CHANGELOG.md` / `ABOUT.md`**（本地版指向 `reference/changelog.md` / `about.md`）——repo 已有这两个根文件，不重复造 reference 副本，避免 drift。
+- **#DH 配 case-library**（仿 #DL ↔ visualization-templates / #DM ↔ yushio-parallel）：可诊断的反 slop 形状（§9）配可借鉴的真实案例（reference）。
+
+**触发**：用户要求体系瘦身 + "牺牲能力的拆法不用" → 验证官方 skill-creator 三层加载 → 把基础 / 审计的详案抽到 reference（美术保留 inline）+ 补 #DH 反视觉俗套。本轮去隐私（项目名 / 文件路径 / 游戏 IP 抽象）+ Codex 适配后推送。
+
+---
+
 ## [2026-05-25] v4 · 新增 yushio-parallel（多 session 并行）+ SSOT 设计纪律
 
 **改动范围**：
