@@ -7,26 +7,24 @@
 
 ---
 
-## [2026-05-25] v4 · 新增 yushio-parallel（多 session 并行）+ yushio-locust（求职专精）+ SSOT 设计纪律
+## [2026-05-25] v4 · 新增 yushio-parallel（多 session 并行）+ SSOT 设计纪律
 
 **改动范围**：
 
 - **新建独立 skill `yushio-parallel`**（多 session 并行协调）· `skills/yushio-parallel/SKILL.md` · 基础夕潮 §4.8 讲的是多 subagent（纵向委派），本 skill 补"多个平级 session 同改一仓"的零覆盖缺口——垂直切片（模块边界 = 领域边界）+ 守共享脊柱 + 轻量交接协议
-- **新增专精成员 `yushio-locust`**（全包远程求职副驾）· `skills/yushio-locust/{SKILL,INSTALL,AGENTS.template}.md` · L1 方法论（可分享 · 无个人数据）/ L2 用户数据（强制本地）两层架构 · onboarding 6 步 + 5 文件投递管线 + 跨 Claude Code / Codex
 - **基础 SKILL**：§4.8 末尾加多 session 边界指针（→ yushio-parallel）· §8.1 探测清单加多 session 信号行 · §8.3 加「路径作用域规则」子段（`applies-to:` 自动加载 · 防跨层漂移）· §4.2 加 SSOT 设计指针 · §11.1 形状索引加 #DM
 - **新建 `skills/yushio/reference/ssot-design.md`**——SSOT 设计纪律（把 user 最擅长那层外化成机器可读真相源 ·「非程序员 + AI」的最大杠杆 · 被基础 §4.2 / 美术 §6.2 / 并行 §3 三处引用）
 - **shape-library**：新增形状 **#DM 多 session 撞共享脊柱** + 充实 **#DK** 第 5 条「维护式 kill-list」（主动列举残留禁忌 · 比"遇到再清"早一层）+ 形状总数修正为 28（之前 header 一直停在 26 · 它自己就是个 #DK 小样本）
 - **审计 SKILL §13b** 加机器护栏正例（commit 速度高 / 多 session / 非程序员驱动 / 数据即 SSOT → 倾向装 hook · 修正"默认不装"对这类 profile 过保守）· **美术总监 §6.2** 加 palette 代码 SSOT + 偏离会报错检查（呼应 #DF）
-- **派生文档全量同步**：`AGENTS.md` + 4 个平台合并副本（codex / aider / claude-web / gemini）升级为**四 SKILL 合并版**（+ 并行）· Cursor `.mdc` 共 5 个（3 更新 + parallel / locust 新增）· `README.md` / `README.zh-CN.md` 仓库内容表 + 触发表 + 安装 symlink
+- **派生文档全量同步**：`AGENTS.md` + 4 个平台合并副本（codex / aider / claude-web / gemini）升级为**四 SKILL 合并版**（+ 并行）· Cursor `.mdc` 共 4 个（3 更新 + parallel 新增）· `README.md` / `README.zh-CN.md` 仓库内容表 + 触发表 + 安装 symlink
 - repo 脱敏版 + 本地全局版同步（本地保留完整迭代日志 + 署名 · repo 版去隐私）
 
 **改动者**：Lyn & 夕潮
 
-**为什么**：Lyn 展示某 React + TS 卡牌游戏项目（非程序员策划主导 · 8+ Claude Code session 并行不打架），问"这是不是与架构 / 模块化 / 高解耦有关" → 深挖确认机制是"垂直切片 + 识别共享脊柱 + 不双改脊柱 + 轻量交接协议"四件事的产物，不是 AI 自带能力 · grep 实测 yushio 系列对"多 session 平级并行"零覆盖（§4.8 只讲多 subagent）→ 回写为独立 skill `yushio-parallel` + 形状 #DM。同期把已在真实求职实战中验证有效的 `yushio-locust` 一并纳入公开仓库。
+**为什么**：Lyn 展示某 React + TS 卡牌游戏项目（非程序员策划主导 · 8+ Claude Code session 并行不打架），问"这是不是与架构 / 模块化 / 高解耦有关" → 深挖确认机制是"垂直切片 + 识别共享脊柱 + 不双改脊柱 + 轻量交接协议"四件事的产物，不是 AI 自带能力 · grep 实测 yushio 系列对"多 session 平级并行"零覆盖（§4.8 只讲多 subagent）→ 回写为独立 skill `yushio-parallel` + 形状 #DM。
 
 **关键设计决策**：
 - **parallel 独立成 skill 而非塞进 §4.8**：多 subagent（纵向委派）vs 多 session（横向平级）是两种不同的东西 · 混在一章会稀释支点
-- **locust 不并入合并版 `AGENTS.md`**：它是不同领域（求职）· 且自带 per-project `AGENTS.md` 模板在求职目录单独落地 · 并入会让每个编码 session 都误加载求职人格
 - **SSOT 设计单独成 reference 文件**：三处 SKILL 引用 · 单一真源避免 drift（呼应它自己讲的纪律）
 - **#DM 配 `yushio-parallel`**（仿 #DL ↔ visualization-templates）：可诊断的失败模式（形状库）配可执行的方法（skill）
 
