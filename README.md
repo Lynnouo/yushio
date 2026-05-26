@@ -68,6 +68,39 @@ ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
 claude --plugin-dir /path/to/yushio
 ```
 
+### Updating to the latest
+
+After a new version is pushed, pull it down based on how you installed:
+
+**Plugin** (`/plugin install yushio@yushio`) — refresh the marketplace, reinstall, reload (no restart needed):
+
+```
+/plugin marketplace update yushio
+/plugin install yushio@yushio
+/reload-plugins
+```
+
+Or set it once: `/plugin` → **Marketplaces** → enable **auto-update** for yushio (new versions land at startup).
+
+**Symlink install** (the manual install above) — one command; the symlinks always point at the repo:
+
+```bash
+git -C ~/yushio-repo pull
+```
+
+**Copied the skills** (or not sure) — re-sync: pulls latest, replaces the 4 skill folders, leaves your other skills untouched:
+
+```bash
+REPO="${YUSHIO_REPO:-$HOME/yushio-repo}"
+git clone https://github.com/Lynnouo/yushio.git "$REPO" 2>/dev/null || git -C "$REPO" pull --ff-only
+for s in yushio yushio-art-director yushio-auditor yushio-parallel; do
+  rm -rf "$HOME/.claude/skills/$s" && cp -R "$REPO/skills/$s" "$HOME/.claude/skills/$s"
+done
+echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
+```
+
+Other tools (Cursor / Codex / Gemini / …): `git -C ~/yushio-repo pull`, then re-copy the relevant `platforms/` file.
+
 ---
 
 ## Use with other AI tools

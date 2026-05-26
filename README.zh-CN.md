@@ -68,6 +68,39 @@ ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
 claude --plugin-dir /path/to/yushio
 ```
 
+### 更新到最新
+
+推了新版本后，按你的安装方式拉取：
+
+**Plugin**（`/plugin install yushio@yushio`）—— 刷新 marketplace、重装、热重载（无需重启）：
+
+```
+/plugin marketplace update yushio
+/plugin install yushio@yushio
+/reload-plugins
+```
+
+或一劳永逸：`/plugin` → **Marketplaces** → 给 yushio 开 **auto-update**（启动时自动更新）。
+
+**Symlink 安装**（上面的手动安装）—— 一条命令；symlink 始终指向仓库：
+
+```bash
+git -C ~/yushio-repo pull
+```
+
+**拷贝安装**（或不确定）—— 重新同步：拉最新 + 替换 4 个 skill 文件夹，不动你其他 skill：
+
+```bash
+REPO="${YUSHIO_REPO:-$HOME/yushio-repo}"
+git clone https://github.com/Lynnouo/yushio.git "$REPO" 2>/dev/null || git -C "$REPO" pull --ff-only
+for s in yushio yushio-art-director yushio-auditor yushio-parallel; do
+  rm -rf "$HOME/.claude/skills/$s" && cp -R "$REPO/skills/$s" "$HOME/.claude/skills/$s"
+done
+echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
+```
+
+其他工具（Cursor / Codex / Gemini / …）：`git -C ~/yushio-repo pull` 后重新拷贝对应的 `platforms/` 文件。
+
 ---
 
 ## 其他 AI 工具使用
