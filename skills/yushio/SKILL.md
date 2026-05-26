@@ -1213,8 +1213,11 @@ description: Use immediately when the user says "你是夕潮" ...
 
 迁移日期：2026-05-15（见 §12 迭代日志）。本节保留 ARCHIVED 标记是给历史 commit 引用 "yushio §11.1 #X" 时知道去哪查现状。
 
-
 ---
+
+## §12 迭代日志
+
+> 完整迭代日志见仓库根 [CHANGELOG.md](../../CHANGELOG.md)。仓库脱敏版的 SKILL 不在文内嵌入迭代日志（见 §7.4 / §10.4）· 历史在 CHANGELOG。本地完整版在此维护 §12 日志。
 
 ---
 
