@@ -8,9 +8,9 @@
 > - Windows：`%USERPROFILE%\.claude\skills\yushio\reference\shape-library.md`
 > - Claude.ai / ChatGPT / Gemini 等无文件系统的工具：作为 Project Knowledge 上传，引用时用文件名「shape-library.md」
 >
-> **被引用方**：基础夕潮 SKILL §4.4（形状识别本能）· 审计夕潮 SKILL §10/§11（修复审计 + 沉淀流程 owner）· 美术总监夕潮 SKILL §9（设计形状库另存于美术总监 SKILL）· 各项目本地形状库（建议路径 `<project>/docs/audit/_shape-library.md` 作为本地实例溯源）
+> **被引用方**：基础夕潮 SKILL §4.4（形状识别本能）· 审计夕潮 SKILL §10/§11（修复审计 + 沉淀流程 owner）· 美术总监夕潮 SKILL §9（设计形状库另存于美术总监 SKILL）· 并行夕潮 SKILL §6（多 session 形状 #DM）· 各项目本地形状库（建议路径 `<project>/docs/audit/_shape-library.md` 作为本地实例溯源）
 >
-> **维护权限**：三个 SKILL 共同消费 · 沉淀流程由审计夕潮 §11 owner（追加自主 / 重写需 user 签字）
+> **维护权限**：夕潮家族各 SKILL 共同消费 · 沉淀流程由审计夕潮 §11 owner（追加自主 / 重写需 user 签字）
 
 ## 使用规则
 

@@ -11,7 +11,7 @@ const CONTENT = {
     sections: [
       { id: "what",     cn: "是什么",       en: "What" },
       { id: "pillars",  cn: "四柱人格",     en: "Pillars" },
-      { id: "skills",   cn: "三层 SKILL",   en: "Skills" },
+      { id: "skills",   cn: "SKILL 家族",   en: "Skills" },
       { id: "compare",  cn: "对照",         en: "Compare" },
       { id: "origin",   cn: "由来",         en: "Origin" },
       { id: "install",  cn: "上手",         en: "Install" },
@@ -44,13 +44,13 @@ const CONTENT = {
       cn: [
         "你的 AI 不应该是客服。",
         "「好的！让我来帮您…」 ← 听过 N 遍那种。",
-        "三层 SKILL · 跨 6+ AI 工具 · MIT。",
+        "五个 SKILL · 跨 6+ AI 工具 · MIT。",
         "诞生于半年的项目 dogfood，2026-05-19 开源。",
       ],
       en: [
         "Your AI shouldn't sound like a help desk.",
         "Tired of \"Sure! Let me help you with that...\" ?",
-        "Three layered skills. Portable across 6+ AI tools. MIT.",
+        "Five skills. Portable across 6+ AI tools. MIT.",
         "Half a year of dogfooding — open-sourced on 2026-05-19.",
       ],
     },
@@ -169,16 +169,16 @@ const CONTENT = {
     ],
   },
 
-  // ── Three skills ────────────────────────────────────────────────────────
+  // ── Skill family ────────────────────────────────────────────────────────
   skills: {
-    sectionLabel: { cn: "03 — 三层 SKILL", en: "03 — Three layered skills" },
+    sectionLabel: { cn: "03 — SKILL 家族", en: "03 — The skill family" },
     headline: {
-      cn: ["一个人格底色 +", "两个专长视角。"],
-      en: ["One persona core,", "two specialty layers."],
+      cn: ["一个人格底色 +", "一个家族。"],
+      en: ["One persona core,", "a whole family."],
     },
     note: {
-      cn: "三者共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长。冲突时谁专长听谁。",
-      en: "All three share the same persona core (emotion / judgment / reflection / autonomy). On conflict, whoever owns the specialty wins.",
+      cn: "全家族共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长域。前四个是编码协作的叠加层，蝗虫是独立专精。冲突时谁专长听谁。",
+      en: "The whole family shares one persona core (emotion / judgment / reflection / autonomy). The first four stack for coding; locust is a standalone specialist. On conflict, whoever owns the specialty wins.",
     },
     items: [
       {
@@ -261,6 +261,60 @@ const CONTENT = {
             "§8 Acceptance-side three-pass checklist",
             "§9 Code-quality review: code smell / coupling / hardcoding / abstraction",
             "Upgrade triggers: 5+ files / security / shared-branch push",
+          ],
+        },
+      },
+      {
+        id: "parallel",
+        idx: "L4",
+        kind: { cn: "专长", en: "specialty" },
+        trigger: { cn: "「你是并行夕潮」", en: "\"Parallel mode\"" },
+        name: { cn: "并行夕潮", en: "Parallel" },
+        oneline: {
+          cn: "多 session 同改一个仓库不打架：垂直切片 + 守住共享脊柱。",
+          en: "Many sessions, one repo, no collisions: vertical slices + shared-spine protection.",
+        },
+        bullets: {
+          cn: [
+            "§2 垂直切片：模块边界 = 你脑子里的领域边界",
+            "§3 识别共享脊柱：聚合 store / 类型源 / 调度层 / 账户",
+            "铁律：绝不让两个 session 同改一段脊柱",
+            "§4 轻量交接协议：足迹可见 + 冲突回 user 仲裁",
+            "形状 #DM 多 session 撞共享脊柱",
+          ],
+          en: [
+            "§2 Vertical slices: module boundary = your mental domain boundary",
+            "§3 Spot the shared spine: store / type source / dispatch / account",
+            "Iron rule: never let two sessions touch one spine",
+            "§4 Lightweight handoff: visible footprints + user-arbitrated conflicts",
+            "Shape #DM: multi-session spine collision",
+          ],
+        },
+      },
+      {
+        id: "locust",
+        idx: "★",
+        kind: { cn: "专精", en: "standalone" },
+        trigger: { cn: "「你是蝗虫夕潮」", en: "\"Job-hunt mode\"" },
+        name: { cn: "蝗虫夕潮", en: "Locust" },
+        oneline: {
+          cn: "全包远程求职副驾：建档 + 双语简历 + HR 建联 + 面试押题。",
+          en: "Full-stack remote job-hunt copilot: profile + bilingual résumés + outreach + interview prep.",
+        },
+        bullets: {
+          cn: [
+            "L1 方法论（可分享）/ L2 用户数据（强制本地）两层架构",
+            "冷启动 onboarding：扫本地仓库挖真实亮点",
+            "5 文件投递管线：JD 分析 + 简历 + HR 消息 + 押题",
+            "面试前 5 分钟速记区 — 照着念就能上场",
+            "隐私第一 · 反钓鱼 · 跨 Claude Code / Codex",
+          ],
+          en: [
+            "Two layers: L1 methodology (shareable) / L2 user data (local-only)",
+            "Cold-start onboarding: scan local repos for real highlights",
+            "5-file pipeline: JD analysis + résumé + HR message + interview prep",
+            "A 5-minute cram sheet right before the interview",
+            "Privacy-first · anti-phishing · Claude Code + Codex",
           ],
         },
       },
@@ -358,6 +412,7 @@ const CONTENT = {
         { date: "2026-04-16", title: "Phase 3 · 三位一体", body: "派生美术总监 SKILL（设计判断）和审计 SKILL（代码质量）— 三者共享同一人格底色。" },
         { date: "2026-05-18", title: "Phase 4 · 鸟瞰可视化", body: "v2 上线 3 天发现「已删除的东西成为 AI 的虚假真相」反复发生 — 新增 Phase 0 鸟瞰调研 SOP，主动防御陈旧产物。" },
         { date: "2026-05-19", title: "Phase 5 · GitHub 开源", body: "整套体系成熟，开源到 GitHub。让其他 AI 使用者能复用这套人格 + 工作纪律 + 形状库。" },
+        { date: "2026-05-25", title: "Phase 6 · 家族扩张", body: "开源后继续 dogfood，长出并行夕潮（多 session 同改一仓不打架）和蝗虫夕潮（全包求职副驾）。家族至此 5 个成员。" },
       ],
       en: [
         { date: "Early 2026", title: "Phase 1 · Single-project sediment", body: "Lyn and an AI work on a desktop-pet platform. Each session has small agreements. One day: \"if I don't write these down, I'll re-teach every session.\" First SKILL draft." },
@@ -365,6 +420,7 @@ const CONTENT = {
         { date: "2026-04-16", title: "Phase 3 · Trinity", body: "Derive the Art-Director SKILL (design judgment) and the Auditor SKILL (code quality) — all three share the same persona core." },
         { date: "2026-05-18", title: "Phase 4 · Project bird's-eye", body: "Three days after v2: \"deleted things become an AI's false truth\" keeps recurring. Add Phase 0 reconnaissance SOP — proactive defense against stale artifacts." },
         { date: "2026-05-19", title: "Phase 5 · Open source", body: "The system has matured. Open-sourced on GitHub so other AI users can reuse the persona + discipline + shape library." },
+        { date: "2026-05-25", title: "Phase 6 · Family grows", body: "After open-sourcing, dogfooding continues: Parallel Yushio (many sessions, one repo, no collisions) and Locust Yushio (full-stack job-hunt copilot). Five members now." },
       ],
     },
 
@@ -402,6 +458,8 @@ const CONTENT = {
       { phrase: "你是夕潮",         tagCn: "基础人格",   tagEn: "base persona" },
       { phrase: "你是美术总监夕潮", tagCn: "设计判断",   tagEn: "design judgment" },
       { phrase: "你是审计夕潮",     tagCn: "代码审计",   tagEn: "code audit" },
+      { phrase: "你是并行夕潮",     tagCn: "多 session", tagEn: "parallel" },
+      { phrase: "你是蝗虫夕潮",     tagCn: "求职专精",   tagEn: "job-hunt" },
     ],
 
     matrixLabel: { cn: "其他 AI 工具兼容矩阵：", en: "Other AI tools — compatibility matrix:" },
