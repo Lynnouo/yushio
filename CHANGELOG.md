@@ -1,9 +1,71 @@
 # CHANGELOG
 
-> 夕潮 SKILL 体系完整迭代日志。
-> 时间倒序。每条含改动范围 · 改动者 · 为什么（保留 user 原话 + 项目出处 · 这是温度档案）。
-> 本文件归档原 SKILL §12 / §11 / §15 / shape-library 迭代日志的合并。
-> 仓库脱敏版的 SKILL 文件中不再嵌入迭代日志（避免主文档膨胀）· 历史在这里。
+> Full iteration log for the Yushio (夕潮) SKILL family. Reverse-chronological. Each entry: scope · author · why (with user quotes + project provenance — this is the warmth archive).
+> Archives the original `SKILL §12 / §11 / §15 / shape-library` iteration logs (merged here for public release; SKILL files no longer embed inline logs to keep the main docs lean).
+>
+> **Bilingual from [v5.1](#2026-06-03-v51--art-director--65-asset-inventory-station--v5-broken-ref-fixups) onward** · each new release has an English section followed by a 中文 section. Pre-v5.1 entries are 中文 only.
+>
+> 夕潮 SKILL 体系完整迭代日志 · 时间倒序 · 每条含改动范围 / 改动者 / 为什么（保留 user 原话 + 项目出处 · 这是温度档案）· 归档原 `SKILL §12 / §11 / §15 / shape-library` 迭代日志的合并 · 仓库脱敏版的 SKILL 文件中不再嵌入迭代日志 · 历史在这里。
+>
+> **从 [v5.1](#2026-06-03-v51--art-director--65-asset-inventory-station--v5-broken-ref-fixups) 起双语**：每个新条目英文段在前 · 中文段在后 · 老条目（v5.1 之前）仅中文。
+
+---
+
+## [2026-06-03] v5.1 · Art Director gains §6.5 Asset Inventory Station + v5 broken-ref fixups
+
+### English
+
+**Scope of change:**
+
+- **Art Director gains §6.5 Asset Inventory Station** — the **physical-walkthrough counterpart** to §6.2 consistency review. A single-file HTML + `<img src>` pointing directly at on-disk assets → double-click to open, zero build, zero server, sections grouped by source-of-truth (CSV / glob), missing-file `onError` falls back to a semi-transparent greyed placeholder (so gaps are visible, never silently hidden). Kept inline in the SKILL: 7 design principles cheat-sheet + 5 trigger scenarios + anti-examples + niche-comparison table with auditor §6b bird's-eye audit pages (that one sees "structure and relations"; this section sees "the assets themselves").
+- **New `skills/yushio-art-director/reference/asset-inventory-pattern.md`** — full pattern + the 7 design principles in depth (each with "why" + "anti-pattern") + a detailed niche-comparison table against `visualization-templates/` + the generator-separation discipline.
+- **New `skills/yushio-art-director/reference/asset-inventory-starter.html`** — single-file HTML starter template (OKLCH dark base + sticky nav + three grid forms `grid-square` / `grid-wide` / `grid-medal` + tier ring colors + craft/tool provenance chips + Lightbox + placeholder sections). Copy once and edit.
+- **`case-library.md` adds Case 2 · a story-driven RPG-style project** (dialogue-driven narrative combat + a multi-AI-tool art pipeline). **The point is NOT that project's design DNA** (which reuses Case 1's restrained dark JRPG palette) — the point is the **single-file HTML asset-walkthrough pattern** it accidentally invented, which is now abstracted into the cross-project `asset-inventory-pattern.md`.
+- **Backport v5 broken-ref fixups:**
+  - Base SKILL §2 `see §9.2` → `see reference/triggering.md` (§9 is a brief intro section; §9.2 does not exist).
+  - Base SKILL §7.1 event response matrix: two `§6.3 write feedback` / `§6.3 feedback append` → `§6 write feedback` / `§6 feedback append` (§6 "memory system" has no §6.3 subsection).
+- **Derived docs fully synced:** root `AGENTS.md` + 4 platform entry files (codex / gemini-cli / claude-web / aider · SHA1 identical = single merged version deployed across multiple paths) · Cursor `.mdc` files (base + art-director) — both receive §6.5 injection + the same broken-ref fixups.
+- **Tooling fixup:** `scripts/sync.sh` loop list updated to include `yushio-parallel` (a leftover from v4 when parallel was first introduced).
+
+**Author:** Lyn & 夕潮
+
+**Why:** After an art session on a story-driven RPG-style project (2026-06-01) shipped a one-page review HTML covering hundreds of monsters + several map floors + dozens of region backgrounds + shop backgrounds — once dogfooded, it was recognized as **a pattern worth distilling cross-project**. When the asset count crosses the "can't be scanned in one pass via Finder cover flow" threshold, a single-file HTML asset inventory station is the lowest-cost, highest-reuse walkthrough tool. The project also uses a mixed AI tooling pipeline (Nano Banana / Gemini 3 Pro Image / rembg, etc.), so the **craft-provenance chip** is the asset-layer defense for #DG (visual mode drift).
+
+**Key design decisions:**
+
+- **§6.5 paired with case-library Case 2** (mirroring #DH ↔ case-library Case 1 / #DL ↔ visualization-templates / #DM ↔ yushio-parallel): an actionable pattern (§6.5 + reference) paired with a real-case reference (case-library.md Case 2).
+- **Complementary, not overlapping, with auditor §6b** — auditor §6b looks at "structure and relations" (driven by `audit-data.json`, defending against #DK staleness / #DL no-bird's-eye); §6.5 looks at "the assets themselves" (physical files inlined directly, defending against #DC visual islands / #DG asset-layer drift). They can coexist in one project = two CT scans of the project body (structural transparency + physical walkthrough).
+- **No commit-time hook enforcement** — "regenerate the HTML after asset changes" is a soft rule (add a paragraph to project `.claude/rules/assets.md`), NOT a pre-commit gate. The inventory station is the art director's walkthrough tool, not a mechanical audit checkpoint.
+- **`onError` semi-transparent greyscale, NOT silent hide** (Principle 2): the core promise is "what's shown = what physically exists". Silent-hide blinds the reviewer = an asset-layer instance of #DK stale-artifact.
+
+**Trigger:** User noticed the effectiveness of the single-file HTML asset walkthrough from the RPG-style project's art session → decided to distill it into a cross-project pattern → ship it end-to-end (file under art-director §6.5 + extract into pattern.md + ship starter.html + add case-library Case 2 + sync derived docs + backport v5 leftover broken refs).
+
+### 中文
+
+**改动范围**：
+
+- **美术总监新增 §6.5 资产清册站（Asset Inventory Station）**——§6.2 一致性巡检的**实物化巡视工具**，单文件 html + 物理资产 `<img src>` 直引、双击打开零构建零服务、按真源分段陈列、缺图 onError 半透明灰度兜底（让缺漏可见而不假齐全）。SKILL 内 inline 留 7 设计原则速查 + 5 触发场景 + 反例 + 与审计夕潮 §6b 鸟瞰审计页面的生态位对照（那个看「结构与关系」· 本节看「资产本体」）。
+- **新建 `skills/yushio-art-director/reference/asset-inventory-pattern.md`**——完整 pattern + 7 设计原则的深度详案（每条含为什么 / 反面）+ 与 visualization-templates 生态位详细对照表 + 生成器分离纪律。
+- **新建 `skills/yushio-art-director/reference/asset-inventory-starter.html`**——单文件 html starter template（OKLCH 暗色底 + sticky nav + 三种 grid 形态：`grid-square` / `grid-wide` / `grid-medal` + tier 环色 + 工艺/工具溯源 chip + Lightbox + 占位段示意），直接 cp 一份开始改。
+- **`case-library.md` 追加案例 2 · 某 RPG 风格项目**（对话驱动叙事化战斗 + 多 AI 工具混合美术线）：本案例**重点不是该项目设计 DNA**（沿用案例 1 的暗色克制 RPG 底色），而是它意外发明的**单文件 html 资产巡视模式**——已抽象成跨项目 `asset-inventory-pattern.md`。
+- **顺修 v5 遗留 broken refs**：
+  - 基础 SKILL §2 `见 §9.2` → `见 reference/triggering.md`（§9 是简介段无 §9.2 子段）
+  - 基础 SKILL §7.1 事件响应矩阵两处 `§6.3 写 feedback` / `§6.3 feedback 追加` → `§6 写 feedback` / `§6 feedback 追加`（§6 整章「记忆系统」无 §6.3 子段）
+- **派生文档全量同步**：`AGENTS.md`（根）+ 4 个 platforms 入口（codex / gemini-cli / claude-web / aider · SHA1 一致 = 同一份合并版多 path 部署）· Cursor `.mdc` 两个（base + art-director）注入 §6.5 + 修同两处 broken refs。
+- **工具修正**：`scripts/sync.sh` 循环列表加入 `yushio-parallel`（v4 引入 parallel 时遗漏）。
+
+**改动者**：Lyn & 夕潮
+
+**为什么**：某 RPG 风格项目 2026-06-01 美术 session 落地的资产巡视 html（数百怪物 + 多层地图 + 数十区域背景 + 商店背景的一页巡视）dogfooding 后，识别为**可跨项目沉淀的模式**——规模到达「无法用 Finder cover flow 一次性扫完」临界点时，单文件 html 资产清册站是低成本高复用的巡视工具。同时该项目使用多 AI 工具混合美术线（Nano Banana / Gemini 3 Pro Image / rembg 等），**工艺溯源 chip** 是 #DG 视觉模式漂移在资产层的防御工具。
+
+**关键设计决策**：
+
+- **§6.5 配 case-library 案例 2**（仿 #DH ↔ case-library 案例 1 / #DL ↔ visualization-templates / #DM ↔ yushio-parallel）：可执行的 pattern（§6.5 + reference）配可借鉴的真实案例（reference/case-library.md 案例 2）。
+- **与审计夕潮 §6b 互补不重叠**：那个看「结构与关系」（`audit-data.json` 动态驱动 · 防 #DK 陈旧 / #DL 缺鸟瞰），本节看「资产本体」（物理文件 inline 直引 · 防 #DC 视觉孤岛 / #DG 资产层漂移）。两者可同项目并存 = 项目身体的两次 CT（结构透视 + 实物巡视）。
+- **不强制 commit 拦截**：资产改动后建议重生 html 是软纪律（项目 `.claude/rules/assets.md` 加段），不挂 pre-commit hook——清册站是美术总监巡视工具，不是机器审计闸门。
+- **缺图 onError 半透明灰度，不静默隐藏**（原则 2）：核心承诺是「显示什么 = 真实存在的」。缺图静默隐藏 = 蒙蔽审阅者 = #DK 陈旧产物的资产层。
+
+**触发**：用户发现某 RPG 风格项目美术 session 的单文件 html 资产巡视有效性 → 决定提炼成跨项目 pattern → 全做完（归 art-director §6.5 + 抽到 pattern.md + 出 starter.html + case-library 案例 2 + 派生文档同步 + v5 遗留 broken refs 顺修）。
 
 ---
 

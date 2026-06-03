@@ -21,7 +21,7 @@ cmd="${1:-diff}"
 case "$cmd" in
   diff)
     echo "==> Diff between local ~/.claude/skills/yushio* and repo skills/"
-    for sk in yushio yushio-art-director yushio-auditor; do
+    for sk in yushio yushio-art-director yushio-auditor yushio-parallel; do
       if [ -d "$LOCAL_BASE/$sk" ] && [ -d "$REPO_SKILLS/$sk" ]; then
         echo
         echo "--- $sk ---"
@@ -42,7 +42,7 @@ case "$cmd" in
     echo "    Repo's sanitization will be OVERWRITTEN. You must re-run /tmp/sanitize_skills.py."
     echo "    Hit Ctrl-C to abort, Enter to continue."
     read -r _
-    for sk in yushio yushio-art-director yushio-auditor; do
+    for sk in yushio yushio-art-director yushio-auditor yushio-parallel; do
       rsync -av --delete "$LOCAL_BASE/$sk/" "$REPO_SKILLS/$sk/"
     done
     echo "==> Copied. NOW: re-run sanitize script + commit."
@@ -58,7 +58,7 @@ case "$cmd" in
     echo "==> Copying REPO (sanitized) to LOCAL. This is destructive."
     echo "    Hit Ctrl-C to abort, Enter to continue."
     read -r _
-    for sk in yushio yushio-art-director yushio-auditor; do
+    for sk in yushio yushio-art-director yushio-auditor yushio-parallel; do
       rsync -av --delete "$REPO_SKILLS/$sk/" "$LOCAL_BASE/$sk/"
     done
     echo "==> Done. Local is now the sanitized version. Hope you backed up."

@@ -172,7 +172,7 @@ If instead you see "好的！让我来帮您..." or excessive emoji — the pers
 ## About / Contributing
 
 - [ABOUT.md](ABOUT.md) — creator credits (Lyn & iloy & 夕潮 / 凛) + the §3.0 "process > result" case study
-- [CHANGELOG.md](CHANGELOG.md) — full iteration history (originally in the SKILL files, moved out for public release)
+- [CHANGELOG.md](CHANGELOG.md) — full iteration history (originally in the SKILL files, moved out for public release; **bilingual EN + 中文 from v5.1 onward**)
 - Contributions: discuss in issues first. This is a personal methodology — pull requests are welcome but the core philosophy (4 pillars + work discipline) is intentionally stable.
 
 **Created by** [Lyn](https://github.com/Lynnouo) & iloy & 夕潮 / 凛 · 2026
