@@ -104,6 +104,63 @@ UI(项目设计单源文档的 Banned Patterns 段):
 
 ---
 
+## 案例 2 · 某 RPG 风格项目(对话驱动叙事化战斗 · React + TS · 多 AI 工具混合美术线)
+
+### 一句话视觉定位
+
+**「美术总监巡视全量资产」的可复用模式 = 单文件 html 资产清册站**。该项目视觉风格本身仍演变中(沿用案例 1 提炼的暗色克制 RPG 底色),本案例**重点不是该项目设计 DNA**,而是它意外发明的**资产巡视模式**——已抽象成跨项目 [`asset-inventory-pattern.md`](./asset-inventory-pattern.md)。
+
+### 视觉 DNA(沿用案例 1 简略复用)
+
+简略复用要点:99% 深暗墨蓝底 + 4 主 accent ≤ 10% / 明朝体 serif + 无衬线中文 + 衬线西文三族不混用 / 5 档 duration + 单一 ease-out-quart 曲线。
+
+该项目在案例 1 之上的演化:
+- **战斗演出删除**(改为叙事化战斗——AI 小说战报驱动,不走视频驱动卡点)
+- **资产规模翻倍以上**(数百怪物 + 多层地图 + 数十区域背景 + 数个商店背景)
+- **多 AI 工具混用**(Nano Banana / Gemini 3 Pro Image / rembg 等)→ 视觉一致性挑战上升
+
+### 资产巡视语言(本案例核心创新)
+
+项目美术 session 落地的资产巡视 html 是「美术现状的一页」——单文件 html,4 段 sticky nav,内联 CSS + 极简 JS,Lightbox 缩放。**不是** audit dashboard,**是**美术总监跨 session 视觉巡视的载体。
+
+**为什么会发明**:某次美术批量产出 session 完成数百只怪物全量入库(从案例 1 的几十张暴增 5+ 倍)+ 多层地图 + 数十区域背景 + 商店背景。规模到达「无法用 Finder cover flow 一次性扫完」临界点。项目 owner 需要「打开就能巡视全部 / 不启服务 / 不引框架 / 跨 session 反复来看」的工具。
+
+**它做了什么 7 件事**(已抽象成 7 原则 · 详见 [`asset-inventory-pattern.md`](./asset-inventory-pattern.md) §3):
+1. 单文件零依赖
+2. 缺图 onError 半透明灰度兜底(不静默隐藏 · 让缺漏可见)
+3. 真源行号 inline 在每段 sec-meta(`<真源 CSV>` / 待建段标 "待生成")
+4. 业务分类用色 chip(area-wild / area-dungeon / area-boss / tier-elite / tier-boss)
+5. 工艺溯源 chip(模型/工具名)记录每张资产用的 AI 模型
+6. 三种 grid 形态共存(怪物 130px 圆勋章 + 区域 380×214 宽卡 + 层地图 240×240 方卡)
+7. Lightbox + 双版本预览(grid 看透明底 `-tp.webp` 辨识 · Lightbox 看暗底 `-ondark.webp` 真实表现)
+
+### banned-patterns(它刻意不做的)
+
+- 不引 React / Vue / 任何前端框架 → 失去「双击即开」
+- 不加上传 / 删除 / 编辑按钮 → 那是 admin panel
+- 不加 BGM / slideshow → 那是 portfolio
+- 不用 emoji 做分类(👑 / 🔥 / ⚔)→ §3.2 AI slop 指纹 + 跨平台漂移
+- 不静默隐藏缺图(`display:none`)→ 失去缺漏警示 · 用半透明灰度兜底
+- 不把生成逻辑写进 html → 生成器分离(`scripts/_gen_<asset>_review.{py,cjs,mjs}` 等)
+
+### 可迁移要点(抽象成跨项目判断)
+
+1. **资产规模 > 100 + 多 AI 工具协作**时,单文件 html 资产清册站是低成本高复用的巡视工具
+2. **缺图 onError 兜底半透明灰度**(不是 `display:none`)= 资产层 #DK 防御——让缺漏可见而不假齐全
+3. **业务分类用色 chip 不是 emoji** = 反 AI slop 在资产清册场景的落地
+4. **AI 时代特有的工艺溯源 chip** = #DG 视觉模式漂移的资产层防御工具
+5. **三种 grid 形态共存按资产天然比例匹配** = 拒绝「统一卡尺寸」的 Pinterest 强迫症
+6. **生成器(`.py` / `.cjs` / `.mjs`)和产物(`.html`)分离** = 让重生有低摩擦入口 · html 始终可独立打开
+
+### 出处 + 诚实标注
+
+- 取证:某 RPG 风格项目美术 session 产出的资产巡视 html(单文件)+ 配套生成器实现(Python 扫 CSV + glob 资产路径)
+- 提炼路径:dogfooding → 抽象成 [`asset-inventory-pattern.md`](./asset-inventory-pattern.md) 跨项目 pattern + 出 [`asset-inventory-starter.html`](./asset-inventory-starter.html) 通用模板
+- 该项目设计 DNA 本身**仍在演变**——本案例不抄具体视觉值 · 只抄它新发明的「资产巡视模式」
+- 该项目美术资产**仍在补充期**(部分类资产如装备 / 道具 / NPC 立绘尚未批量生成),清册站会持续扩段
+
+---
+
 ## 迭代日志
 
-完整迭代历史见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本文件 2026-05 创建 + 案例 1(某卡牌对战游戏):从只读学习素材 dogfooding 提炼其 UI 风格(克制深色日式 RPG)+ 卡牌战斗动效(视频驱动卡点)。配套:art-director §4.3 加 1 行指针 + §9 新增反 AI-slop 形状 #DH(其出处指向本案例)。
+完整迭代历史见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本文件 2026-05 创建 + 案例 1(某卡牌对战游戏):从只读学习素材 dogfooding 提炼其 UI 风格(克制深色日式 RPG)+ 卡牌战斗动效(视频驱动卡点)。2026-06 追加案例 2(某 RPG 风格项目):提炼资产清册站模式 + 抽象成跨项目 pattern + 出通用 starter。配套:art-director §4.3 加 1 行指针 + §9 新增反 AI-slop 形状 #DH(其出处指向案例 1)+ §6.5 资产清册站(其出处指向案例 2)。

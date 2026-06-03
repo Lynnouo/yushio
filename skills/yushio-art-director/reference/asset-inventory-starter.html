@@ -1,0 +1,295 @@
+<!doctype html>
+<!--
+========================================================================
+  资产清册站 · Asset Inventory Station · starter template
+  ----------------------------------------------------------------------
+  来源: ~/.claude/skills/yushio-art-director/reference/
+  模式说明: ./asset-inventory-pattern.md
+  归属 SKILL: yushio-art-director §6.5
+
+  怎么用:
+    1. cp 一份到项目: e.g. scripts/<asset>_samples/review.html
+    2. 改 <title> 和 <nav><h1>
+    3. 每个 <section> 改成你的资产分组(对应一个真源 CSV / 一类资产)
+    4. <h2 class="sec-h"> 旁的 sec-meta 写明: 真源来源 · 计数 · 工艺 · 路径 glob
+    5. <div class="card-*"> 复制成你的资产列表(或写生成器)
+    6. metadata chip(.badge.tier-* / .badge.area-* / .chip-tool)按业务扩展
+    7. 双击在浏览器打开即可
+
+  原则速查(详见 asset-inventory-pattern.md §3):
+    1. 单文件零依赖,本地直开
+    2. 缺图 onError 半透明灰度,不静默隐藏
+    3. 真源行号 inline 在每段 sec-meta
+    4. 业务分类用色 chip 不是 emoji
+    5. AI 生成资产带工艺溯源 chip
+    6. 多 grid 形态共存,按资产天然比例匹配
+    7. Lightbox + 双版本预览(grid 看辨识 · 大图看真实表现)
+
+  不要做的(详见 §4):
+    - 不加上传/删除/编辑按钮 → 那是 admin panel
+    - 不加 bgm/slideshow → 那是 portfolio
+    - 不加搜索筛选(资产 < 1000) → sticky nav 够用
+    - 不引 React/Vue → 失去"双击即开"承诺
+
+  色值说明:
+    本 starter 用 OKLCH(对齐美术总监 §3.4 信条 · 感知均匀于 HSL/hex)。
+    OKLCH 三参数:L(lightness 0-1) / C(chroma 0-.4) / H(hue 0-360)。
+      e.g. oklch(.16 .005 60) = 极暗(L=.16) 微染(C=.005) 暖调(H=60)
+    不熟悉的话 30 秒能上手——改色时直接调 3 个数字,L 控明暗 / C 控饱和 / H 控色相。
+    现代浏览器全支持(Safari 16.4+ / Chrome 111+ / Firefox 113+ · 2023 起)。
+    强烈不想用 OKLCH 时可全量 ctrl+H 替换为 hex,无功能影响。
+========================================================================
+-->
+<html lang="zh"><head><meta charset="utf-8">
+<title>[项目名] 资产清册 · [N+N+N] 资产</title>
+<style>
+/* ============ base ============ */
+/* 暗色巡视底色: tinted neutrals(避免纯黑),让资产跳出 */
+body{background:oklch(.16 .005 60);color:oklch(.88 .015 70);
+  font-family:-apple-system,system-ui,sans-serif;margin:0;padding:0 0 80px}
+
+/* ============ sticky nav ============ */
+nav{position:sticky;top:0;z-index:50;background:oklch(.16 .005 60 / .94);
+  backdrop-filter:blur(8px);padding:14px 36px;
+  border-bottom:1px solid oklch(.32 .01 60);
+  display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+nav h1{font-size:15px;margin:0;color:oklch(.78 .035 75)}
+nav a{color:oklch(.65 .025 70);text-decoration:none;font-size:12.5px;
+  padding:5px 10px;border-radius:4px;transition:background .14s}
+nav a:hover{background:oklch(.78 .035 75 / .12);color:oklch(.88 .015 70)}
+nav .count{color:oklch(.5 .015 65);font-size:11px;margin-left:3px}
+
+/* ============ section ============ */
+main{padding:30px 36px}
+section{margin-bottom:50px}
+.sec-h{font-size:18px;color:oklch(.88 .015 70);margin:0 0 6px;
+  padding-bottom:8px;border-bottom:1px solid oklch(.4 .01 60)}
+.sec-h .sec-meta{font-size:12px;color:oklch(.5 .015 65);
+  font-weight:400;margin-left:12px}
+.sec-lead{font-size:12px;color:oklch(.5 .015 65);margin:0 0 18px}
+.sec-sub{font-size:14px;color:oklch(.78 .035 75);margin:24px 0 12px;
+  border-bottom:1px solid oklch(.32 .01 60);padding-bottom:7px}
+.sec-sub .rid{font-size:10px;color:oklch(.45 .012 60);
+  font-weight:400;margin-left:8px}
+
+/* ============ grid 三种形态 ============ */
+/* 原则 6: 按资产天然比例匹配显示尺寸,不强行统一 */
+.grid{display:flex;flex-wrap:wrap;gap:18px}
+
+/* grid-square: 1:1 适合 mini-map / 立绘头像 / 道具大图 */
+.grid-square .card-sq{width:240px;cursor:zoom-in;transition:transform .14s}
+.card-sq:hover{transform:translateY(-3px)}
+.card-sq img{width:240px;height:240px;object-fit:cover;border-radius:6px;
+  display:block;box-shadow:0 4px 14px oklch(0 0 0 / .5)}
+
+/* grid-wide: 16:9 适合场景背景 / 全身立绘 / 横版插画 */
+.grid-wide .card-wide{width:380px;cursor:zoom-in;transition:transform .14s}
+.card-wide:hover{transform:translateY(-3px)}
+.card-wide img{width:380px;height:214px;object-fit:cover;border-radius:6px;
+  display:block;box-shadow:0 4px 14px oklch(0 0 0 / .5)}
+
+/* grid-medal: 圆勋章 适合个体识别(怪物/角色头像) */
+.grid-medal .card-md{width:130px;text-align:center}
+.medal{width:130px;height:130px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;position:relative;overflow:hidden;
+  margin:0 auto;cursor:zoom-in;transition:transform .12s}
+.medal:hover{transform:scale(1.06)}
+.medal img{width:90%;height:90%;object-fit:contain;position:relative;z-index:2}
+
+/* 勋章 tier 环色(品级业务分类的视觉化 · 原则 4) */
+.t-normal{background:radial-gradient(circle at 50% 50%,oklch(.25 .005 60),oklch(.16 .005 60) 72%);
+  box-shadow:inset 0 0 0 2px oklch(.45 .01 60 / .55)}
+.t-elite{background:radial-gradient(circle at 50% 50%,oklch(.65 .12 220 / .22),transparent 55%),
+  radial-gradient(circle,oklch(.25 .005 60),oklch(.16 .005 60) 72%);
+  box-shadow:inset 0 0 0 4px oklch(.78 .12 220 / .85)}
+.t-boss{background:radial-gradient(circle at 50% 50%,oklch(.78 .14 75 / .3),transparent 55%),
+  radial-gradient(circle,oklch(.25 .005 60),oklch(.16 .005 60) 72%);
+  box-shadow:inset 0 0 0 5px oklch(.78 .14 75 / .9),inset 0 0 0 9px oklch(.5 .14 25 / .55)}
+
+/* card 文字 */
+.cap{font-size:10.5px;color:oklch(.78 .02 70);margin-top:7px;line-height:1.5}
+.cap-large{font-size:12px;color:oklch(.82 .02 70);margin-top:9px;line-height:1.5}
+.cap-sub{color:oklch(.5 .015 65);font-size:11px}
+.empty{color:oklch(.4 .01 60);font-size:12px;font-style:italic;padding:10px 0}
+
+/* ============ metadata chip(原则 4) ============ */
+/* 业务分类: tier-*(品级) · area-*(区域类型) · 按项目扩 */
+.badge{display:inline-block;font-size:9px;padding:1px 5px;
+  border-radius:3px;margin-left:4px}
+.badge.tier-elite{background:oklch(.65 .12 220 / .2);color:oklch(.82 .1 220)}
+.badge.tier-boss{background:oklch(.78 .14 75 / .18);color:oklch(.82 .12 75)}
+.badge.area-city{background:oklch(.78 .14 75 / .18);color:oklch(.82 .12 75)}
+.badge.area-wild{background:oklch(.78 .1 130 / .16);color:oklch(.82 .12 130)}
+.badge.area-dungeon{background:oklch(.7 .12 320 / .16);color:oklch(.75 .12 320)}
+.badge.area-boss{background:oklch(.7 .15 25 / .18);color:oklch(.78 .12 25)}
+
+/* 工艺/工具溯源 chip(原则 5 · AI 时代特有) */
+.chip-tool{display:inline-block;font-size:8.5px;padding:1px 4px;
+  border-radius:3px;margin-left:3px}
+.chip-tool.nano{background:oklch(.75 .1 130 / .18);color:oklch(.82 .12 130)}
+.chip-tool.gpro{background:oklch(.7 .1 285 / .18);color:oklch(.75 .12 285)}
+.chip-tool.sdxl{background:oklch(.7 .12 200 / .18);color:oklch(.78 .12 200)}
+.chip-tool.mj6{background:oklch(.7 .12 50 / .18);color:oklch(.78 .12 50)}
+
+/* ============ Lightbox(原则 7) ============ */
+#lb{display:none;position:fixed;inset:0;background:oklch(0 0 0 / .92);
+  z-index:99;flex-direction:column;align-items:center;justify-content:center;
+  cursor:zoom-out}
+#lb img{max-width:88vw;max-height:82vh;object-fit:contain;border-radius:8px}
+#lbcap{color:oklch(.82 .02 70);font-size:14px;margin-top:14px}
+</style></head><body>
+
+<!-- ============ sticky nav · 改成你的资产分组 ============ -->
+<nav>
+  <h1>[项目名] 资产清册</h1>
+  <a href="#group-a">[A 类]<span class="count">[n]/[n]</span></a>
+  <a href="#group-b">[B 类]<span class="count">[n]/[n]</span></a>
+  <a href="#group-c">[C 类]<span class="count">[n]/[n]</span></a>
+  <a href="#group-d">[D 类]<span class="count">[n]/[n]</span></a>
+</nav>
+
+<main>
+
+<!--
+============ section A · 1:1 方卡示意(如 mini-map / 立绘头像) ============
+sec-meta 写明: 计数 · 工艺 · 路径 glob · 真源 CSV
+-->
+<section id="group-a">
+  <h2 class="sec-h">§ [A 类资产名]
+    <span class="sec-meta">[n]/[n] · [工艺描述] · [路径 glob]</span>
+  </h2>
+  <p class="sec-lead">[这段资产一句话说明: 它是干嘛的 / 谁消费它 / 真源在哪]</p>
+
+  <div class="grid grid-square">
+    <!-- 复制下面这块成你的资产 · 真源驱动建议走生成器 -->
+    <div class="card-sq" onclick="zoom('path/to/asset-1.webp','[资产 1 标题]')">
+      <img src="path/to/asset-1.webp" loading="lazy"
+        onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      <div class="cap-large"><b>[Id 1]</b> · [资产 1 名称]<br>
+        <span class="cap-sub">[英文名 / 副标 / 区域归属]</span>
+      </div>
+    </div>
+    <div class="card-sq" onclick="zoom('path/to/asset-2.webp','[资产 2 标题]')">
+      <img src="path/to/asset-2.webp" loading="lazy"
+        onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      <div class="cap-large"><b>[Id 2]</b> · [资产 2 名称]<br>
+        <span class="cap-sub">[英文名 / 副标 / 区域归属]</span>
+      </div>
+    </div>
+    <!-- TODO 继续添加或走生成器 -->
+  </div>
+</section>
+
+<!--
+============ section B · 16:9 宽卡示意(如场景背景) ============
+-->
+<section id="group-b">
+  <h2 class="sec-h">§ [B 类资产名]
+    <span class="sec-meta">[n]/[n] · [工艺描述] · [路径 glob]</span>
+  </h2>
+  <p class="sec-lead">[一句话说明这段资产]</p>
+
+  <div class="grid grid-wide">
+    <div class="card-wide" onclick="zoom('path/to/scene-1.webp','[场景 1 标题]')">
+      <img src="path/to/scene-1.webp" loading="lazy"
+        onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      <div class="cap-large"><b>[Id]</b> · [场景名]
+        <span class="badge area-wild">wild</span><br>
+        <span class="cap-sub">[英文名 · 归属层]</span>
+      </div>
+    </div>
+    <div class="card-wide" onclick="zoom('path/to/scene-2.webp','[场景 2 标题]')">
+      <img src="path/to/scene-2.webp" loading="lazy"
+        onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      <div class="cap-large"><b>[Id]</b> · [场景名]
+        <span class="badge area-boss">boss</span><br>
+        <span class="cap-sub">[英文名 · 归属层]</span>
+      </div>
+    </div>
+    <!-- TODO -->
+  </div>
+</section>
+
+<!--
+============ section C · 圆勋章示意(如怪物头像 · 个体识别场景) ============
+带 tier 环色 + 工艺溯源 chip
+-->
+<section id="group-c">
+  <h2 class="sec-h">§ [C 类资产名]
+    <span class="sec-meta">[n]/[n] · [工艺描述: e.g. 透明底 + 品级勋章] · [路径 glob]</span>
+  </h2>
+  <p class="sec-lead">点任意勋章放大对比 · 标签
+    <span class="chip-tool nano">Nano</span> = [工具说明] /
+    <span class="chip-tool gpro">3Pro</span> = [工具说明]
+    · 普通暗环 / 精英青蓝环 / BOSS 金朱砂双环
+  </p>
+
+  <h3 class="sec-sub">[子分组 1 名称]
+    <span class="rid">[子分组 id / region 索引]</span>
+  </h3>
+  <div class="grid grid-medal">
+    <div class="card-md">
+      <div class="medal t-normal" onclick="zoom('path/to/mob-1-ondark.webp','[怪物 1 标题]')">
+        <img src="path/to/mob-1-tp.webp" loading="lazy"
+          onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      </div>
+      <div class="cap">[Id] [怪物名]
+        <span class="chip-tool nano">Nano</span>
+      </div>
+    </div>
+    <div class="card-md">
+      <div class="medal t-elite" onclick="zoom('path/to/mob-2-ondark.webp','[怪物 2 标题]')">
+        <img src="path/to/mob-2-tp.webp" loading="lazy"
+          onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      </div>
+      <div class="cap">[Id] [怪物名]
+        <span class="badge tier-elite">精英</span>
+        <span class="chip-tool nano">Nano</span>
+      </div>
+    </div>
+    <div class="card-md">
+      <div class="medal t-boss" onclick="zoom('path/to/mob-3-ondark.webp','[怪物 3 标题]')">
+        <img src="path/to/mob-3-tp.webp" loading="lazy"
+          onerror="this.style.opacity=.2;this.style.filter='grayscale(1)'">
+      </div>
+      <div class="cap">[Id] [怪物名]
+        <span class="badge tier-boss">BOSS</span>
+        <span class="chip-tool gpro">3Pro</span>
+      </div>
+    </div>
+    <!-- TODO -->
+  </div>
+</section>
+
+<!--
+============ section D · 空段提示(用 .empty 类)
+说明: 当某类资产尚未生成时显式列出 → 让缺漏可见而不是隐藏
+-->
+<section id="group-d">
+  <h2 class="sec-h">§ [D 类资产名]
+    <span class="sec-meta">0/[n] · 待生成 · [路径 glob 预留]</span>
+  </h2>
+  <p class="sec-lead">[说明: 这段资产为什么还没生成 / 计划什么时候补]</p>
+  <div class="empty">尚无资产 · 真源 [X.csv] 已列出 [n] 条目，待美术补图后重生此页</div>
+</section>
+
+</main>
+
+<!-- ============ Lightbox(原则 7) ============ -->
+<div id="lb" onclick="this.style.display='none'">
+  <img id="lbimg"><div id="lbcap"></div>
+</div>
+
+<script>
+// Lightbox · 点卡放大 · 点黑背景或 Esc 退出 · 双版本预览(grid `-tp` / Lightbox `-ondark`)
+function zoom(src,cap){
+  document.getElementById('lbimg').src=src;
+  document.getElementById('lbcap').textContent=cap;
+  document.getElementById('lb').style.display='flex';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')document.getElementById('lb').style.display='none';
+});
+</script>
+
+</body></html>
