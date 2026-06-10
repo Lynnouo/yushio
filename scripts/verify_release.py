@@ -126,7 +126,8 @@ def check_versions() -> None:
 def check_no_personal_paths() -> None:
     pattern = "/Use" + "rs/"  # 拼接避免本文件自命中
     allow = {
-        # 教学内容：硬编码路径的反例示范（/Users/x/）+ 检测它的 grep 模板自身
+        # 教学内容：硬编码"用户主目录绝对路径"的反例示范 + 检测它的 grep 模板自身
+        # （该文件里的示例路径是泛指的 x 用户，不是真实泄漏）
         "skills/yushio-auditor/reference/quality-review.md",
     }
     hits = [
