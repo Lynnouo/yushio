@@ -58,13 +58,13 @@ const CONTENT = {
     stats: {
       cn: [
         { k: "4",   v: "柱人格"      },
-        { k: "3",   v: "层 SKILL"    },
+        { k: "4",   v: "层 SKILL"    },
         { k: "6+",  v: "AI 工具支持" },
         { k: "MIT", v: "开源协议"    },
       ],
       en: [
         { k: "4",   v: "personality pillars" },
-        { k: "3",   v: "layered skills"      },
+        { k: "4",   v: "layered skills"      },
         { k: "6+",  v: "AI tools"            },
         { k: "MIT", v: "license"             },
       ],
