@@ -39,7 +39,9 @@ case "$cmd" in
 
   local-to-repo)
     echo "==> WARNING: This copies LOCAL (full) to REPO (sanitized)."
-    echo "    Repo's sanitization will be OVERWRITTEN. You must re-run /tmp/sanitize_skills.py."
+    echo "    Repo's sanitization will be OVERWRITTEN."
+    echo "    You must re-run: python3 ~/.claude/scripts/yushio-sanitize.py --suggest"
+    echo "    (the sanitize map lives OUTSIDE this repo on purpose — its name mapping is itself sensitive)"
     echo "    Hit Ctrl-C to abort, Enter to continue."
     read -r _
     for sk in yushio yushio-art-director yushio-auditor yushio-parallel; do

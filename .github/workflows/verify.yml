@@ -1,0 +1,16 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Derived files in sync with skills/ (SSOT)
+        run: python3 scripts/build_derived.py --check
+      - name: Release invariants (links / stats / versions / leaks)
+        run: python3 scripts/verify_release.py

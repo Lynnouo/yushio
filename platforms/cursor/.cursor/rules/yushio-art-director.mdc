@@ -325,7 +325,7 @@ alwaysApply: false
   参照气质：cargo / pnpm / Claude Code
 ```
 
-> **真实项目的完整设计提炼** 见 [`reference/case-library.md`](./reference/case-library.md)（参考案例库 · 一项目一条 · 借它的气质和可迁移要点，不抄具体值）。
+> **真实项目的完整设计提炼** 见 [`reference/case-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-art-director/reference/case-library.md)（参考案例库 · 一项目一条 · 借它的气质和可迁移要点，不抄具体值）。
 
 ### §4.4 推导不是一次性的
 
@@ -411,7 +411,7 @@ type: project
 
 每次新功能或新页面完成后：
 
-1. **色彩在 palette 内？** 新颜色 → 要么加入 palette（更新 DNA），要么改用已有颜色。**进一步**：palette 是否有**代码 SSOT**（如 `design-tokens/*.ts`）+ 偏离签字值是否**会报错**（verify script / lint）？没有 → 静默漂移迟早发生（见 §9 #DF + [`reference/ssot-design.md`](../yushio/reference/ssot-design.md)）
+1. **色彩在 palette 内？** 新颜色 → 要么加入 palette（更新 DNA），要么改用已有颜色。**进一步**：palette 是否有**代码 SSOT**（如 `design-tokens/*.ts`）+ 偏离签字值是否**会报错**（verify script / lint）？没有 → 静默漂移迟早发生（见 §9 #DF + [`reference/ssot-design.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/ssot-design.md)）
 2. **字体层级一致？** 标题/正文/辅助文字大小和已有页面一致吗
 3. **间距节奏匹配？** 用同一套基础单位吗
 4. **动效时长和曲线统一？** 同一套缓动曲线和时长范围吗
@@ -463,7 +463,7 @@ type: project
 ### §6.5 资产清册站（Asset Inventory Station）
 
 > §6.2 一致性巡检的**实物化产出工具**——不只是 grep palette token，也用单文件 html 巡视全量物理资产对照设计 DNA。
-> 完整 pattern + starter template：见 `skills/yushio-art-director/reference/asset-inventory-pattern.md` + `skills/yushio-art-director/reference/asset-inventory-starter.html`。
+> 完整 pattern + starter template：[`reference/asset-inventory-pattern.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-art-director/reference/asset-inventory-pattern.md) + [`reference/asset-inventory-starter.html`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-art-director/reference/asset-inventory-starter.html)。
 
 **是什么**：单 html 文件 + `<img src>` 直引物理资产 → 双击打开、零构建零服务、按真源分段陈列、缺图 onError 兜底。**不是**：portfolio（不刻意好看）/ admin panel（只读，无编辑）/ audit dashboard（不查代码引用，那是审计夕潮 §6b）/ mood board（那是灵感工具）。
 
@@ -743,11 +743,11 @@ grep -rn "[pattern]" README.md docs/
 - **资产层**：emoji 当图标 · Unicode 字符（✦◈⚒）当图标占位 · `<div>` 色块代替真图标 · 把大图缩成圆头。
 - **一句话判定**："这个布局 / 处理 / 图标，是**这个产品**想要的，还是 **AI 的默认众数**？" 答不出产品理由 = 俗套。
 
-**修复**：先做**产品形态自觉**（§5：它是什么气质）→ **克制**（§3.5：删到只剩必要）→ **破网格**（不同尺寸 hero 卡 / list / 非对称，打破等大卡片）→ **内容优先**（让主角内容跳出，accent 面积预算化）→ 把"刻意不做"写成项目级 **banned-patterns 清单**（机器护栏化，见 [`reference/case-library.md`](./reference/case-library.md) 案例）。
+**修复**：先做**产品形态自觉**（§5：它是什么气质）→ **克制**（§3.5：删到只剩必要）→ **破网格**（不同尺寸 hero 卡 / list / 非对称，打破等大卡片）→ **内容优先**（让主角内容跳出，accent 面积预算化）→ 把"刻意不做"写成项目级 **banned-patterns 清单**（机器护栏化，见 [`reference/case-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-art-director/reference/case-library.md) 案例）。
 
 **判定 ≠ 一刀切**：渐变 / 毛玻璃 / 卡片本身不是罪，**无理由地默认套用**才是。能说出"这个产品为什么要毛玻璃"就不是俗套。
 
-**发现日期**：2026-05-25 · **出处**：某卡牌游戏项目的设计单源文档 Banned Patterns 段 dogfooding——一个真实项目把"反 AI 味"从靠品味写成了制度（N×3 SaaS 网格点名"反射"、modal-first、Unicode 占位符、大图缩圆头全列为禁）。完整案例见 [`reference/case-library.md`](./reference/case-library.md)。
+**发现日期**：2026-05-25 · **出处**：某卡牌游戏项目的设计单源文档 Banned Patterns 段 dogfooding——一个真实项目把"反 AI 味"从靠品味写成了制度（N×3 SaaS 网格点名"反射"、modal-first、Unicode 占位符、大图缩圆头全列为禁）。完整案例见 [`reference/case-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-art-director/reference/case-library.md)。
 
 **关联**：§3.2 AI Slop 指纹清单（处理层 tells 真源）· §3.5 简约是信心的表达 · #DC 新功能视觉孤岛（俗套常导致孤岛）· #DE Emoji 清扫。
 
@@ -780,4 +780,4 @@ grep -rn "[pattern]" README.md docs/
 
 ## §11 迭代日志
 
-> 完整迭代日志见仓库根 [CHANGELOG.md](../../CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。
+> 完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。

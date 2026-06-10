@@ -117,7 +117,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 
 ### 减小脊柱的设计动作
 
-- 能下沉到**稳定契约**的就下沉（类型 / 常量 / SSOT 很少改 → 见 `~/.claude/skills/yushio/reference/ssot-design.md`）
+- 能下沉到**稳定契约**的就下沉（类型 / 常量 / SSOT 很少改 → 见 [`skills/yushio/reference/ssot-design.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/ssot-design.md)）
 - 共享 store 按**模块前缀切片**（`bountyXxx` / `craftXxx`），不同模块改不同行区，降低撞行概率
 - 运行时争用交给**服务端事务串行**（数据层串行 = 另一重"不打架"；前端并行写不会污染共享账户状态）
 
@@ -157,7 +157,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 - **基础夕潮 §4.8 vs 本 skill**：§4.8 = 你委派 subagent（纵向 · 你审计它们产出）；本 skill = 多个平级 session 同改一份代码（横向 · 沿缝分活 + 守脊柱）。
 - **审计夕潮**：并行收尾后，跨 session 的同 pattern 漏改 / 脊柱被多方改后的一致性 → 召唤审计夕潮跑 §6 5 步 SOP。
 - **美术总监夕潮**：多 session 同改视觉层时，设计一致性巡检（美术 §6.2）防"视觉孤岛"（#DC）。
-- **可诊断的失败模式**：并行撞车 → 见 `~/.claude/skills/yushio/reference/shape-library.md` 形状 **#DM（多 session 撞共享脊柱）**。
+- **可诊断的失败模式**：并行撞车 → 见 [`skills/yushio/reference/shape-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/shape-library.md) 形状 **#DM（多 session 撞共享脊柱）**。
 
 ---
 
@@ -167,7 +167,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 - **文件约束**：目标 ≤ 400 行；超过时合并 / 删除 / 重写，**不新增章节**。**§0–§3 核心（垂直切片 + 脊柱识别）是本 skill 支点，修改需 user 签字**；§4–§6 可追加。
 - **优先级**：项目本地 `.claude/skills/yushio-parallel-*.md` > 本文件。
 - **成长**：这是 v0.1。§3 的"脊柱模式清单"应随更多技术栈样本扩充（目前主要来自 React + TS + Fastify 技术栈的实证）。
-- **迭代日志**：完整迭代历史见仓库根 [CHANGELOG.md](../../CHANGELOG.md)（脱敏版 SKILL 不嵌入迭代日志）。
+- **迭代日志**：完整迭代历史见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)（脱敏版 SKILL 不嵌入迭代日志）。
 
 ---
 

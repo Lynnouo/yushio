@@ -403,7 +403,7 @@ commit message 格式：
 
 ### 输出格式
 
-调研结果**必须**写成 [`reference/visualization-templates/_project-recon-report.md`](../yushio/reference/visualization-templates/_project-recon-report.md) schema 格式。保存路径建议 `docs/audit/project-recon-YYYY-MM-DD.md`（或临时 `/tmp/`）。
+调研结果**必须**写成 [`reference/visualization-templates/_project-recon-report.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/visualization-templates/_project-recon-report.md) schema 格式。保存路径建议 `docs/audit/project-recon-YYYY-MM-DD.md`（或临时 `/tmp/`）。
 
 ### 模板推荐决策表
 
@@ -448,7 +448,7 @@ commit message 格式：
 
 ## §7 grep 速查表（按形状类别）
 
-审计现场要 grep 排查某类形状时，**整套可复制命令 + 评估提示见 [`reference/grep-cheatsheet.md`](./reference/grep-cheatsheet.md)**——13 类:权限 #P / 锁 #K#T / 错误处理 #Q / LLM 端点 / Mask / 弱随机 #S / 路径穿越 #U / Mass assignment #V / 单例串号 #O / Service 白名单 #W / Debug 残留 #M / 资源无上限 #R / 陈旧产物 #DK。每个形状的 grep 模板权威源在 `~/.claude/skills/yushio/reference/shape-library.md`。
+审计现场要 grep 排查某类形状时，**整套可复制命令 + 评估提示见 [`reference/grep-cheatsheet.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-auditor/reference/grep-cheatsheet.md)**——13 类:权限 #P / 锁 #K#T / 错误处理 #Q / LLM 端点 / Mask / 弱随机 #S / 路径穿越 #U / Mass assignment #V / 单例串号 #O / Service 白名单 #W / Debug 残留 #M / 资源无上限 #R / 陈旧产物 #DK。每个形状的 grep 模板权威源在 [`skills/yushio/reference/shape-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/shape-library.md)。
 
 ---
 
@@ -512,7 +512,7 @@ commit message 写了 "grep `pattern` <file> → 5 行" → 验收方**亲自跑
 
 **何时跑**：user 显式说 "质量评审 / 代码 review / review 这块"。**不在 §3 自动召唤场景跑**（自动召唤只跑 §6 修复 5 步 SOP）。**原则 + 启发式判断，不是机械 checklist**：每条给 "看到 X → 怎么判断 → 怎么改" 的判断链。
 
-5 维度（每维的症状形态 / 判断链 / 修复方向 / 反面 / grep + 输出报告格式 → **详见 [`reference/quality-review.md`](./reference/quality-review.md)**）：
+5 维度（每维的症状形态 / 判断链 / 修复方向 / 反面 / grep + 输出报告格式 → **详见 [`reference/quality-review.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio-auditor/reference/quality-review.md)**）：
 
 - **A 屎山检测**：长函数 / 深嵌套 / 大文件 / 循环依赖 / 复制——但 "大不一定屎"，看 cognitive load + cohesion。
 - **B 解耦判断**：依赖方向单向吗？隐性 mutation？改一处影响几处？
@@ -528,7 +528,7 @@ commit message 写了 "grep `pattern` <file> → 5 行" → 验收方**亲自跑
 
 ### 完整形状定义在哪
 
-跨项目所有形状的**单一真源**：`~/.claude/skills/yushio/reference/shape-library.md`
+跨项目所有形状的**单一真源**：[`skills/yushio/reference/shape-library.md`](https://github.com/Lynnouo/yushio/blob/main/skills/yushio/reference/shape-library.md)
 
 包含：
 - §1 开发通用 bug 形状（#A/#B/#D/#G）
@@ -811,4 +811,4 @@ handoff 方式：在审计报告末尾加一段 `## 设计层 handoff` · 列出
 
 ## §15 迭代日志
 
-> 完整迭代日志见仓库根 [CHANGELOG.md](../../CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。
+> 完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。
