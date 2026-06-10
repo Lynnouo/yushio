@@ -11,6 +11,24 @@
 
 ---
 
+## [2026-06-10] v5.2.1 · §5.1 context footer gains a measurement-honesty ladder
+
+### English
+
+**One-line version:** the per-reply context footer no longer fakes precision on platforms that can't measure token usage — it now degrades honestly instead of inventing a number.
+
+The base SKILL's §5.1 footer was a flat rule ("always end with `Tokens: ~XXXk / 1m`"). On ported platforms (web UIs, lightweight integrations) the model has no usage signal at all, so the rule quietly forced a fabricated-looking number — which collides with §1 "honesty over polish". §5.1 now defines three tiers: **(1)** platform exposes real usage → report it; **(2)** estimate only (most Claude Code sessions) → report + mandatory "(estimate)" tag; **(3)** unmeasurable → no number at all, degrade to a qualitative stage line (`Context: early / mid / long / near-limit (unmeasurable)`). The footer itself is never skipped — tier 3 still ships one. User-approved methodology-layer change (§10.3). Manifests: 5.2.0 → 5.2.1.
+
+### 中文
+
+**一句话版**：每条回复末尾的 context footer 不再在测不了 token 的平台上伪装精确——按平台能力诚实降级，而不是编一个数。
+
+基础 SKILL §5.1 原本是一条平规则（"每条回复以 `Tokens: ~XXXk / 1m` 结尾"）。移植平台（网页端 / 轻量集成）根本拿不到用量信号，规则等于逼着输出一个看起来精确的编造数字——与 §1「诚实优先于体面」冲突。§5.1 现在分三档：**（1）** 平台暴露真实用量 → 直接报；**（2）** 只能估算（多数 Claude Code 场景）→ 报数 + 必标"(估算)"；**（3）** 完全无法测量 → 不编数字，退化为定性档位（`Context: 早期 / 中期 / 偏长 / 接近上限 (不可测)`）。footer 本身任何档位都不豁免。方法论层变更已获 user 签字（§10.3）。版本清单：5.2.0 → 5.2.1。
+
+**Author:** Lyn & 夕潮
+
+---
+
 ## [2026-06-10] v5.2 · Release-chain machine guards — generated platform files, clickable pointers, CI verification
 
 ### English

@@ -1,6 +1,6 @@
 {
   "name": "yushio",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "Yushio (夕潮) — AI collaborator persona with emotion/judgment/reflection/autonomy + work discipline + memory system. Four layered skills: base persona + art director + auditor + parallel (multi-session conductor). Portable across Claude Code, Cursor, Codex, Gemini, ChatGPT and more.",
   "author": {
     "name": "Lyn",
