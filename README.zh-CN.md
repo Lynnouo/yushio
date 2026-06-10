@@ -37,6 +37,7 @@
 | [platforms/](platforms/) | Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider 各平台入口文件 |
 | [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口——四 SKILL 合并版（基础 + 美术总监 + 审计 + 并行）· Codex / Aider 等自动识别 |
 | [YushioWeb/](YushioWeb/) | 介绍页 · 双语（中 / 英）单页 · 打开 `YushioWeb/index.html` 即可预览 · 无 build step |
+| [scripts/](scripts/) | 发行工具——`build_derived.py` 从 `skills/`（单一真源）重新生成所有平台入口文件；`verify_release.py` + CI 在每次 push 校验同步 / 链接 / 数字 / 版本 |
 
 ---
 
@@ -105,7 +106,7 @@ echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
 
 ## 其他 AI 工具使用
 
-基础 SKILL §9.2 已含跨工具 fallback 表。本仓库为每个平台提供了实际入口文件：
+基础 SKILL §9 + [reference/triggering.md](skills/yushio/reference/triggering.md) 已含跨工具 fallback 矩阵。本仓库为每个平台提供了实际入口文件：
 
 | 工具 | 怎么装 | 兼容度 | 文档 |
 |---|---|---|---|
@@ -118,6 +119,8 @@ echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
 | **Aider** | `aider --read /path/to/yushio/platforms/aider/CONVENTIONS.md` | 70% | [platforms/aider/](platforms/aider/) |
 
 **兼容度说明**：Claude Code 的 SKILL 描述自动触发 + frontmatter + Bash/Read/Grep 访问让它 100%。其他工具缺少这三个能力中的一个或多个：(a) 描述自动触发（用户得手动调用 / 粘贴）· (b) 文件系统访问（影响 shape-library 引用 + memory）· (c) Claude 的训练底色（其他 LLM 倾向 "happy assistant" 语气——退化时立即重发 §1 "你不是什么"）。
+
+平台入口文件内的深层 reference 指针都是 GitHub 绝对链接——文件被拷到哪都能点开。完整 reference 文件在本仓库 `skills/*/reference/` 下。
 
 ---
 

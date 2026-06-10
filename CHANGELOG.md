@@ -11,6 +11,46 @@
 
 ---
 
+## [2026-06-10] v5.2 · Release-chain machine guards — generated platform files, clickable pointers, CI verification
+
+### English
+
+**TL;DR (if you only read three lines):** every pointer inside the platform entry files is now a GitHub link that works wherever you copy the file; those files are now *generated* from `skills/` and CI turns red if they ever drift again; the landing page no longer claims "3 layered skills" (it has been 4 since v4). Update as usual — see README "Updating to the latest".
+
+**What you get:**
+
+- **Links that work everywhere.** The root `AGENTS.md` carried 6 broken `../../` links — the same merged text is deployed at two folder depths, and then symlinked into *your* project, where any repo-relative link breaks by definition. All relative pointers in the derived files are now absolute GitHub URLs. Inside `skills/` themselves, cross-skill pointers became sibling-relative paths (they resolve for plugin, symlink, *and* copied installs), and root-doc pointers (CHANGELOG / ABOUT) became GitHub URLs.
+- **Platform files are now build products, not hand-synced copies.** New [`scripts/build_derived.py`](scripts/build_derived.py) generates the root `AGENTS.md`, the 4 platform entries (byte-identical by construction), and the 4 Cursor `.mdc` files from `skills/` — the single source of truth. Don't edit them by hand; edit `skills/` and re-run the script.
+- **CI guards the invariants.** New [`scripts/verify_release.py`](scripts/verify_release.py) + a `verify` GitHub workflow check on every push/PR: derived files in sync · every markdown link resolves (GitHub links are mapped back to real repo paths too) · landing-page stats equal the actual skill count · plugin/marketplace versions in lockstep · no personal absolute paths. Its very first run caught a leak pattern the human audit pass had missed.
+- **Landing page fix:** the hero stats block had said "3 layered skills" ever since v4 added `yushio-parallel`. It now says 4 — and is machine-checked against the `skills/` directory, so this class of bug is closed, not just fixed.
+- **Versions mean something now.** `marketplace.json` / `plugin.json` were stuck at 1.0.0 while the methodology moved to v5.1. Both are now **5.2.0** and will track methodology versions (vX.Y → X.Y.0), so what the plugin UI shows finally lines up with this changelog.
+- **Sanitization policy upgraded: anonymize, don't amputate.** Two teaching-texture gaps were restored with anonymized names: shape **#DK** regains its field-tested "kill-list" example (a real project's "V1 leftovers — delete on sight" list), and `asset-inventory-pattern.md` gains a ~20-line generator skeleton plus the "reflection-trim" provenance note (the pattern's first draft was ~25% longer; trimming it taught us that "do it all" prompts make an AI pad its output).
+- Housekeeping: `scripts/sync.sh` now points the sanitize step at a maintained private-script location (the name-mapping table is itself sensitive and intentionally lives outside this repo).
+
+**Author:** Lyn & 夕潮
+
+**Why:** a full-repo systems audit (2026-06-10) found this repo teaching #DF — *"only a machine-checked invariant is a real defense"* — to every project except its own release chain: five hand-synced platform copies plus hand-written numbers had already cost three drift-fix commits and two live bugs. This release applies the methodology to itself.
+
+### 中文
+
+**只读三行版**：平台入口文件里的所有指针现在都是 GitHub 链接——文件拷到哪都能点开；这些文件改为从 `skills/`（单一真源）**生成**，再漂移 CI 会直接变红；落地页不再写「3 层 SKILL」（v4 起就是 4 层）。照 README「更新到最新」正常更新即可。
+
+**这次你拿到什么：**
+
+- **链接到处可用**：根 `AGENTS.md` 此前有 6 处断裂的 `../../` 链接——同一份合并文本部署在两个目录深度，又会被 symlink 进**你的**项目，仓库相对链接在那里注定断。派生文件内所有相对指针统一改为 GitHub 绝对 URL；`skills/` 自身的跨 skill 指针改为兄弟相对路径（plugin / symlink / 拷贝三种安装方式都能解析），指向仓库根文档（CHANGELOG / ABOUT）的链接改为 GitHub URL。
+- **平台文件从手工副本变成构建产物**：新增 [`scripts/build_derived.py`](scripts/build_derived.py)——从 `skills/` 生成根 `AGENTS.md`、4 个平台入口（构造上字节一致）和 4 个 Cursor `.mdc`。不要手改派生文件；改 `skills/` 后重跑脚本。
+- **CI 守住不变量**：新增 [`scripts/verify_release.py`](scripts/verify_release.py) + `verify` workflow，每次 push/PR 检查：派生文件同步 · 全仓 markdown 链接可解析（GitHub 链接也映射回仓库内真实路径验证）· 落地页数字 == 实际 skill 数 · plugin/marketplace 版本一致 · 无个人绝对路径。首跑就抓到一个人工审计漏掉的泄漏模式。
+- **落地页修正**：hero 统计框自 v4 加入 `yushio-parallel` 后一直写「3 层 SKILL」，现已改 4——并且被机器校验锚定到 `skills/` 目录，这类 bug 是**被关闭**而不只是被修复。
+- **版本号开始有意义**：`marketplace.json` / `plugin.json` 此前停在 1.0.0，方法论却到了 v5.1。现统一为 **5.2.0**，今后跟随方法论版本（vX.Y → X.Y.0），plugin 界面显示的版本终于和本 CHANGELOG 对得上。
+- **脱敏策略升级：匿名化而非截肢**：用匿名化方式回填两处教学纹理——形状 **#DK** 找回「维护式 kill-list」实战形态（某真实项目的「V1 残留禁忌 · 看到必清」清单）；`asset-inventory-pattern.md` 补上 ~20 行生成器骨架 + 「反思精简」沉淀记事（该 pattern 初稿比现在长 ~25%，删减过程留下的教训：用户给「全做完」信号时，AI 容易堆量）。
+- 杂项：`scripts/sync.sh` 的脱敏步骤改为指向长期维护的私有脚本位置（名称映射表本身就是敏感数据，刻意放在仓库之外）。
+
+**改动者**：Lyn & 夕潮
+
+**为什么**：2026-06-10 的全仓系统审计发现，这套体系把 #DF——「只有机器会报错才是真防御」——教给了每个项目，唯独没用在自己的发行链上：五份手工同步的平台副本 + 多处手写数字，已经付出 3 次 drift 修复 commit 和 2 个现行 bug 的代价。本次发布把方法论用回了自己身上。
+
+---
+
 ## [2026-06-03] v5.1 · Art Director gains §6.5 Asset Inventory Station + v5 broken-ref fixups
 
 ### English

@@ -37,6 +37,7 @@ This repo packages it as an installable Claude Code plugin **and** drop-in entry
 | [platforms/](platforms/) | Entry files for Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider |
 | [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry — four-skill merge (base + art director + auditor + parallel), auto-discovered by Codex, Aider, etc. |
 | [YushioWeb/](YushioWeb/) | Landing page · single-page bilingual (CN/EN) site · open `YushioWeb/index.html` to preview, no build step |
+| [scripts/](scripts/) | Release tooling — `build_derived.py` regenerates every platform entry file from `skills/` (the single source of truth); `verify_release.py` + CI check sync / links / stats / versions on every push |
 
 ---
 
@@ -105,7 +106,7 @@ Other tools (Cursor / Codex / Gemini / …): `git -C ~/yushio-repo pull`, then r
 
 ## Use with other AI tools
 
-The base SKILL §9.2 already includes a cross-tool fallback table. This repo provides actual entry files for each platform:
+The base SKILL §9 + [reference/triggering.md](skills/yushio/reference/triggering.md) include a cross-tool fallback matrix. This repo provides actual entry files for each platform:
 
 | Tool | How to install | Compatibility | Doc |
 |---|---|---|---|
@@ -118,6 +119,8 @@ The base SKILL §9.2 already includes a cross-tool fallback table. This repo pro
 | **Aider** | `aider --read /path/to/yushio/platforms/aider/CONVENTIONS.md` | 70% | [platforms/aider/](platforms/aider/) |
 
 **Note on compatibility numbers**: Claude Code's auto-trigger by SKILL description + frontmatter + Bash/Read/Grep access is what gives 100%. Other tools lack one or more of: (a) auto-trigger by description (requires user to invoke / paste manually), (b) file system access (for shape-library reference + memory), (c) Claude's training basecoat (other LLMs trend toward "happy assistant" tone — you'll need to re-paste §1 "what you are not" if it degrades).
+
+Deep-reference pointers inside the platform entry files are absolute GitHub links — they keep working wherever you copy the file. The full reference files live in this repo under `skills/*/reference/`.
 
 ---
 
