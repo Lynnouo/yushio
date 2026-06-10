@@ -168,8 +168,36 @@ starter 不带生成器——因为生成逻辑高度项目特定（Python 扫 `
 - 输出：单文件 html（直接覆盖既有产物）
 - 加进项目 `.claude/rules/assets.md` 作为「资产改动后建议重生」软纪律——**不强制 commit 拦截**，只在 rules 里说"建议"
 
+生成器骨架（示意结构，不是可直接跑的成品——真源字段 / 文件命名 / 段落划分按项目改）：
+
+```python
+#!/usr/bin/env python3
+# scripts/_gen_assets_review.py — 清册站生成器骨架
+import csv, glob, html, pathlib
+
+SRC_CSV, ASSET_DIR = "data/Assets.csv", "scripts/_asset_samples"
+rows    = list(csv.DictReader(open(SRC_CSV, encoding="utf-8")))
+on_disk = {pathlib.Path(p).name for p in glob.glob(f"{ASSET_DIR}/*-tp.webp")}
+
+cards = []
+for r in rows:                                   # 真源驱动：CSV 每行一卡 + 物理文件存在性校验
+    f = f"{r['id']}-tp.webp"
+    ph = "" if f in on_disk else ' class="ph"'   # 缺图不跳过 → 半透明灰度占位（原则 2：缺漏可见）
+    cards.append(f'<figure{ph}><img src="{f}" loading="lazy" '
+                 f'onerror="this.parentNode.classList.add(\'ph\')">'
+                 f'<figcaption>{html.escape(r["name"])} '
+                 f'<span class="chip">{r.get("tool","?")}</span></figcaption></figure>')
+
+body = f'<section><h2>§ 资产（{len(on_disk)}/{len(rows)}）· 真源 {SRC_CSV}</h2>{"".join(cards)}</section>'
+# 样式 / sticky nav / Lightbox：从 asset-inventory-starter.html 拷对应骨架段，此处省略
+pathlib.Path(f"{ASSET_DIR}/review_all.html").write_text(f"<html><body>{body}</body></html>", encoding="utf-8")
+print(f"regenerated · {len(rows) - len(on_disk)} missing")
+```
+
 ---
 
 ## §8 迭代日志
 
-> 完整迭代日志见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本节保留为占位 · 未来本 pattern 单独的迭代变更可记录在这里。
+> 完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本节保留为占位 · 未来本 pattern 单独的迭代变更可记录在这里。
+>
+> **沉淀记事（保留这条因为它是本 pattern 诞生过程的一部分）**：本 pattern 初版比现在长 ~25%——反思阶段删掉了与 SKILL §6.5 inline 重复的触发清单、以及章节间相互推销的串联段。教训：**用户给「全做完」信号时，AI 容易堆量；反思阶段必须真问「哪些是冗余、哪些是 AI 默认输出」**。

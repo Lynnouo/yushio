@@ -780,4 +780,4 @@ grep -rn "[pattern]" README.md docs/
 
 ## §11 迭代日志
 
-> 完整迭代日志见仓库根 [CHANGELOG.md](../../CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。
+> 完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。

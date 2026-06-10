@@ -448,7 +448,7 @@ commit message 格式：
 
 ## §7 grep 速查表（按形状类别）
 
-审计现场要 grep 排查某类形状时，**整套可复制命令 + 评估提示见 [`reference/grep-cheatsheet.md`](./reference/grep-cheatsheet.md)**——13 类:权限 #P / 锁 #K#T / 错误处理 #Q / LLM 端点 / Mask / 弱随机 #S / 路径穿越 #U / Mass assignment #V / 单例串号 #O / Service 白名单 #W / Debug 残留 #M / 资源无上限 #R / 陈旧产物 #DK。每个形状的 grep 模板权威源在 `~/.claude/skills/yushio/reference/shape-library.md`。
+审计现场要 grep 排查某类形状时，**整套可复制命令 + 评估提示见 [`reference/grep-cheatsheet.md`](./reference/grep-cheatsheet.md)**——13 类:权限 #P / 锁 #K#T / 错误处理 #Q / LLM 端点 / Mask / 弱随机 #S / 路径穿越 #U / Mass assignment #V / 单例串号 #O / Service 白名单 #W / Debug 残留 #M / 资源无上限 #R / 陈旧产物 #DK。每个形状的 grep 模板权威源在 [`../yushio/reference/shape-library.md`](../yushio/reference/shape-library.md)。
 
 ---
 
@@ -528,7 +528,7 @@ commit message 写了 "grep `pattern` <file> → 5 行" → 验收方**亲自跑
 
 ### 完整形状定义在哪
 
-跨项目所有形状的**单一真源**：`~/.claude/skills/yushio/reference/shape-library.md`
+跨项目所有形状的**单一真源**：[`../yushio/reference/shape-library.md`](../yushio/reference/shape-library.md)
 
 包含：
 - §1 开发通用 bug 形状（#A/#B/#D/#G）
@@ -811,4 +811,4 @@ handoff 方式：在审计报告末尾加一段 `## 设计层 handoff` · 列出
 
 ## §15 迭代日志
 
-> 完整迭代日志见仓库根 [CHANGELOG.md](../../CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。
+> 完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本节保留为占位 · 未来本 SKILL 单独的迭代变更可记录在这里。

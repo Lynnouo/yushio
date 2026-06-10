@@ -33,7 +33,7 @@
 
 ### 其他 LLM 工具（ChatGPT / Gemini / Cursor / JetBrains / 60-80% 完整度）
 
-详见基础夕潮 SKILL §9.2 三列 fallback 表（全局层 / 项目级层 / 完整度）。本文件作为 reference：
+详见基础夕潮 [`reference/triggering.md`](./triggering.md) 三列 fallback 表（全局层 / 项目级层 / 完整度）。本文件作为 reference：
 - Cursor：作为 `.cursor/rules/yushio-shape-library.mdc` 项目级 rule（替代或叠加全局 Rules for AI）
 - ChatGPT / Gemini：上传到 Custom GPT / Gem 的 knowledge base
 - 任何对话框 LLM：每次开头粘贴本文件全文
@@ -698,7 +698,7 @@ grep -rn "playCoinFlyAnimation\|addMockGold\|refreshFromServer" <renderer-dir> \
 
 4. **结构性隔离**：dev workflow / 全局资源 / config 走 "明确 SoT" 而不是 "代码注释里说"——文档跟代码同步漂移是常态 · 只有 "机器会报错" 的约束是真防御（呼应美术总监 #DF）
 
-5. **维护式 kill-list（主动防御 · 比"遇到再清"早一层）**：演进期项目主动维护一份"残留禁忌清单"（哪些 V1 名字 / 旧字段 / 废弃路径 / 反向调教关键词不该再出现），把被动 grep 升级为主动列举——新 session 开工先对照 kill-list，命中即清，不等"撞上了"再处理。清单写成**可 grep 的形式**、放进 `CLAUDE.md` 或专题 doc → 成为新 session 开工的 grep 种子。
+5. **维护式 kill-list（主动防御 · 比"遇到再清"早一层）**：演进期项目主动维护一份"残留禁忌清单"（哪些 V1 名字 / 旧字段 / 废弃路径 / 反向调教关键词不该再出现），把被动 grep 升级为主动列举——新 session 开工先对照 kill-list，命中即清，不等"撞上了"再处理。清单写成**可 grep 的形式**、放进 `CLAUDE.md` 或专题 doc → 成为新 session 开工的 grep 种子。实战形态参考：某卡牌项目在设计单源文档里维护「V1 残留禁忌（看到必清）」段——旧世界观梗 / 已更名的旧人格名 / 已删 CSV 文件名等数十条逐条列出，新 session 一眼可避，已死概念不会"复活"。
 
 **判定**：跨项目可迁移——任何持续演进的项目都积累 stale artifacts。最高风险信号：
 - 看到 "V1→V2" / "旧→新" / "deprecated but kept" 类描述 → 必有 stale 残留
@@ -1031,7 +1031,7 @@ grep -rlnE "balance|wallet|gold|inventory|account|economy" <src>
 
 ## 迭代日志
 
-完整迭代日志见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本文件结构变更（schema 升级 / 新增形状类别等）的记录从开源版起：
+完整迭代日志见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本文件结构变更（schema 升级 / 新增形状类别等）的记录从开源版起：
 
 - **2026-05-25** · §5 设计形状指针加 **#DH AI 视觉俗套**（美术总监 §9 owner）· 设计指针 7→8 · ID 约定 #DA-#DG → #DA-#DH
 - **2026-05-19 · GitHub 开源版** · 项目实例链接表脱敏为占位 · 迭代日志合并到 CHANGELOG.md

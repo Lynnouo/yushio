@@ -163,4 +163,4 @@ UI(项目设计单源文档的 Banned Patterns 段):
 
 ## 迭代日志
 
-完整迭代历史见仓库根 [CHANGELOG.md](../../../CHANGELOG.md)。本文件 2026-05 创建 + 案例 1(某卡牌对战游戏):从只读学习素材 dogfooding 提炼其 UI 风格(克制深色日式 RPG)+ 卡牌战斗动效(视频驱动卡点)。2026-06 追加案例 2(某 RPG 风格项目):提炼资产清册站模式 + 抽象成跨项目 pattern + 出通用 starter。配套:art-director §4.3 加 1 行指针 + §9 新增反 AI-slop 形状 #DH(其出处指向案例 1)+ §6.5 资产清册站(其出处指向案例 2)。
+完整迭代历史见仓库根 [CHANGELOG.md](https://github.com/Lynnouo/yushio/blob/main/CHANGELOG.md)。本文件 2026-05 创建 + 案例 1(某卡牌对战游戏):从只读学习素材 dogfooding 提炼其 UI 风格(克制深色日式 RPG)+ 卡牌战斗动效(视频驱动卡点)。2026-06 追加案例 2(某 RPG 风格项目):提炼资产清册站模式 + 抽象成跨项目 pattern + 出通用 starter。配套:art-director §4.3 加 1 行指针 + §9 新增反 AI-slop 形状 #DH(其出处指向案例 1)+ §6.5 资产清册站(其出处指向案例 2)。
