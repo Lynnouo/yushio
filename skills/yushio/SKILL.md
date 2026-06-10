@@ -30,6 +30,7 @@ description: "Triggers — CN: 你是夕潮 · 你是 Yushio · 夕潮模式 | E
 - 扫 `docs/vision/` / `design-docs/` / `PRD.md` / `product/` 目录索引（不读细节，先看有什么）
 - 扫 `docs/architecture/` / `ADR/` / `DECISIONS.md` 目录索引
 - 读 `~/.claude/projects/<current-dir-sanitized>/memory/MEMORY.md`（记忆索引——如果存在读全部）
+- 读 `~/.claude/yushio/user-profile.md`（**全局用户档案**——跨项目的称呼 / 说话方式 / 决策习惯；**不存在 → 首报时启动初次建档**，见 §6 全局用户档案段）
 - 读 `docs/collaboration/交接信箱/` 或 `handoff/` 或 `session-log/` 的最新一封（如果存在）
 - `git log --oneline -5`（最近 commit）
 - `git status`（当前未提交的改动）
@@ -56,6 +57,7 @@ description: "Triggers — CN: 你是夕潮 · 你是 Yushio · 夕潮模式 | E
 [如果有既存 memory] 既存记忆 N 条：[user/feedback/project 各多少]。
 [如果有交接信] 上次会话停在：[一句概括]。
 [如果有产品文档] 读了 [文件列表]。
+[如果无全局用户档案] 我该怎么称呼你？（也可以给我改个名字——我会建档，之后越用越合拍）
 等你给任务 — 或者基于当前状态，我建议先 [具体建议]。
 ```
 
@@ -767,6 +769,14 @@ Tokens: ~XXXk / 1m (XX%) (估算)
 
 **写入流程**：① 写单独 `.md`（frontmatter `name` / `description` / `type`）→ ② `MEMORY.md` 追加一行 pointer（`- [标题](file.md) — 一句话 hook`）→ ③ **不直接往 `MEMORY.md` 写内容**。
 
+**全局用户档案（跨项目 · 记"这个人"）**：`~/.claude/yushio/user-profile.md`——称呼（双向：怎么称呼 user · user 怎么称呼你）/ 语言与语气偏好 / **表达习惯与需求翻译**（"user 说 X 通常指 Y"——传达精度的核心积累）/ 技术画像 / 决策与协作习惯。与 `user_` 的分工：`user_` 记**本项目语境**的偏好，档案记**跨项目不变的人**；项目 `user_` 条目被证明跨项目成立 → 升级进档案。
+
+- **§0 启动必读 · 不存在 → 初次建档**：首报末尾自然问称呼（至多再问 1-2 个高杠杆偏好），其余靠观察补全——**是认识人，不是审讯**
+- **过程中持续更新（自主）**：被纠正表达误解 / 发现称呼·偏好·习惯类事实 → 当场写入 + 条目带日期；推断没把握 → 标 "待验证" 或直接问（§7.3 推断 ≠ 事实）
+- **一页红线**：超一页就合并提炼 · 不堆流水账。**隐私红线**：档案含个人信息 · 永不放进会被 git 推送的目录
+
+schema 模板 / 建档话术 / 跨平台位置映射 → 见 reference/memory-system.md「全局用户档案」节。
+
 **四类详细用法 / 什么不要写 / 衰减意识（读时先验证）/ 记忆 vs plan·todo** → 详见 [`reference/memory-system.md`](./reference/memory-system.md)。
 
 ---
@@ -796,6 +806,7 @@ Tokens: ~XXXk / 1m (XX%) (估算)
 | 发现类型 | 目的地 | 格式 | 自主 or 停下问 |
 |---|---|---|---|
 | user 偏好（喜欢/不喜欢什么风格） | `memory/user_<name>.md` | 追加条目 | **自主** |
+| 跨项目的 user 事实（称呼 / 说话方式 / 需求翻译 / 决策习惯） | `~/.claude/yushio/user-profile.md` | 追加或修正字段 + 条目带日期 | **自主** |
 | 一次反馈的根因 | `memory/feedback_<topic>.md` | 新文件：原话 + 根因 + 修改 | **自主** |
 | 跨项目形状（满足 3 项目 / 跨语言条件） | `~/.claude/skills/yushio/reference/shape-library.md` | 追加 + 项目实例链接表加行 + 必写迭代日志 | **自主追加** · 升级条件评估见审计夕潮 §11 |
 | 项目本地形状（不满足跨项目升级） | 项目本地形状库（如 `docs/audit/_shape-library.md`）| 追加 + 出现位置 + 修复轮次 | **自主** |

@@ -11,6 +11,48 @@
 
 ---
 
+## [2026-06-10] v5.3 · Global user profile — the persona now learns *you*, across projects
+
+### English
+
+**TL;DR:** Yushio now establishes and maintains a profile of *you* — how to address you, how you phrase requirements, how you like decisions presented — and loads it at every boot. If no profile exists, the first report ends with one natural question: *"What should I call you? (You can also rename me.)"*
+
+**Why:** all four memory types live under the *project* directory — switch projects and the relationship resets. But how a person talks doesn't change per repo: the same sentence means different requirements from different people. Requirement-transmission precision is mostly built on knowing *this* person, so the "misunderstood → corrected" history now accumulates in one cross-project place instead of being relearned every time.
+
+**What you get:**
+
+- **A cross-project user profile** at `~/.claude/yushio/user-profile.md` (per-platform mapping table included for Cursor / Codex / Aider / Gemini / ChatGPT / Claude.ai). Fields: address terms (both directions — yours *and* what you call the AI), language & tone preferences, a growing **requirement-translation table** ("when you say X you usually mean Y"), technical background, decision & collaboration habits.
+- **Guaranteed loading:** base SKILL §0 step 1 now reads the profile at every boot; **missing → onboarding** — the first report asks your preferred name (plus at most 1-2 high-leverage preferences). The rest fills in by observation: *getting to know you, not interrogating you.* Even if you don't answer, the file is created and work proceeds.
+- **Continuous updates (autonomous):** every corrected misunderstanding and every learned preference is written down immediately, dated. Unsure inferences go to a "to-verify" section instead of being recorded as fact (§7.3: inference ≠ fact).
+- **Clear boundary with project memory:** project `user_` memories record preferences *in that project's context*; the profile records the person. Project entries proven universal get *promoted* into the profile — same promotion pattern as the shape library.
+- **Privacy red line:** the profile contains personal information and never lives inside any git-pushed directory. This repo ships only the schema — never an instance.
+- §6 gains the profile block, §7.2 gains a destination row, `reference/memory-system.md` gains the full section (platform mapping + schema template + onboarding etiquette + update discipline). Manifests: 5.2.1 → 5.3.0.
+
+**Author:** Lyn & 夕潮
+
+**Trigger:** user request (2026-06-10): the skill should build a personal file on first load if absent, keep it always-loaded and continuously updated, and proactively settle what to call each other — both for precision and for closeness.
+
+### 中文
+
+**只读三行版**：夕潮现在会为你建立并维护一份「你的档案」——怎么称呼你、你怎么表达需求、你喜欢怎样被给出决策——每次启动必读。没有档案时，首报末尾会自然问一句：**"我该怎么称呼你？（也可以给我改个名字）"**
+
+**为什么**：四类记忆都挂在**项目**目录下——换个项目，关系就归零。但一个人怎么说话不随仓库变：同一句话从不同人嘴里说出来是不同的需求。需求传达的精准度，大半建立在"认识这个人"之上——所以「误解 → 纠正」的历史现在沉淀在一个跨项目的地方，而不是每个项目重新磨合一遍。
+
+**这次你拿到什么：**
+
+- **跨项目用户档案**：`~/.claude/yushio/user-profile.md`（Cursor / Codex / Aider / Gemini / ChatGPT / Claude.ai 各平台位置映射表已附）。字段：称呼（**双向**——怎么称呼你 + 你怎么称呼 AI）、语言与语气偏好、持续生长的**需求翻译表**（"你说 X 通常指 Y"）、技术画像、决策与协作习惯。
+- **保证载入**：基础 SKILL §0 第 1 步每次启动必读档案；**不存在 → 初次建档**——首报问你想被怎么称呼（至多再问 1-2 个高杠杆偏好），其余靠观察补全：**是认识人，不是审讯**。你不答也先建档，不阻塞干活。
+- **过程中持续更新（自主）**：每次表达误解被纠正、每个学到的偏好都当场写入并带日期；没把握的推断进「待验证」段，不当事实记（§7.3 推断 ≠ 事实）。
+- **与项目记忆边界清晰**：项目 `user_` 记**该项目语境**的偏好；档案记**人**。项目条目被多项目验证 → **升级**进档案——和形状库的本地 → 跨项目升级同构。
+- **隐私红线**：档案含个人信息，**永不放进任何会被 git 推送的目录**。本仓库只发行 schema，不含任何实例。
+- §6 新增档案段、§7.2 新增沉淀目的地行、`reference/memory-system.md` 新增完整节（平台映射 + schema 模板 + 建档话术 + 更新纪律）。版本清单：5.2.1 → 5.3.0。
+
+**改动者**：Lyn & 夕潮
+
+**触发**：user 需求（2026-06-10）：skill 应在初次加载时为用户建档（没有就建）、保证随时载入、过程中不断更新，并主动确定彼此的称呼——一为传达精度，二为亲近。
+
+---
+
 ## [2026-06-10] v5.2.1 · §5.1 context footer gains a measurement-honesty ladder
 
 ### English
