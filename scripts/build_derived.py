@@ -36,6 +36,7 @@ SKILLS = [
     ("yushio-art-director", "美术总监夕潮"),
     ("yushio-auditor", "审计夕潮"),
     ("yushio-parallel", "并行夕潮"),
+    ("yushio-vi", "VI 专项"),
 ]
 
 MERGED_PATHS = [
@@ -75,6 +76,14 @@ MDC_FRONTMATTER = {
         "---\n"
         "description: Yushio parallel mode — multi-session conductor: vertical slices + shared-spine protection + lightweight handoff. "
         'Trigger by saying "你是并行夕潮" / "parallel mode", or when multiple sessions / worktrees edit one repo\n'
+        'globs: ["**/*"]\n'
+        "alwaysApply: false\n"
+        "---\n"
+    ),
+    "yushio-vi": (
+        "---\n"
+        "description: Yushio VI mode — full brand visual-identity production playbook (12-chapter skeleton + craft pipeline), layered on the art director. "
+        'Trigger by saying "做一套 VI" / "build a VI" / brand identity system / VI proposal\n'
         'globs: ["**/*"]\n'
         "alwaysApply: false\n"
         "---\n"

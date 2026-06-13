@@ -6,7 +6,7 @@
 
 ### 选项 A · 项目级（推荐）
 
-把本目录 `.cursor/rules/` 下的 4 个 `.mdc` 文件拷到你项目根：
+把本目录 `.cursor/rules/` 下的 5 个 `.mdc` 文件拷到你项目根：
 
 ```bash
 cp -r platforms/cursor/.cursor/rules /path/to/your-project/.cursor/rules
@@ -22,12 +22,13 @@ Cursor 启动时自动发现 `.cursor/rules/*.mdc` · 按 `alwaysApply` 和 `glo
 
 人格自动加载（`alwaysApply: true`）· 在任意对话说 "你是夕潮" 看到 §0 首次汇报。
 
-## 四个 SKILL
+## 五个 SKILL
 
 - `yushio.mdc` — 基础人格（默认 alwaysApply）
 - `yushio-art-director.mdc` — 美术总监（对话触发）
 - `yushio-auditor.mdc` — 审计（对话触发或基础召唤）
 - `yushio-parallel.mdc` — 并行（多 session 同改一仓 · 对话触发）
+- `yushio-vi.mdc` — VI 专项（做整套品牌 VI · 对话触发 · 叠加在美术总监之上）
 
 ## 兼容度
 

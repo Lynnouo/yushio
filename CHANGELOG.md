@@ -11,6 +11,30 @@
 
 ---
 
+## [2026-06-13] v5.4 · yushio-vi — the VI production playbook joins the family / VI 生产方法论专项卷加入家族
+
+### English
+
+The family's fifth skill: **`yushio-vi`** — a full brand visual-identity (VI) production playbook that layers on top of the art director. Where the art director supplies design *judgment*, this volume supplies the *procedure*: how to turn a brief into a magazine-grade, full-breadth VI proposal (logo + wordmark + color + type + mascot + graphic language + mockups + campaign), not a single asset.
+
+Core structure: §0.5 Brief gate (never start hollow — co-create content first if the brief is thin) · §2 visual hammer (one signature move across every touchpoint) · §3 the 12-chapter skeleton (the engine of breadth) · §4 the craft pipeline (parametric wordmark = SSOT, real-font vector surgery for CJK wordmarks that never goes through AI image-gen, anchored mockup generation, offline single-file packaging) · §4.6 a four-tier mockup fallback ladder (T0 image API → T3 hand-off spec) so "no image API" never blocks shipping · §5 the brand-book HTML delivery format · §6 the VI reverse-audit checklist.
+
+Provenance: distilled from three parallel VI proposals (terminal-medal / liquid-error / cute-glitch) produced for one AI-tool brand project — same brief, three aesthetics, all reaching brand-book grade. That trio is the evidence behind the method's core claim: a VI proposal's quality comes mostly from *running the whole pipeline*, not from a single spark.
+
+Release plumbing: `yushio-vi` is now a first-class family member — wired into the five merged cross-tool deployments (AGENTS.md + codex / aider / gemini-cli / claude-web) and a new Cursor `.mdc`, landing-page stats and both READMEs bumped 4 → 5, manifests to v5.4.0. Reusable script skeletons live in `reference/pipeline-scripts.md`.
+
+### 中文
+
+家族第五个 skill：**`yushio-vi`** —— 完整品牌视觉识别（VI）的生产方法论，叠加在美术总监之上。美术总监给的是设计**判断力**，本卷给的是**生产流程**：怎么把一份 Brief 变成篇幅、广度、深度都达画册级的完整 VI 提案（logo + 字标 + 色 + 字 + 吉祥物 + 图形语言 + 样机 + 广告），而不是单个资产。
+
+核心结构：§0.5 Brief 闸门（不空心开工——brief 不足先和用户共创）· §2 视觉锤（一个签名动作贯穿所有触点）· §3 12 章骨架（广度与篇幅的引擎）· §4 工艺链（程序化字标 = SSOT、中文字标走真字体矢量手术永不 AI 生图、锚定生图样机、单文件离线打包）· §4.6 四档样机降级阶梯（T0 有图像 API → T3 出 spec 交用户），"没 API" 永不卡进度 · §5 HTML 画册交付格式 · §6 VI 逆向审计清单。
+
+出处：从一个 AI 工具品牌项目的三份并行 VI 提案（终端勋章 / 液态报错 / 可爱故障）提炼——同一份 Brief、三种审美、皆达画册级。这三份正是方法论核心论点的实证：一份 VI 提案的质量主要来自"走完整套流程"，而非单点灵感。
+
+发布接入：`yushio-vi` 现已是正式家族成员——接入五份跨工具合并版（AGENTS.md + codex / aider / gemini-cli / claude-web）+ 新增 Cursor `.mdc`，落地页 stats 与双 README 从 4 → 5，manifest 版本号到 v5.4.0。可复用脚本骨架在 `reference/pipeline-scripts.md`。
+
+---
+
 ## [2026-06-10] Unnumbered · A unilateral decision that changes no code / 未编号 · 一条不改任何代码的私自决定
 
 ### English

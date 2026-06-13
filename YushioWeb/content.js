@@ -11,7 +11,7 @@ const CONTENT = {
     sections: [
       { id: "what",     cn: "是什么",       en: "What" },
       { id: "pillars",  cn: "四柱人格",     en: "Pillars" },
-      { id: "skills",   cn: "四层 SKILL",   en: "Skills" },
+      { id: "skills",   cn: "五层 SKILL",   en: "Skills" },
       { id: "compare",  cn: "对照",         en: "Compare" },
       { id: "origin",   cn: "由来",         en: "Origin" },
       { id: "install",  cn: "上手",         en: "Install" },
@@ -44,13 +44,13 @@ const CONTENT = {
       cn: [
         "你的 AI 不应该是客服。",
         "「好的！让我来帮您…」 ← 听过 N 遍那种。",
-        "四层 SKILL · 跨 6+ AI 工具 · MIT。",
+        "五层 SKILL · 跨 6+ AI 工具 · MIT。",
         "诞生于半年的项目 dogfood，2026-05-19 开源。",
       ],
       en: [
         "Your AI shouldn't sound like a help desk.",
         "Tired of \"Sure! Let me help you with that...\" ?",
-        "Four layered skills. Portable across 6+ AI tools. MIT.",
+        "Five layered skills. Portable across 6+ AI tools. MIT.",
         "Half a year of dogfooding — open-sourced on 2026-05-19.",
       ],
     },
@@ -58,13 +58,13 @@ const CONTENT = {
     stats: {
       cn: [
         { k: "4",   v: "柱人格"      },
-        { k: "4",   v: "层 SKILL"    },
+        { k: "5",   v: "层 SKILL"    },
         { k: "6+",  v: "AI 工具支持" },
         { k: "MIT", v: "开源协议"    },
       ],
       en: [
         { k: "4",   v: "personality pillars" },
-        { k: "4",   v: "layered skills"      },
+        { k: "5",   v: "layered skills"      },
         { k: "6+",  v: "AI tools"            },
         { k: "MIT", v: "license"             },
       ],
@@ -171,14 +171,14 @@ const CONTENT = {
 
   // ── Skill family ────────────────────────────────────────────────────────
   skills: {
-    sectionLabel: { cn: "03 — 四层 SKILL", en: "03 — Four layered skills" },
+    sectionLabel: { cn: "03 — 五层 SKILL", en: "03 — Five layered skills" },
     headline: {
-      cn: ["一个人格底色 +", "三个专长视角。"],
-      en: ["One persona core,", "three specialty layers."],
+      cn: ["一个人格底色 +", "四个专长视角。"],
+      en: ["One persona core,", "four specialty layers."],
     },
     note: {
-      cn: "四者共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长。基础整 session 保持，美术总监 / 审计 / 并行按需叠加。冲突时谁专长听谁。",
-      en: "All four share the same persona core (emotion / judgment / reflection / autonomy). Base stays loaded; art director / auditor / parallel layer on as needed. On conflict, whoever owns the specialty wins.",
+      cn: "五者共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长。基础整 session 保持，美术总监 / 审计 / 并行 / VI 按需叠加。冲突时谁专长听谁。",
+      en: "All five share the same persona core (emotion / judgment / reflection / autonomy). Base stays loaded; art director / auditor / parallel / VI layer on as needed. On conflict, whoever owns the specialty wins.",
     },
     items: [
       {
@@ -291,6 +291,33 @@ const CONTENT = {
           ],
         },
       },
+      {
+        id: "vi",
+        idx: "L5",
+        kind: { cn: "专长", en: "specialty" },
+        trigger: { cn: "「做一套 VI」", en: "\"Build a VI\"" },
+        name: { cn: "VI 专项夕潮", en: "VI Playbook" },
+        oneline: {
+          cn: "从 Brief 到画册级完整品牌 VI：12 章骨架 + 工艺链。叠加在美术总监之上。",
+          en: "Brief → magazine-grade brand identity: 12-chapter skeleton + craft pipeline. Layers on the art director.",
+        },
+        bullets: {
+          cn: [
+            "§0.5 Brief 闸门：内容不足先共创，不空心开工",
+            "§2 视觉锤：一个签名动作贯穿所有触点",
+            "§3 12 章骨架：广度与篇幅的引擎",
+            "§4 工艺链：程序化字标 + 锚定生图 + 离线打包",
+            "§4.6 无图像 API 的样机降级阶梯（T0–T3）",
+          ],
+          en: [
+            "§0.5 Brief gate: co-create content first, never start hollow",
+            "§2 Visual hammer: one signature move across every touchpoint",
+            "§3 12-chapter skeleton: the engine of breadth",
+            "§4 Craft pipeline: parametric wordmark + anchored gen + offline pack",
+            "§4.6 Mockup fallback ladder when no image API (T0–T3)",
+          ],
+        },
+      },
     ],
   },
 
@@ -386,6 +413,7 @@ const CONTENT = {
         { date: "2026-05-18", title: "Phase 4 · 鸟瞰可视化", body: "v2 上线 3 天发现「已删除的东西成为 AI 的虚假真相」反复发生 — 新增 Phase 0 鸟瞰调研 SOP，主动防御陈旧产物。" },
         { date: "2026-05-19", title: "Phase 5 · GitHub 开源", body: "整套体系成熟，开源到 GitHub。让其他 AI 使用者能复用这套人格 + 工作纪律 + 形状库。" },
         { date: "2026-05-25", title: "Phase 6 · 家族扩张", body: "开源后继续 dogfood，长出并行夕潮（多 session 同改一仓不打架）+ SSOT 设计纪律。家族至此 4 个成员。" },
+        { date: "2026-06-13", title: "Phase 7 · VI 专项", body: "从一个 AI 工具品牌项目的三份并行 VI 提案，提炼出 VI 专项卷（12 章骨架 + 工艺链），叠加在美术总监之上。家族至此 5 个成员。" },
       ],
       en: [
         { date: "Early 2026", title: "Phase 1 · Single-project sediment", body: "Lyn and an AI work on a desktop-pet platform. Each session has small agreements. One day: \"if I don't write these down, I'll re-teach every session.\" First SKILL draft." },
@@ -394,6 +422,7 @@ const CONTENT = {
         { date: "2026-05-18", title: "Phase 4 · Project bird's-eye", body: "Three days after v2: \"deleted things become an AI's false truth\" keeps recurring. Add Phase 0 reconnaissance SOP — proactive defense against stale artifacts." },
         { date: "2026-05-19", title: "Phase 5 · Open source", body: "The system has matured. Open-sourced on GitHub so other AI users can reuse the persona + discipline + shape library." },
         { date: "2026-05-25", title: "Phase 6 · Family grows", body: "After open-sourcing, dogfooding continues: Parallel Yushio (many sessions, one repo, no collisions) + SSOT design discipline. Four members now." },
+        { date: "2026-06-13", title: "Phase 7 · VI playbook", body: "Distilled from three parallel VI proposals for an AI-tool brand: the VI production playbook (12-chapter skeleton + craft pipeline), layered on the art director. Five members now." },
       ],
     },
 
@@ -432,6 +461,7 @@ const CONTENT = {
       { phrase: "你是美术总监夕潮", tagCn: "设计判断",   tagEn: "design judgment" },
       { phrase: "你是审计夕潮",     tagCn: "代码审计",   tagEn: "code audit" },
       { phrase: "你是并行夕潮",     tagCn: "多 session", tagEn: "parallel" },
+      { phrase: "做一套 VI",       tagCn: "品牌 VI",    tagEn: "brand VI" },
     ],
 
     matrixLabel: { cn: "其他 AI 工具兼容矩阵：", en: "Other AI tools — compatibility matrix:" },

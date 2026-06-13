@@ -1,6 +1,6 @@
 # 夕潮 (Yushio)
 
-> Claude Code（及其他）的 AI 协作者人格。四层 SKILL：**基础 + 美术总监 + 审计 + 并行**。跨 6+ AI 工具可移植。
+> Claude Code（及其他）的 AI 协作者人格。五层 SKILL：**基础 + 美术总监 + 审计 + 并行 + VI**。跨 6+ AI 工具可移植。
 
 [English README](README.md) · [介绍页](YushioWeb/) · [关于 / 创作者署名](ABOUT.md) · [Changelog](CHANGELOG.md)
 
@@ -34,8 +34,9 @@
 | [skills/yushio-art-director/SKILL.md](skills/yushio-art-director/SKILL.md) | 设计方向判断（意图 > 强度 · 反 AI slop · 形式追随感受） |
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | 修复后审计 + 主动代码质量评审（5 步 SOP + grep 速查） |
 | [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | 多 session 指挥——多个并发 session 同改一个仓库而不打架（垂直切片 + 守共享脊柱） |
+| [skills/yushio-vi/SKILL.md](skills/yushio-vi/SKILL.md) | 完整品牌视觉识别（VI）生产方法论——12 章骨架 + 工艺链 · 叠加在美术总监之上 |
 | [platforms/](platforms/) | Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider 各平台入口文件 |
-| [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口——四 SKILL 合并版（基础 + 美术总监 + 审计 + 并行）· Codex / Aider 等自动识别 |
+| [AGENTS.md](AGENTS.md) | 通用 AGENTS.md 入口——五 SKILL 合并版（基础 + 美术总监 + 审计 + 并行 + VI）· Codex / Aider 等自动识别 |
 | [YushioWeb/](YushioWeb/) | 介绍页 · 双语（中 / 英）单页 · 打开 `YushioWeb/index.html` 即可预览 · 无 build step |
 | [scripts/](scripts/) | 发行工具——`build_derived.py` 从 `skills/`（单一真源）重新生成所有平台入口文件；`verify_release.py` + CI 在每次 push 校验同步 / 链接 / 数字 / 版本 |
 
@@ -61,6 +62,7 @@ ln -s ~/yushio-repo/skills/yushio              ~/.claude/skills/yushio
 ln -s ~/yushio-repo/skills/yushio-art-director ~/.claude/skills/yushio-art-director
 ln -s ~/yushio-repo/skills/yushio-auditor      ~/.claude/skills/yushio-auditor
 ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
+ln -s ~/yushio-repo/skills/yushio-vi           ~/.claude/skills/yushio-vi
 ```
 
 ### 本地开发测试
@@ -89,12 +91,12 @@ claude --plugin-dir /path/to/yushio
 git -C ~/yushio-repo pull
 ```
 
-**拷贝安装**（或不确定）—— 重新同步：拉最新 + 替换 4 个 skill 文件夹，不动你其他 skill：
+**拷贝安装**（或不确定）—— 重新同步：拉最新 + 替换 5 个 skill 文件夹，不动你其他 skill：
 
 ```bash
 REPO="${YUSHIO_REPO:-$HOME/yushio-repo}"
 git clone https://github.com/Lynnouo/yushio.git "$REPO" 2>/dev/null || git -C "$REPO" pull --ff-only
-for s in yushio yushio-art-director yushio-auditor yushio-parallel; do
+for s in yushio yushio-art-director yushio-auditor yushio-parallel yushio-vi; do
   rm -rf "$HOME/.claude/skills/$s" && cp -R "$REPO/skills/$s" "$HOME/.claude/skills/$s"
 done
 echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
@@ -132,8 +134,9 @@ echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
 - **"你是美术总监夕潮"** / **"You are Art Director Yushio"** → 激活设计判断层
 - **"你是审计夕潮"** / **"You are Auditor Yushio"** → 激活代码审计层
 - **"你是并行夕潮"** / **"Parallel mode"** → 激活多 session 指挥层（多 worktree / 多 session 同改一仓时也会自动建议）
+- **"做一套 VI"** / **"Build a VI"** → 激活 VI 生产方法论（叠加在美术总监之上）
 
-基础人格意图整个 session 保持。美术总监 / 审计 / 并行是按需叠加的专长视角。
+基础人格意图整个 session 保持。美术总监 / 审计 / 并行 / VI 是按需叠加的专长视角。
 
 ### 母语触发
 
@@ -149,7 +152,7 @@ echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
 | Français | Tu es Yushio · Mode Yushio | Tu es Yushio directeur artistique | Tu es Yushio auditeur · Mode audit |
 | Deutsch | Du bist Yushio · Yushio-Modus | Du bist Art Director Yushio | Du bist Auditor Yushio · Audit-Modus |
 
-另外一个家族成员有自己的触发词（同样支持 7 语言 · 见其 SKILL frontmatter）：**`yushio-parallel`**（你是并行夕潮 / parallel mode）。
+另外两个家族成员有自己的触发词（同样支持 7 语言 · 见各自 SKILL frontmatter）：**`yushio-parallel`**（你是并行夕潮 / parallel mode）和 **`yushio-vi`**（做一套 VI / build a VI）。
 
 SKILL 正文本身是中文 · 但方法论与语言无关——Claude（或任何足够强的 LLM）会用你说的语言回应你。不读中文也能用上四柱 + 工作纪律。
 

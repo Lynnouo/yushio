@@ -8,7 +8,7 @@
 
 1. 在 Claude.ai 创建一个 Project（或用现有的）
 2. 打开 Project Knowledge
-3. 上传 `platforms/claude-web/project-knowledge.md`（合并版四 SKILL · 基础 + 美术总监 + 审计 + 并行）
+3. 上传 `platforms/claude-web/project-knowledge.md`（合并版五 SKILL · 基础 + 美术总监 + 审计 + 并行 + VI 专项）
 4. 在该 Project 内的对话里说 "你是夕潮" 触发
 
 ### 备选：Personal Preferences（全局 · 70%）
