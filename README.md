@@ -1,6 +1,6 @@
 # Yushio (夕潮)
 
-> An AI collaborator persona for Claude Code (and beyond). Five layered skills: **base + art director + auditor + parallel + VI**. Portable across 6+ AI tools.
+> An AI collaborator persona for Claude Code (and beyond). Six layered skills: **base + art director + auditor + parallel + VI + loop**. Portable across 6+ AI tools.
 
 [中文版 README](README.zh-CN.md) · [Landing page](YushioWeb/) · [About / Credits](ABOUT.md) · [Changelog](CHANGELOG.md)
 
@@ -35,8 +35,9 @@ This repo packages it as an installable Claude Code plugin **and** drop-in entry
 | [skills/yushio-auditor/SKILL.md](skills/yushio-auditor/SKILL.md) | Post-fix audit + proactive code quality review (5-step SOP + grep cheatsheet) |
 | [skills/yushio-parallel/SKILL.md](skills/yushio-parallel/SKILL.md) | Multi-session conductor — many concurrent sessions editing one repo without colliding (vertical slices + shared-spine protection) |
 | [skills/yushio-vi/SKILL.md](skills/yushio-vi/SKILL.md) | Full brand visual-identity (VI) production playbook — 12-chapter skeleton + craft pipeline, layered on the art director |
+| [skills/yushio-loop/SKILL.md](skills/yushio-loop/SKILL.md) | Autonomous-loop conductor + anti-drift — turn a scoped task into a self-running loop (trigger→triage→state→maker→checker, bound to the host's scheduler) + a post-task sweep that keeps memory / docs / spec aligned |
 | [platforms/](platforms/) | Entry files for Cursor / Codex / Gemini CLI / ChatGPT / Claude.ai / Aider |
-| [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry — five-skill merge (base + art director + auditor + parallel + VI), auto-discovered by Codex, Aider, etc. |
+| [AGENTS.md](AGENTS.md) | Universal AGENTS.md entry — six-skill merge (base + art director + auditor + parallel + VI + loop), auto-discovered by Codex, Aider, etc. |
 | [YushioWeb/](YushioWeb/) | Landing page · single-page bilingual (CN/EN) site · open `YushioWeb/index.html` to preview, no build step |
 | [scripts/](scripts/) | Release tooling — `build_derived.py` regenerates every platform entry file from `skills/` (the single source of truth); `verify_release.py` + CI check sync / links / stats / versions on every push |
 
@@ -63,6 +64,7 @@ ln -s ~/yushio-repo/skills/yushio-art-director ~/.claude/skills/yushio-art-direc
 ln -s ~/yushio-repo/skills/yushio-auditor      ~/.claude/skills/yushio-auditor
 ln -s ~/yushio-repo/skills/yushio-parallel     ~/.claude/skills/yushio-parallel
 ln -s ~/yushio-repo/skills/yushio-vi           ~/.claude/skills/yushio-vi
+ln -s ~/yushio-repo/skills/yushio-loop         ~/.claude/skills/yushio-loop
 ```
 
 ### Local development testing
@@ -91,12 +93,12 @@ Or set it once: `/plugin` → **Marketplaces** → enable **auto-update** for yu
 git -C ~/yushio-repo pull
 ```
 
-**Copied the skills** (or not sure) — re-sync: pulls latest, replaces the 5 skill folders, leaves your other skills untouched:
+**Copied the skills** (or not sure) — re-sync: pulls latest, replaces the 6 skill folders, leaves your other skills untouched:
 
 ```bash
 REPO="${YUSHIO_REPO:-$HOME/yushio-repo}"
 git clone https://github.com/Lynnouo/yushio.git "$REPO" 2>/dev/null || git -C "$REPO" pull --ff-only
-for s in yushio yushio-art-director yushio-auditor yushio-parallel yushio-vi; do
+for s in yushio yushio-art-director yushio-auditor yushio-parallel yushio-vi yushio-loop; do
   rm -rf "$HOME/.claude/skills/$s" && cp -R "$REPO/skills/$s" "$HOME/.claude/skills/$s"
 done
 echo "✓ yushio skills @ $(git -C "$REPO" rev-parse --short HEAD)"
@@ -135,8 +137,9 @@ In any session with the persona loaded, say one of:
 - **"你是审计夕潮"** / **"You are Auditor Yushio"** / **"Audit mode"** → activates code audit layer
 - **"你是并行夕潮"** / **"Parallel mode"** → activates the multi-session conductor layer (also auto-suggested when multiple worktrees / sessions edit one repo)
 - **"做一套 VI"** / **"Build a VI"** / **"VI proposal"** → activates the VI production playbook (layers on the art director)
+- **"你是循环夕潮"** / **"Loop mode"** / **"Set up an autonomous loop"** → activates the autonomous-loop conductor + post-task alignment sweep (turn a scoped task into a self-running loop; the sweep keeps memory / docs aligned)
 
-The base persona is intended to stay loaded throughout a session. Art director, auditor, parallel, and VI are situational layers added on top of it.
+The base persona is intended to stay loaded throughout a session. Art director, auditor, parallel, VI, and loop are situational layers added on top of it.
 
 ### Triggers in your language
 
@@ -152,7 +155,7 @@ Triggers are recognized in 7 major languages — see each SKILL's frontmatter `d
 | Français | Tu es Yushio · Mode Yushio | Tu es Yushio directeur artistique | Tu es Yushio auditeur · Mode audit |
 | Deutsch | Du bist Yushio · Yushio-Modus | Du bist Art Director Yushio | Du bist Auditor Yushio · Audit-Modus |
 
-Two more family members have their own triggers (also recognized across the 7 languages — see each SKILL frontmatter): **`yushio-parallel`** (你是并行夕潮 / parallel mode) and **`yushio-vi`** (做一套 VI / build a VI).
+Three more family members have their own triggers (also recognized across the 7 languages — see each SKILL frontmatter): **`yushio-parallel`** (你是并行夕潮 / parallel mode), **`yushio-vi`** (做一套 VI / build a VI), and **`yushio-loop`** (你是循环夕潮 / loop mode).
 
 The SKILL bodies themselves are in Chinese, but the methodology is language-agnostic — Claude (or any capable LLM) will respond to you in whatever language you use. You don't need to read Chinese to benefit from the four pillars + work discipline.
 

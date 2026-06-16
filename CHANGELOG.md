@@ -11,6 +11,30 @@
 
 ---
 
+## [2026-06-16] v5.5 · yushio-loop — autonomous loops + anti-drift join the family / 自动循环 + 防漂移专项卷加入家族
+
+### English
+
+The family's sixth skill: **`yushio-loop`** — the same Yushio personality in "autonomous-loop conductor + anti-drift" mode. Two capabilities: (A) turn a scoped task into a self-running loop — the canonical *trigger → triage → STATE file → maker → checker → route* shape, with the trigger bound to the **host's** native scheduler (Claude Code `/loop` · scheduled task · `/goal` when available; Codex automations), never a scheduler shipped inside the skill; (B) a post-task **alignment sweep** that keeps memory + docs + 立项/spec mutually consistent — a near-zero-cost deterministic grep tier every run + a gated LLM tier (cite-or-abstain, suggest-only), with the spec as default tie-breaker and memory↔code conflicts frozen and escalated rather than auto-resolved.
+
+Why it exists: base Yushio §7 is a *human-triggered* event hub, and the anti-drift instincts were scattered (§4.10 verify-before-trust · §5.7 [AI-NOTE] timestamps · memory decay-awareness · ssot-design §3 · shape #DK). This skill adds the automatic trigger and unifies those instincts into one post-task sweep. Hard rules baked in: maker≠checker with ground-truth citation, designed-in guardrails (iteration ceiling / no-progress halt / kill-switch / budget line / propose-only gate tied to §7.3), and a "when NOT to loop" gate.
+
+Provenance: distilled from researching the "Loop Engineering" discourse (Addy Osmani / Steinberger / Cherny + the cobusgreyling reference implementation), then keeping the essence and discarding the dross — no shipped scheduler, no slash-command-as-mechanism hardcoded, no third-party CLI dependency, no same-model self-review, no knowledge-graph belief system. The draft passed a four-lane adversarial review (cross-reference accuracy / fact integrity / portability + autonomy-ceiling / house style) before release.
+
+Release plumbing: `yushio-loop` is now a first-class family member — wired into the five merged cross-tool deployments (AGENTS.md + codex / aider / gemini-cli / claude-web) and a new Cursor `.mdc`, landing-page stats and both READMEs bumped 5 → 6, manifests to v5.5.0. Detailed SOPs (host-binding table / STATE template / grep recipes) live in `reference/loop-and-alignment.md`.
+
+### 中文
+
+家族第六个 skill：**`yushio-loop`** —— 同一夕潮人格的「自动循环指挥 + 防漂移」视角。两个能力：(A) 把有界任务变自动循环——经典的 *定时触发 → 调研 → STATE 状态文件 → maker → checker → 分流* 形状，触发交给**宿主**的原生调度（Claude Code `/loop` · 桌面定时任务 · 升级后的 `/goal`；Codex automation），绝不在 skill 里自带调度器；(B) 完工后的**对齐巡检**——让记忆 + 文档 + 立项/spec 互相对得上：每轮跑近零成本的确定性 grep 层 + 门控触发的 LLM 层（cite-or-abstain · suggest-only），立项/spec 当默认仲裁者，记忆↔代码冲突则冻结上交、不自动判。
+
+为什么要它：基础夕潮 §7 是**人来戳**的事件枢纽，而防漂移本能散落各处（§4.10 调研前验证 · §5.7 [AI-NOTE] 时间戳 · 记忆衰减意识 · ssot-design §3 · 形状 #DK）。本卷补上自动触发器，并把这些本能收拢成一个完工后的统一巡检。焊死的铁律：maker≠checker 且验证必须引用 ground-truth、设计在内的护栏（迭代上限 / 无进展即停 / kill-switch / 预算行 / 接 §7.3 的 propose-only 闸门）、以及「何时不该开 loop」闸门。
+
+出处：调研「Loop Engineering」思潮（Addy Osmani / Steinberger / Cherny + cobusgreyling 参考实现）后取其精华、去其糟粕——不自带调度器、不把斜杠命令写死成机制、不依赖第三方 CLI、不做同模型自审、不建知识图谱信念网。草稿经四路对抗审查（引用准确 / 事实完整 / 可移植 + 自主上限 / 房屋风格）后才发布。
+
+发布接入：`yushio-loop` 现已是正式家族成员——接入五份跨工具合并版（AGENTS.md + codex / aider / gemini-cli / claude-web）+ 新增 Cursor `.mdc`，落地页 stats 与双 README 从 5 → 6，manifest 版本号到 v5.5.0。详细 SOP（宿主绑定表 / STATE 模板 / grep 配方）在 `reference/loop-and-alignment.md`。
+
+---
+
 ## [2026-06-13] v5.4 · yushio-vi — the VI production playbook joins the family / VI 生产方法论专项卷加入家族
 
 ### English

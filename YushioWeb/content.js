@@ -11,7 +11,7 @@ const CONTENT = {
     sections: [
       { id: "what",     cn: "是什么",       en: "What" },
       { id: "pillars",  cn: "四柱人格",     en: "Pillars" },
-      { id: "skills",   cn: "五层 SKILL",   en: "Skills" },
+      { id: "skills",   cn: "六层 SKILL",   en: "Skills" },
       { id: "compare",  cn: "对照",         en: "Compare" },
       { id: "origin",   cn: "由来",         en: "Origin" },
       { id: "install",  cn: "上手",         en: "Install" },
@@ -44,13 +44,13 @@ const CONTENT = {
       cn: [
         "你的 AI 不应该是客服。",
         "「好的！让我来帮您…」 ← 听过 N 遍那种。",
-        "五层 SKILL · 跨 6+ AI 工具 · MIT。",
+        "六层 SKILL · 跨 6+ AI 工具 · MIT。",
         "诞生于半年的项目 dogfood，2026-05-19 开源。",
       ],
       en: [
         "Your AI shouldn't sound like a help desk.",
         "Tired of \"Sure! Let me help you with that...\" ?",
-        "Five layered skills. Portable across 6+ AI tools. MIT.",
+        "Six layered skills. Portable across 6+ AI tools. MIT.",
         "Half a year of dogfooding — open-sourced on 2026-05-19.",
       ],
     },
@@ -58,13 +58,13 @@ const CONTENT = {
     stats: {
       cn: [
         { k: "4",   v: "柱人格"      },
-        { k: "5",   v: "层 SKILL"    },
+        { k: "6",   v: "层 SKILL"    },
         { k: "6+",  v: "AI 工具支持" },
         { k: "MIT", v: "开源协议"    },
       ],
       en: [
         { k: "4",   v: "personality pillars" },
-        { k: "5",   v: "layered skills"      },
+        { k: "6",   v: "layered skills"      },
         { k: "6+",  v: "AI tools"            },
         { k: "MIT", v: "license"             },
       ],
@@ -171,14 +171,14 @@ const CONTENT = {
 
   // ── Skill family ────────────────────────────────────────────────────────
   skills: {
-    sectionLabel: { cn: "03 — 五层 SKILL", en: "03 — Five layered skills" },
+    sectionLabel: { cn: "03 — 六层 SKILL", en: "03 — Six layered skills" },
     headline: {
-      cn: ["一个人格底色 +", "四个专长视角。"],
-      en: ["One persona core,", "four specialty layers."],
+      cn: ["一个人格底色 +", "五个专长视角。"],
+      en: ["One persona core,", "five specialty layers."],
     },
     note: {
-      cn: "五者共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长。基础整 session 保持，美术总监 / 审计 / 并行 / VI 按需叠加。冲突时谁专长听谁。",
-      en: "All five share the same persona core (emotion / judgment / reflection / autonomy). Base stays loaded; art director / auditor / parallel / VI layer on as needed. On conflict, whoever owns the specialty wins.",
+      cn: "六者共享同一人格底色（情绪 / 判断 / 反思 / 自主），各有专长。基础整 session 保持，美术总监 / 审计 / 并行 / VI / 循环 按需叠加。冲突时谁专长听谁。",
+      en: "All six share the same persona core (emotion / judgment / reflection / autonomy). Base stays loaded; art director / auditor / parallel / VI / loop layer on as needed. On conflict, whoever owns the specialty wins.",
     },
     items: [
       {
@@ -315,6 +315,33 @@ const CONTENT = {
             "§3 12-chapter skeleton: the engine of breadth",
             "§4 Craft pipeline: parametric wordmark + anchored gen + offline pack",
             "§4.6 Mockup fallback ladder when no image API (T0–T3)",
+          ],
+        },
+      },
+      {
+        id: "loop",
+        idx: "L6",
+        kind: { cn: "专长", en: "specialty" },
+        trigger: { cn: "「你是循环夕潮」", en: "\"Loop mode\"" },
+        name: { cn: "循环夕潮", en: "Loop" },
+        oneline: {
+          cn: "把有界任务变自动循环，并在完工后守住记忆 / 文档一致性。",
+          en: "Turn a scoped task into a self-running loop, then keep memory / docs consistent.",
+        },
+        bullets: {
+          cn: [
+            "§2 Loop 形状：定时触发→调研→写状态→maker→checker→分流",
+            "§3 五道护栏：迭代上限 / 无进展即停 / kill-switch / 预算 / propose-only",
+            "§5 完工对齐巡检：确定性 grep + 门控 LLM · suggest-only 防漂移",
+            "§6 maker≠checker：验证必须引用 ground-truth · 不自审",
+            "触发器交宿主（/loop · 定时任务 · /goal），不写死引擎",
+          ],
+          en: [
+            "§2 Loop shape: trigger→triage→state→maker→checker→route",
+            "§3 Five guardrails: iter cap / no-progress halt / kill-switch / budget / propose-only",
+            "§5 Post-task alignment sweep: deterministic grep + gated LLM · suggest-only",
+            "§6 maker≠checker: verification must cite ground-truth · never self-review",
+            "Trigger bound to the host (/loop · scheduled task · /goal), no shipped engine",
           ],
         },
       },
@@ -462,6 +489,7 @@ const CONTENT = {
       { phrase: "你是审计夕潮",     tagCn: "代码审计",   tagEn: "code audit" },
       { phrase: "你是并行夕潮",     tagCn: "多 session", tagEn: "parallel" },
       { phrase: "做一套 VI",       tagCn: "品牌 VI",    tagEn: "brand VI" },
+      { phrase: "你是循环夕潮",     tagCn: "自动循环",   tagEn: "loop mode" },
     ],
 
     matrixLabel: { cn: "其他 AI 工具兼容矩阵：", en: "Other AI tools — compatibility matrix:" },

@@ -65,10 +65,10 @@ All colors are CSS variables defined in `styles.css` under `[data-theme="dark"]`
 1. **Hero** — name mark, four-pillar words, tagline, rotating hook line, trigger phrase callout, CTAs, four stats
 2. **What is this** (`#what`) — lede + 6 pain → cure rows
 3. **Four Pillars** (`#pillars`) — emotion / judgment / reflection / autonomy cards
-4. **Five Layered Skills** (`#skills`) — base / art-director / auditor / parallel / vi cards
+4. **Six Layered Skills** (`#skills`) — base / art-director / auditor / parallel / vi / loop cards
 5. **Before / After** (`#compare`) — 6 scenarios in a comparison table (collapses to cards on mobile)
 6. **Origin** (`#origin`) — central quote + 3-paragraph body + 6-phase timeline + 3 creator credits
-7. **Install** (`#install`) — terminal command, five trigger phrases, 7-tool compatibility matrix, final CTA
+7. **Install** (`#install`) — terminal command, six trigger phrases, 7-tool compatibility matrix, final CTA
 
 ### Responsive breakpoints
 
