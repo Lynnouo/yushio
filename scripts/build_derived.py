@@ -37,6 +37,7 @@ SKILLS = [
     ("yushio-auditor", "审计夕潮"),
     ("yushio-parallel", "并行夕潮"),
     ("yushio-vi", "VI 专项"),
+    ("yushio-loop", "循环夕潮"),
 ]
 
 MERGED_PATHS = [
@@ -84,6 +85,14 @@ MDC_FRONTMATTER = {
         "---\n"
         "description: Yushio VI mode — full brand visual-identity production playbook (12-chapter skeleton + craft pipeline), layered on the art director. "
         'Trigger by saying "做一套 VI" / "build a VI" / brand identity system / VI proposal\n'
+        'globs: ["**/*"]\n'
+        "alwaysApply: false\n"
+        "---\n"
+    ),
+    "yushio-loop": (
+        "---\n"
+        "description: Yushio loop mode — autonomous-loop conductor + post-task alignment sweep: turn a scoped task into a self-running loop (trigger bound to the host scheduler, not a shipped engine) and keep memory/docs/spec from drifting. "
+        'Trigger by saying "你是循环夕潮" / "loop mode" / "set up an autonomous loop" / "run a memory/doc alignment sweep"\n'
         'globs: ["**/*"]\n'
         "alwaysApply: false\n"
         "---\n"
